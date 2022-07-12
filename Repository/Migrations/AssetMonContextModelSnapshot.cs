@@ -27,6 +27,9 @@ namespace AssetMon.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -40,9 +43,14 @@ namespace AssetMon.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId")
+                        .IsUnique()
+                        .HasFilter("[AppUserId] IS NOT NULL");
 
                     b.ToTable("Address");
                 });
@@ -55,11 +63,12 @@ namespace AssetMon.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("AddressId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContractType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -115,8 +124,6 @@ namespace AssetMon.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -134,6 +141,7 @@ namespace AssetMon.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AppUserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsActive")
@@ -153,55 +161,11 @@ namespace AssetMon.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("userId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Asset");
-                });
-
-            modelBuilder.Entity("AssetMon.Models.Driver", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AddressId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ContractType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhotoUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("assetId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("assetId")
-                        .IsUnique();
-
-                    b.ToTable("Driver");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -337,35 +301,24 @@ namespace AssetMon.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("AssetMon.Models.AppUser", b =>
+            modelBuilder.Entity("AssetMon.Models.Address", b =>
                 {
-                    b.HasOne("AssetMon.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
+                    b.HasOne("AssetMon.Models.AppUser", "AppUsers")
+                        .WithOne("Address")
+                        .HasForeignKey("AssetMon.Models.Address", "AppUserId");
 
-                    b.Navigation("Address");
+                    b.Navigation("AppUsers");
                 });
 
             modelBuilder.Entity("AssetMon.Models.Asset", b =>
                 {
-                    b.HasOne("AssetMon.Models.AppUser", null)
+                    b.HasOne("AssetMon.Models.AppUser", "AppUser")
                         .WithMany("Assets")
-                        .HasForeignKey("AppUserId");
-                });
-
-            modelBuilder.Entity("AssetMon.Models.Driver", b =>
-                {
-                    b.HasOne("AssetMon.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.HasOne("AssetMon.Models.Asset", null)
-                        .WithOne("Driver")
-                        .HasForeignKey("AssetMon.Models.Driver", "assetId")
+                        .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Address");
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -421,12 +374,10 @@ namespace AssetMon.Data.Migrations
 
             modelBuilder.Entity("AssetMon.Models.AppUser", b =>
                 {
-                    b.Navigation("Assets");
-                });
+                    b.Navigation("Address")
+                        .IsRequired();
 
-            modelBuilder.Entity("AssetMon.Models.Asset", b =>
-                {
-                    b.Navigation("Driver");
+                    b.Navigation("Assets");
                 });
 #pragma warning restore 612, 618
         }

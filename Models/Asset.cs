@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,13 @@ namespace AssetMon.Models
         public string Name { get; set; }
         public string Type { get; set; }
         public string? PaymentFrequency { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
         public decimal PaymentAmount { get; set; }
         public bool IsActive { get; set; } = false;
-        public string userId { get; set; }
+        public string AppUserId { get; set; }
 
         //nav prop
-        public Driver? Driver { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

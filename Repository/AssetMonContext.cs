@@ -13,7 +13,6 @@ namespace AssetMon.Data
 
         public DbSet<AppUser> User { get; set; }
         public DbSet<Asset> Asset { get; set; }
-        public DbSet<Driver> Driver { get; set; }
         public DbSet<Address> Address { get; set; }
 
     }
