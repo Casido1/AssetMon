@@ -13,12 +13,12 @@ namespace AssetMon.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string? PhotoUrl { get; set; }
+        public string PhotoUrl { get; set; }
         public string ContractType { get; set; }
 
         //nav prop
-        public Address Address { get; set; }
-        public IEnumerable<Asset> Assets { get; set; }
+        public virtual Address Address { get; set; }
+        public virtual IEnumerable<Asset> Assets { get; set; }
 
         public AppUser()
         {

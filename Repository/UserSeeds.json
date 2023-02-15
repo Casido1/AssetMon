@@ -6,7 +6,6 @@
     "isActive": true,
     "email": "abideklove@gmail.com",
     "gender": "male",
-    "addressid": "8aef555f-c217-4a40-90ff-aacebc23ecf0",
     "address": {
       "street": "Dobbin Street",
       "state": "Lagos",
@@ -20,7 +19,6 @@
     "isActive": true,
     "email": "richardsonmullen@zidant.com",
     "gender": "male",
-    "addressid": "2902af35-885e-4391-99aa-a694b88def3f",
     "address": {
       "street": "Wolf Place",
       "state": "New Jersey",
@@ -34,7 +32,6 @@
     "isActive": true,
     "email": "fernandezkeith@zidant.com",
     "gender": "male",
-    "addressid": "b2bcd97c-0cc7-4c23-90ca-dc548d52f2bb",
     "address": {
       "street": "Chester Street",
       "state": "Pennsylvania",
@@ -48,7 +45,6 @@
     "isActive": false,
     "email": "anthonylopez@zidant.com",
     "gender": "male",
-    "addressid": "f3b2408e-97cd-4a44-9e58-ab70fe4e6d9d",
     "address": {
       "street": "Sumpter Street",
       "state": "Arkansas",
@@ -62,7 +58,6 @@
     "isActive": false,
     "email": "ellensharpe@zidant.com",
     "gender": "female",
-    "addressid": "6aecb874-2567-417c-b719-4864b95eea21",
     "address": {
       "street": "Lawn Court",
       "state": "Colorado",

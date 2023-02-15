@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AssetMon.Data.Migrations
 {
     [DbContext(typeof(AssetMonContext))]
-    [Migration("20220712110928_Initial")]
+    [Migration("20230215061050_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,32 +29,21 @@ namespace AssetMon.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId")
-                        .IsUnique()
-                        .HasFilter("[AppUserId] IS NOT NULL");
-
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("AssetMon.Models.AppUser", b =>
@@ -70,7 +59,6 @@ namespace AssetMon.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContractType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -81,11 +69,9 @@ namespace AssetMon.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -143,14 +129,12 @@ namespace AssetMon.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AppUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PaymentAmount")
@@ -160,14 +144,34 @@ namespace AssetMon.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Asset");
+                    b.ToTable("Assets");
+                });
+
+            modelBuilder.Entity("AssetMon.Models.Repair", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("AssetId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RepairName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssetId");
+
+                    b.ToTable("Repair");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -305,22 +309,31 @@ namespace AssetMon.Data.Migrations
 
             modelBuilder.Entity("AssetMon.Models.Address", b =>
                 {
-                    b.HasOne("AssetMon.Models.AppUser", "AppUsers")
+                    b.HasOne("AssetMon.Models.AppUser", "AppUser")
                         .WithOne("Address")
-                        .HasForeignKey("AssetMon.Models.Address", "AppUserId");
+                        .HasForeignKey("AssetMon.Models.Address", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("AppUsers");
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("AssetMon.Models.Asset", b =>
                 {
                     b.HasOne("AssetMon.Models.AppUser", "AppUser")
                         .WithMany("Assets")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("AssetMon.Models.Repair", b =>
+                {
+                    b.HasOne("AssetMon.Models.Asset", "Asset")
+                        .WithMany("Repairs")
+                        .HasForeignKey("AssetId");
+
+                    b.Navigation("Asset");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -376,10 +389,14 @@ namespace AssetMon.Data.Migrations
 
             modelBuilder.Entity("AssetMon.Models.AppUser", b =>
                 {
-                    b.Navigation("Address")
-                        .IsRequired();
+                    b.Navigation("Address");
 
                     b.Navigation("Assets");
+                });
+
+            modelBuilder.Entity("AssetMon.Models.Asset", b =>
+                {
+                    b.Navigation("Repairs");
                 });
 #pragma warning restore 612, 618
         }
