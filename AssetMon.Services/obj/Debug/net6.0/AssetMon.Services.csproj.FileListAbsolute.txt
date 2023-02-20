@@ -12,3 +12,8 @@ C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\obj\D
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\obj\Debug\net6.0\AssetMon.Services.pdb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\obj\Debug\net6.0\AssetMon.Services.genruntimeconfig.cache
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\obj\Debug\net6.0\ref\AssetMon.Services.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\bin\Debug\net6.0\Logger.Contracts.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\bin\Debug\net6.0\LoggerService.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\bin\Debug\net6.0\LoggerService.pdb
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\bin\Debug\net6.0\Logger.Contracts.pdb
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\obj\Debug\net6.0\AssetMon.Services.csproj.CopyComplete

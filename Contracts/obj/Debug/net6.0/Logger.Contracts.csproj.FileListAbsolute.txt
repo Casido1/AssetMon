@@ -1,0 +1,12 @@
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Contracts\bin\Debug\net6.0\Logger.Contracts.deps.json
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Contracts\bin\Debug\net6.0\Logger.Contracts.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Contracts\bin\Debug\net6.0\Logger.Contracts.pdb
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Contracts\obj\Debug\net6.0\Logger.Contracts.csproj.AssemblyReference.cache
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Contracts\obj\Debug\net6.0\Logger.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Contracts\obj\Debug\net6.0\Logger.Contracts.AssemblyInfoInputs.cache
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Contracts\obj\Debug\net6.0\Logger.Contracts.AssemblyInfo.cs
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Contracts\obj\Debug\net6.0\Logger.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Contracts\obj\Debug\net6.0\Logger.Contracts.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Contracts\obj\Debug\net6.0\refint\Logger.Contracts.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Contracts\obj\Debug\net6.0\Logger.Contracts.pdb
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Contracts\obj\Debug\net6.0\ref\Logger.Contracts.dll

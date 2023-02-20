@@ -17,7 +17,7 @@ namespace AssetMon.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal PaymentAmount { get; set; }
         public bool IsActive { get; set; } = false;
-        public string AppUserId { get; set; }
+        public string UserId { get; set; }
 
         //Nav prop
         public virtual IEnumerable<Repair> Repairs { get; set; }

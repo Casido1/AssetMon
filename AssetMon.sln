@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetMon.UI", "AssetMon\AssetMon.UI.csproj", "{36D321DE-AAC2-42D8-AE0B-3900472AD285}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetMon.UI", "AssetMon\AssetMon.UI.csproj", "{36D321DE-AAC2-42D8-AE0B-3900472AD285}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetMon.Models", "Models\AssetMon.Models.csproj", "{3048B217-4F95-4B0D-80F2-A99102236FC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetMon.Models", "Models\AssetMon.Models.csproj", "{3048B217-4F95-4B0D-80F2-A99102236FC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetMon.Data", "Repository\AssetMon.Data.csproj", "{7BC7F7D8-DFD7-4A55-9401-DB731DF122AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetMon.Data", "Repository\AssetMon.Data.csproj", "{7BC7F7D8-DFD7-4A55-9401-DB731DF122AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetMon.Services", "AssetMon.Services\AssetMon.Services.csproj", "{0C6ED12C-4BF2-4D7C-8B60-E0E3FAC2AE20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetMon.Services", "AssetMon.Services\AssetMon.Services.csproj", "{0C6ED12C-4BF2-4D7C-8B60-E0E3FAC2AE20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetMon.Commons", "AssetMon.Commons\AssetMon.Commons.csproj", "{EEF4CEF1-14AB-4055-87F4-5A7B7D38DC2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetMon.Commons", "AssetMon.Commons\AssetMon.Commons.csproj", "{EEF4CEF1-14AB-4055-87F4-5A7B7D38DC2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.Contracts", "Contracts\Logger.Contracts.csproj", "{48E00179-4B6A-4301-8F61-4716E452A066}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerService", "LoggerService\LoggerService.csproj", "{B4C2CBFD-7AAE-4497-8A1F-26954302C91C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{EEF4CEF1-14AB-4055-87F4-5A7B7D38DC2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEF4CEF1-14AB-4055-87F4-5A7B7D38DC2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEF4CEF1-14AB-4055-87F4-5A7B7D38DC2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48E00179-4B6A-4301-8F61-4716E452A066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48E00179-4B6A-4301-8F61-4716E452A066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48E00179-4B6A-4301-8F61-4716E452A066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48E00179-4B6A-4301-8F61-4716E452A066}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C2CBFD-7AAE-4497-8A1F-26954302C91C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C2CBFD-7AAE-4497-8A1F-26954302C91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C2CBFD-7AAE-4497-8A1F-26954302C91C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C2CBFD-7AAE-4497-8A1F-26954302C91C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

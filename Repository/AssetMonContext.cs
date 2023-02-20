@@ -1,4 +1,5 @@
-﻿using AssetMon.Models;
+﻿using AssetMon.Data.Configuration;
+using AssetMon.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,13 +12,15 @@ namespace AssetMon.Data
 
         }
 
-        public DbSet<AppUser> Users { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Asset> Assets { get; set; }
         public DbSet<Address> Addresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration(new RoleConfiguration());
         }
     }
 }

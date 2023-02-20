@@ -144,6 +144,9 @@ namespace AssetMon.Data.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
@@ -160,6 +163,7 @@ namespace AssetMon.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("AssetId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("RepairName")
@@ -197,6 +201,29 @@ namespace AssetMon.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "05b03c47-7ffe-4a5c-a370-e113f57b1126",
+                            ConcurrencyStamp = "7f080f01-8385-413d-874b-c7016277feed",
+                            Name = "Owner",
+                            NormalizedName = "OWNER"
+                        },
+                        new
+                        {
+                            Id = "54a5693d-e16c-44e2-a317-67214ce94ae5",
+                            ConcurrencyStamp = "6289e0b7-69ec-4a1c-8ce7-66ed3e66f0e0",
+                            Name = "Driver",
+                            NormalizedName = "DRIVER"
+                        },
+                        new
+                        {
+                            Id = "a966c003-640a-420f-b769-0d1bc2a3a7ef",
+                            ConcurrencyStamp = "ed31dc91-20ed-41f2-8ee6-c7bd1d6a7a32",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -329,7 +356,9 @@ namespace AssetMon.Data.Migrations
                 {
                     b.HasOne("AssetMon.Models.Asset", "Asset")
                         .WithMany("Repairs")
-                        .HasForeignKey("AssetId");
+                        .HasForeignKey("AssetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Asset");
                 });
