@@ -29,8 +29,4 @@
     <ProjectReference Include="..\Models\AssetMon.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>

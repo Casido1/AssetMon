@@ -21,7 +21,7 @@ namespace AssetMon.Models
         public int Tenure { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal PaymentAmount { get; set; }
-        public string PaymentFrequency { get; set; }
+        public PaymentFrequency PaymentFrequency { get; set; }
         public bool IsActive { get; set; } = false;
         public DateTime StartDate { get; set; }
 

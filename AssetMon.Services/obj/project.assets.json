@@ -1089,21 +1089,10 @@
           }
         }
       },
-      "Logger.Contracts/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/Logger.Contracts.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Logger.Contracts.dll": {}
-        }
-      },
       "LoggerService/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Logger.Contracts": "1.0.0",
           "NLog.Extensions.Logging": "5.2.1"
         },
         "compile": {
@@ -2988,11 +2977,6 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "Logger.Contracts/1.0.0": {
-      "type": "project",
-      "path": "../Contracts/Logger.Contracts.csproj",
-      "msbuildProject": "../Contracts/Logger.Contracts.csproj"
     },
     "LoggerService/1.0.0": {
       "type": "project",

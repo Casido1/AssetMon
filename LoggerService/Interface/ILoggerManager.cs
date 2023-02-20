@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logger.Contracts
+namespace LoggerService.Interface
 {
     public interface ILoggerManager
     {

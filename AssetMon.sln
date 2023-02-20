@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetMon.Services", "AssetM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetMon.Commons", "AssetMon.Commons\AssetMon.Commons.csproj", "{EEF4CEF1-14AB-4055-87F4-5A7B7D38DC2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.Contracts", "Contracts\Logger.Contracts.csproj", "{48E00179-4B6A-4301-8F61-4716E452A066}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerService", "LoggerService\LoggerService.csproj", "{B4C2CBFD-7AAE-4497-8A1F-26954302C91C}"
 EndProject
 Global
@@ -43,10 +41,6 @@ Global
 		{EEF4CEF1-14AB-4055-87F4-5A7B7D38DC2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEF4CEF1-14AB-4055-87F4-5A7B7D38DC2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEF4CEF1-14AB-4055-87F4-5A7B7D38DC2D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48E00179-4B6A-4301-8F61-4716E452A066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48E00179-4B6A-4301-8F61-4716E452A066}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48E00179-4B6A-4301-8F61-4716E452A066}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48E00179-4B6A-4301-8F61-4716E452A066}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B4C2CBFD-7AAE-4497-8A1F-26954302C91C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B4C2CBFD-7AAE-4497-8A1F-26954302C91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4C2CBFD-7AAE-4497-8A1F-26954302C91C}.Release|Any CPU.ActiveCfg = Release|Any CPU

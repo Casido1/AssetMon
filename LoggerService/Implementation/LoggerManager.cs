@@ -1,7 +1,7 @@
-﻿using Logger.Contracts;
+﻿using LoggerService.Interface;
 using NLog;
 
-namespace LoggerService
+namespace LoggerService.Implementation
 {
     public class LoggerManager : ILoggerManager
     {

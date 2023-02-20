@@ -3,7 +3,11 @@ C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\ne
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\net6.0\AssetMon.Data.dll
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\net6.0\AssetMon.Data.pdb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\net6.0\AssetMon.Models.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\net6.0\Logger.Contracts.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\net6.0\LoggerService.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\net6.0\LoggerService.pdb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\net6.0\AssetMon.Models.pdb
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\net6.0\Logger.Contracts.pdb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\obj\Debug\net6.0\AssetMon.Data.csproj.AssemblyReference.cache
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\obj\Debug\net6.0\AssetMon.Data.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\obj\Debug\net6.0\AssetMon.Data.AssemblyInfoInputs.cache
@@ -15,7 +19,3 @@ C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\obj\Debug\ne
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\obj\Debug\net6.0\AssetMon.Data.pdb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\obj\Debug\net6.0\AssetMon.Data.genruntimeconfig.cache
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\obj\Debug\net6.0\ref\AssetMon.Data.dll
-C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\net6.0\Logger.Contracts.dll
-C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\net6.0\LoggerService.dll
-C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\net6.0\LoggerService.pdb
-C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\bin\Debug\net6.0\Logger.Contracts.pdb
