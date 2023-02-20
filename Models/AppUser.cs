@@ -11,7 +11,6 @@ namespace AssetMon.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhotoUrl { get; set; }
-        public string ContractType { get; set; }
 
         //nav prop
         public virtual Address Address { get; set; }

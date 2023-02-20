@@ -12,16 +12,9 @@ namespace AssetMon.Models
         public string Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        public string PaymentFrequency { get; set; }
-
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal PaymentAmount { get; set; }
-        public bool IsActive { get; set; } = false;
-        public string UserId { get; set; }
-
+       
         //Nav prop
         public virtual IEnumerable<Repair> Repairs { get; set; }
-        public virtual AppUser AppUser { get; set; }
         public Asset()
         {
             Id = Guid.NewGuid().ToString();

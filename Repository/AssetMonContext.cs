@@ -13,7 +13,7 @@ namespace AssetMon.Data
         }
 
         public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<Asset> Assets { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Address> Addresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

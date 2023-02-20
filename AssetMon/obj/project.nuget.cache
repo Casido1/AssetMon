@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bDTooz5otBd357iw3CQ/wyV03bWEUwAVptZWxKKTPSs03QyvfWaTfB6c5+gYCocRatKtxvEpbeC2fmmuQot0cA==",
+  "dgSpecHash": "+Wwj8xLmwlXiko2uaXLz7KmHiOwxp4Va9WblcDXOVdBINg4eqCPBXGNjXb7OYCxoZzYzH/ia/pCoJSo282tLKw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\AssetMon\\AssetMon.UI.csproj",
   "expectedPackageFiles": [
@@ -55,6 +55,7 @@
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.8.0\\microsoft.identitymodel.protocols.openidconnect.6.8.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\Casido\\.nuget\\packages\\microsoft.odata.edm\\7.14.1\\microsoft.odata.edm.7.14.1.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
