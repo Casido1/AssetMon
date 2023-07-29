@@ -1,4 +1,5 @@
 ﻿using AssetMon.Data.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,29 +11,26 @@ namespace AssetMon.Data.Repositories.Implementation
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        public void Create(T Entity)
+        private readonly AssetMonContext _context;
+
+        public RepositoryBase(AssetMonContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public void Create(T entity) => _context.Set<T>().Add(entity);
+
+        public void Delete(T entity) => _context?.Set<T>().Remove(entity);  
+
+        public IQueryable<T> FindAll(bool trackChanges)
+        {
+            return !trackChanges ? _context.Set<T>().AsNoTracking() : _context.Set<T>();
         }
 
-        public void Delete(T Entity)
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges)
         {
-            throw new NotImplementedException();
+            return !trackChanges? _context.Set<T>().Where(expression).AsNoTracking(): _context.Set<T>().Where(expression);
         }
 
-        public IQueryable<T> GetAll(bool trackChanges)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<T> GetByCondition(Expression<Func<T, bool>> expression, bool trackChanges)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(T Entity)
-        {
-            throw new NotImplementedException();
-        }
+        public void Update(T entity) => _context.Set<T>().Update(entity);
     }
 }

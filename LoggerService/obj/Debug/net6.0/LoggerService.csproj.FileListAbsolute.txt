@@ -1,14 +1,11 @@
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\bin\Debug\net6.0\LoggerService.deps.json
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\bin\Debug\net6.0\LoggerService.dll
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\bin\Debug\net6.0\LoggerService.pdb
-C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\bin\Debug\net6.0\Logger.Contracts.dll
-C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\bin\Debug\net6.0\Logger.Contracts.pdb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\obj\Debug\net6.0\LoggerService.csproj.AssemblyReference.cache
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\obj\Debug\net6.0\LoggerService.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\obj\Debug\net6.0\LoggerService.AssemblyInfoInputs.cache
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\obj\Debug\net6.0\LoggerService.AssemblyInfo.cs
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\obj\Debug\net6.0\LoggerService.csproj.CoreCompileInputs.cache
-C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\obj\Debug\net6.0\LoggerService.csproj.CopyComplete
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\obj\Debug\net6.0\LoggerService.dll
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\obj\Debug\net6.0\refint\LoggerService.dll
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\LoggerService\obj\Debug\net6.0\LoggerService.pdb

@@ -1,0 +1,23 @@
+2023-05-23 08:51:06.4780 ERROR Something went wrong in the GetAllVehicles service method System.InvalidOperationException: Cycle detected while auto-including navigations: 'Vehicle.AppUsers', 'AppUser.Vehicles'. To fix this issue, either don't configure at least one navigation in the cycle as auto included in `OnModelCreating` or call 'IgnoreAutoInclude' method on the query.
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VerifyNoAutoIncludeCycles(IEntityType entityType, HashSet`1 visitedEntityTypes, List`1 navigationChain)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VerifyNoAutoIncludeCycles(IEntityType entityType, HashSet`1 visitedEntityTypes, List`1 navigationChain)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VerifyNoAutoIncludeCycles(IEntityType entityType, HashSet`1 visitedEntityTypes, List`1 navigationChain)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.PopulateEagerLoadedNavigations(IncludeTreeNode includeTreeNode)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.CreateNavigationExpansionExpression(Expression sourceExpression, IEntityType entityType)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VisitExtension(Expression extensionExpression)
+   at System.Linq.Expressions.Expression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.Expand(Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor.Process(Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass9_0`1.<Execute>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetEnumerator()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at AssetMon.Data.Repositories.Implementation.VehicleRepository.GetAllVehicles(Boolean trackChanges) in C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\Repositories\Implementation\VehicleRepository.cs:line 20
+   at AssetMon.Services.Implementation.VehicleService.GetAllVehicles(Boolean trackChanges) in C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\Implementation\VehicleService.cs:line 27

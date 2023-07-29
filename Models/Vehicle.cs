@@ -11,10 +11,6 @@ namespace AssetMon.Models
 {
     public class Vehicle : Asset
     {
-        [ForeignKey("Owner")]
-        public string OwnerId { get; set; }
-        [ForeignKey("Driver")]
-        public string DriverId { get; set; }
         public string PlateNumber { get; set; }
         public string Color { get; set; }
         public Contracts ContractType { get; set; }
@@ -26,7 +22,14 @@ namespace AssetMon.Models
         public DateTime StartDate { get; set; }
 
         //Nav prop
-        public virtual AppUser Driver { get; set; }
-        public virtual AppUser Owner { get; set; }
+        public IEnumerable<Ownership> Ownerships { get; set; }
+        public virtual IEnumerable<VehicleRepair> Repairs { get; set; }
+
+        public Vehicle()
+        {
+            Id = Guid.NewGuid().ToString();
+            Repairs = new List<VehicleRepair>();
+            Ownerships = new List<Ownership>();
+        }
     }
 }

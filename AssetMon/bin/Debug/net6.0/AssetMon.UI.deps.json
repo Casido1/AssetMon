@@ -806,14 +806,8 @@
           "AssetMon.Models.dll": {}
         }
       },
-      "Logger.Contracts/1.0.0": {
-        "runtime": {
-          "Logger.Contracts.dll": {}
-        }
-      },
       "LoggerService/1.0.0": {
         "dependencies": {
-          "Logger.Contracts": "1.0.0",
           "NLog.Extensions.Logging": "5.2.1"
         },
         "runtime": {
@@ -1387,11 +1381,6 @@
       "sha512": ""
     },
     "AssetMon.Models/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Logger.Contracts/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

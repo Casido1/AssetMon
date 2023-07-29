@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Text.Json.Serialization;
 
 namespace AssetMon.Models
 {
@@ -9,13 +10,13 @@ namespace AssetMon.Models
         public string PhotoUrl { get; set; }
 
         //nav prop
+        public virtual IEnumerable<Ownership> Ownerships { get; set; }
         public virtual Address Address { get; set; }
-        public virtual IEnumerable<Asset> Assets { get; set; }
 
         public AppUser()
         {
             Id = Guid.NewGuid().ToString();
-            Assets = new List<Asset>();
+            Ownerships = new List<Ownership>();
         }
 
     }

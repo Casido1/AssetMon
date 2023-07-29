@@ -5,8 +5,8 @@ namespace AssetMon.Models
 {
     public class Address
     {
-        [Key, ForeignKey("AppUser")]
         public string Id { get; set; }
+        public string AppUserId { get; set; }
         public string Country { get; set; }
         public string State { get; set; }
         public string City { get; set; }
@@ -14,5 +14,10 @@ namespace AssetMon.Models
 
         //Nav prop
         public virtual AppUser AppUser { get; set; }
+
+        public Address()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
     }
 }

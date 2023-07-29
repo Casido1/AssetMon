@@ -26,6 +26,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LoggerService\LoggerService.csproj" />
+    <ProjectReference Include="..\Models\AssetMon.Models.csproj" />
+    <ProjectReference Include="..\Repository\AssetMon.Data.csproj" />
   </ItemGroup>
 
 </Project>

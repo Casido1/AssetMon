@@ -1,7 +1,11 @@
 ﻿using AssetMon.Data;
+using AssetMon.Data.Repositories.Implementation;
+using AssetMon.Data.Repositories.Interface;
 using AssetMon.Models;
-using Logger.Contracts;
-using LoggerService;
+using AssetMon.Services.Implementation;
+using AssetMon.Services.Interface;
+using LoggerService.Implementation;
+using LoggerService.Interface;
 using Microsoft.AspNetCore.Identity;
 
 namespace AssetMon.UI.ServiceExtensions
@@ -47,8 +51,21 @@ namespace AssetMon.UI.ServiceExtensions
             });
         }
         #endregion
+
+        #region Logger
         public static void ConfigureLoggerService(this IServiceCollection services) =>
             services.AddSingleton<ILoggerManager, LoggerManager>();
+        #endregion
+
+        #region repository manager
+        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
+        #endregion
+
+        #region service manager
+        public static void ConfigureServiceManager(this IServiceCollection services) =>
+            services.AddScoped<IServiceManager, ServiceManager>();
+        #endregion
 
     }
 }

@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "gBQPAnHR8gS9lqLEJ1ciDPFT7oFo2pk0UW2rdVa84xs=",
-  "Source": "AssetMon.UI",
-  "BasePath": "_content/AssetMon.UI",
+  "Hash": "PYpF4Gl1uOMtyUUtfJm1QL59Dfo8M9HqYzAEXQRcZbo=",
+  "Source": "AssetMon.Main",
+  "BasePath": "_content/AssetMon.Main",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

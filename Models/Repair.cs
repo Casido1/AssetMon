@@ -5,18 +5,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AssetMon.Models
 {
-    public class Repair
+    public class VehicleRepair
     {
         public string Id { get; set; }
+
         [Required]
-        public string AssetId { get; set; }
+        [ForeignKey("Vehicle")]
+        public string VehicleId { get; set; }
         public string RepairName { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
         //Nav prop
-        public virtual Asset Asset { get; set; }
-        public Repair()
+        public Vehicle Vehicle { get; set; }
+        public VehicleRepair()
         {
             Id = Guid.NewGuid().ToString(); 
         }

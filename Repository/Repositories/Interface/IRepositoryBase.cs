@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace AssetMon.Data.Repositories.Interface
 {
-    public interface IRepositoryBase<T>
+    public interface IRepositoryBase<T> 
     {
-        IQueryable<T> GetAll(bool trackChanges);
-        IQueryable<T> GetByCondition(Expression<Func<T, bool>> expression, bool trackChanges);
-        void Create(T Entity);
-        void Update(T Entity);
-        void Delete(T Entity);
+        IQueryable<T> FindAll(bool trackChanges);
+        IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges);
+        void Create(T entity);
+        void Update(T entity);
+        void Delete(T entity);
     }
 }
