@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetMon.Commons", "AssetMo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerService\LoggerService.csproj", "{B4C2CBFD-7AAE-4497-8A1F-26954302C91C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetMon.Presentation", "AssetMon.Presentation\AssetMon.Presentation.csproj", "{FA75CB1D-1D31-4850-9AB9-065181ABC0CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetMon.Presentation", "AssetMon.Presentation\AssetMon.Presentation.csproj", "{FA75CB1D-1D31-4850-9AB9-065181ABC0CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetMon.Shared", "AssetMon.Shared\AssetMon.Shared.csproj", "{43FE59A4-3AD4-429E-9ED2-F3E3AF69C80B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{FA75CB1D-1D31-4850-9AB9-065181ABC0CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA75CB1D-1D31-4850-9AB9-065181ABC0CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA75CB1D-1D31-4850-9AB9-065181ABC0CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43FE59A4-3AD4-429E-9ED2-F3E3AF69C80B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43FE59A4-3AD4-429E-9ED2-F3E3AF69C80B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43FE59A4-3AD4-429E-9ED2-F3E3AF69C80B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43FE59A4-3AD4-429E-9ED2-F3E3AF69C80B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

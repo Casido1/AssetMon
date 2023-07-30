@@ -1,4 +1,5 @@
 ﻿using AssetMon.Models;
+using AssetMon.Shared.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace AssetMon.Services.Interface
 {
     public interface IVehicleService
     {
-        IEnumerable<Vehicle> GetAllVehicles(bool trackChanges);
+        IEnumerable<VehicleDTO> GetAllVehicles(bool trackChanges);
     }
 }

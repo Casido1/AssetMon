@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using AssetMon.UI.ServiceExtensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using NLog;
+using AssetMon.Main;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.AddControllers()
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(Program));
 
 var build = new ConfigurationBuilder()
         .AddJsonFile($"appsettings.json", optional: true); //or what ever file you have the settings

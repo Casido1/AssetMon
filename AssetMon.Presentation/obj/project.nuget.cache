@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "029LoAJkvJw7IraOB9TWKmJu9pfrG+aqXZvNMY6sD+EjKBshPcpH8GYHYCYHAzZKg39Jqir8h++KDFNNEzW0Jg==",
+  "dgSpecHash": "jY06U+Zr8FE1c2Goh3qsBwnhwLfU+2sM1CvstSBIqgO6edRG2baxHOFHYAkVa32qimyECFdADd1vAc5esNB54A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\AssetMon.Presentation\\AssetMon.Presentation.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Casido\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Casido\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
@@ -24,7 +26,7 @@
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.aspnetcore.routing\\2.2.0\\microsoft.aspnetcore.routing.2.2.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.aspnetcore.routing.abstractions\\2.2.0\\microsoft.aspnetcore.routing.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
-    "C:\\Users\\Casido\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Casido\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\2.1.0\\microsoft.dotnet.platformabstractions.2.1.0.nupkg.sha512",

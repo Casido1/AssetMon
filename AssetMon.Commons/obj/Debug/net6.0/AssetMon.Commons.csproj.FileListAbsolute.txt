@@ -12,3 +12,6 @@ C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Commons\obj\De
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Commons\obj\Debug\net6.0\AssetMon.Commons.pdb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Commons\obj\Debug\net6.0\AssetMon.Commons.genruntimeconfig.cache
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Commons\obj\Debug\net6.0\ref\AssetMon.Commons.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Commons\bin\Debug\net6.0\AssetMon.Models.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Commons\bin\Debug\net6.0\AssetMon.Models.pdb
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Commons\obj\Debug\net6.0\AssetMon.Commons.csproj.CopyComplete

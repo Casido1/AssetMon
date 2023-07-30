@@ -93,3 +93,9 @@ C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\obj\Debug\net6
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\obj\Debug\net6.0\AssetMon.Main.pdb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\obj\Debug\net6.0\AssetMon.Main.genruntimeconfig.cache
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\obj\Debug\net6.0\ref\AssetMon.Main.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\bin\Debug\net6.0\AssetMon.Commons.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\bin\Debug\net6.0\AssetMon.Shared.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\bin\Debug\net6.0\AssetMon.Commons.pdb
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\bin\Debug\net6.0\AssetMon.Shared.pdb

@@ -68,3 +68,185 @@ Error Number:4060,State:1,Class:11
    at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
    at AssetMon.Data.Repositories.Implementation.VehicleRepository.GetAllVehicles(Boolean trackChanges) in C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\Repository\Repositories\Implementation\VehicleRepository.cs:line 21
    at AssetMon.Services.Implementation.VehicleService.GetAllVehicles(Boolean trackChanges) in C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\Implementation\VehicleService.cs:line 27
+2023-07-30 16:14:41.5727 ERROR Something went wrong in the GetAllVehicles service method AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[AssetMon.Models.Vehicle, AssetMon.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[AssetMon.Shared.DTOs.VehicleDTO, AssetMon.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Type Map configuration:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Destination Member:
+Id
+
+ ---> System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   at AssetMon.Services.Implementation.VehicleService.GetAllVehicles(Boolean trackChanges) in C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\Implementation\VehicleService.cs:line 32
+2023-07-30 16:17:55.1838 ERROR Something went wrong in the GetAllVehicles service method AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[AssetMon.Models.Vehicle, AssetMon.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[AssetMon.Shared.DTOs.VehicleDTO, AssetMon.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Type Map configuration:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Destination Member:
+Id
+
+ ---> System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   at AssetMon.Services.Implementation.VehicleService.GetAllVehicles(Boolean trackChanges) in C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\Implementation\VehicleService.cs:line 32
+2023-07-30 16:44:47.5266 ERROR Something went wrong in the GetAllVehicles service method AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[AssetMon.Models.Vehicle, AssetMon.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[AssetMon.Shared.DTOs.VehicleDTO, AssetMon.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Type Map configuration:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Destination Member:
+Id
+
+ ---> System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   at AssetMon.Services.Implementation.VehicleService.GetAllVehicles(Boolean trackChanges) in C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\Implementation\VehicleService.cs:line 32
+2023-07-30 17:16:25.5607 ERROR Something went wrong in the GetAllVehicles service method AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[AssetMon.Models.Vehicle, AssetMon.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[AssetMon.Shared.DTOs.VehicleDTO, AssetMon.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Type Map configuration:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Destination Member:
+Id
+
+ ---> System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   at AssetMon.Services.Implementation.VehicleService.GetAllVehicles(Boolean trackChanges) in C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\Implementation\VehicleService.cs:line 32
+2023-07-30 17:20:06.5726 ERROR Something went wrong in the GetAllVehicles service method AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[AssetMon.Models.Vehicle, AssetMon.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[AssetMon.Shared.DTOs.VehicleDTO, AssetMon.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Type Map configuration:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Destination Member:
+Id
+
+ ---> System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   at AssetMon.Services.Implementation.VehicleService.GetAllVehicles(Boolean trackChanges) in C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\Implementation\VehicleService.cs:line 32
+2023-07-30 18:04:21.3674 ERROR Something went wrong in the GetAllVehicles service method AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[AssetMon.Models.Vehicle, AssetMon.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[AssetMon.Shared.DTOs.VehicleDTO, AssetMon.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Type Map configuration:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Destination Member:
+Id
+
+ ---> System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   at AssetMon.Services.Implementation.VehicleService.GetAllVehicles(Boolean trackChanges) in C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\Implementation\VehicleService.cs:line 32
+2023-07-30 18:07:51.6165 ERROR Something went wrong in the GetAllVehicles service method AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[AssetMon.Models.Vehicle, AssetMon.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[AssetMon.Shared.DTOs.VehicleDTO, AssetMon.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Type Map configuration:
+Vehicle -> VehicleDTO
+AssetMon.Models.Vehicle -> AssetMon.Shared.DTOs.VehicleDTO
+
+Destination Member:
+Id
+
+ ---> System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method116(Closure , Object , List`1 , ResolutionContext )
+   at AssetMon.Services.Implementation.VehicleService.GetAllVehicles(Boolean trackChanges) in C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\Implementation\VehicleService.cs:line 32
