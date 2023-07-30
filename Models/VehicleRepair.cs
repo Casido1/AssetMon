@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace AssetMon.Models
 {
@@ -17,6 +16,7 @@ namespace AssetMon.Models
         public decimal Amount { get; set; }
 
         //Nav prop
+        [JsonIgnore]
         public Vehicle Vehicle { get; set; }
         public VehicleRepair()
         {
