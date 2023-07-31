@@ -24,31 +24,45 @@ namespace AssetMon.Services.Implementation
             _logger = logger;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<VehicleDTO>> GetAllVehiclesAsync(bool trackChanges)
+        public async Task<ResultDTO<IEnumerable<VehicleDTO>>> GetAllVehiclesAsync(bool trackChanges)
         {
             try
             {
                 var vehicles = await _repository.Vehicle.GetAllVehicles(trackChanges);
-                return _mapper.Map<List<VehicleDTO>>(vehicles);
+                var mappedResult = _mapper.Map<List<VehicleDTO>>(vehicles);
+
+                if (vehicles == null)
+                {
+                    return new ResultDTO<IEnumerable<VehicleDTO>> { Success = false, Message = "Entity not found" };
+                }
+
+                return new ResultDTO<IEnumerable<VehicleDTO>> { Success = true, Data = mappedResult };   
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Something went wrong in the {nameof(GetAllVehiclesAsync)} service method {ex}");
-                throw;
+                return new ResultDTO<IEnumerable<VehicleDTO>> { Success = false, Message = "An error occurred: {ex.Message}" };
             }
         }
 
-        public async Task<VehicleDTO> GetVehicleByIdAsync(string Id, bool trackChanges)
+        public async Task<ResultDTO<VehicleDTO>> GetVehicleByIdAsync(string Id, bool trackChanges)
         {
             try
             {
                 var vehicle = await _repository.Vehicle.GetVehicleById(Id, trackChanges);
-                return _mapper.Map<VehicleDTO>(vehicle);
+                var mappedResult = _mapper.Map<VehicleDTO>(vehicle);
+
+                if (vehicle == null)
+                {
+                    return new ResultDTO<VehicleDTO> { Success = false, Message = "Entity not found" };
+                }
+
+                return new ResultDTO<VehicleDTO> { Success = true, Data = mappedResult };
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Something went wrong in the {nameof(GetAllVehiclesAsync)} service method {ex}");
-                throw;
+                return new ResultDTO<VehicleDTO> { Success = false, Message = "An error occurred: {ex.Message}" };
             }
         }
     }

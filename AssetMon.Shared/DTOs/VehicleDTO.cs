@@ -23,6 +23,6 @@ namespace AssetMon.Shared.DTOs
         public string PaymentFrequency { get; set; }
         public bool IsActive { get; set; } = false;
         public DateTime StartDate { get; set; }
-        public virtual IEnumerable<VehicleRepair> Repairs { get; set; }
+        public virtual IEnumerable<VehicleRepairDTO> Repairs { get; set; }
     }
 }
