@@ -24,12 +24,14 @@ namespace AssetMon.Models
         //Nav prop
         public IEnumerable<Ownership> Ownerships { get; set; }
         public virtual IEnumerable<VehicleRepair> Repairs { get; set; }
+        public virtual IEnumerable<Payment> Payments { get; set; }
 
         public Vehicle()
         {
             Id = Guid.NewGuid().ToString();
             Repairs = new List<VehicleRepair>();
             Ownerships = new List<Ownership>();
+            Payments = new List<Payment>();
         }
     }
 }
