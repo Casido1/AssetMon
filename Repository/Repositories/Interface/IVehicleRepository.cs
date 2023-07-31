@@ -9,6 +9,7 @@ namespace AssetMon.Data.Repositories.Interface
 {
     public interface IVehicleRepository
     {
-        IEnumerable<Vehicle> GetAllVehicles(bool trackChanges);
+        Task<IEnumerable<Vehicle>> GetAllVehicles(bool trackChanges);
+        Task<Vehicle> GetVehicleById(string Id, bool trackChanges);
     }
 }

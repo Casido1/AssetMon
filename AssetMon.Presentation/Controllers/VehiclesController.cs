@@ -12,11 +12,25 @@ namespace AssetMon.Presentation.Controllers
         public VehiclesController(IServiceManager service) => _service = service;
 
         [HttpGet]
-        public IActionResult GetVehicles()
+        public async Task<IActionResult> GetVehicles()
         {
             try
             {
-                var vehicle = _service.VehicleService.GetAllVehicles(trackChanges: false);
+                var vehicles = await _service.VehicleService.GetAllVehiclesAsync(trackChanges: false);
+                return Ok(vehicles);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetVehicleById(string Id)
+        {
+            try
+            {
+                var vehicle = await _service.VehicleService.GetVehicleByIdAsync(Id, trackChanges: false);
                 return Ok(vehicle);
             }
             catch (Exception ex)

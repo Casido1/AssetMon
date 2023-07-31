@@ -10,6 +10,7 @@ namespace AssetMon.Services.Interface
 {
     public interface IVehicleService
     {
-        IEnumerable<VehicleDTO> GetAllVehicles(bool trackChanges);
+        Task<IEnumerable<VehicleDTO>> GetAllVehiclesAsync(bool trackChanges);
+        Task<VehicleDTO> GetVehicleByIdAsync(string Id, bool trackChanges);
     }
 }

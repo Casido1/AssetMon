@@ -24,16 +24,30 @@ namespace AssetMon.Services.Implementation
             _logger = logger;
             _mapper = mapper;
         }
-        public IEnumerable<VehicleDTO> GetAllVehicles(bool trackChanges)
+        public async Task<IEnumerable<VehicleDTO>> GetAllVehiclesAsync(bool trackChanges)
         {
             try
             {
-                var vehicles = _repository.Vehicle.GetAllVehicles(trackChanges);
+                var vehicles = await _repository.Vehicle.GetAllVehicles(trackChanges);
                 return _mapper.Map<List<VehicleDTO>>(vehicles);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong in the {nameof(GetAllVehicles)} service method {ex}");
+                _logger.LogError($"Something went wrong in the {nameof(GetAllVehiclesAsync)} service method {ex}");
+                throw;
+            }
+        }
+
+        public async Task<VehicleDTO> GetVehicleByIdAsync(string Id, bool trackChanges)
+        {
+            try
+            {
+                var vehicle = await _repository.Vehicle.GetVehicleById(Id, trackChanges);
+                return _mapper.Map<VehicleDTO>(vehicle);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the {nameof(GetAllVehiclesAsync)} service method {ex}");
                 throw;
             }
         }
