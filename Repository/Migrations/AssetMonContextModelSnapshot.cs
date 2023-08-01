@@ -176,70 +176,70 @@ namespace AssetMon.Data.Migrations
                         {
                             Id = "1ee125f5-3be4-4bda-ae4c-d471762c414c",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a377da85-9bc4-4f0e-8213-7724a961821b",
+                            ConcurrencyStamp = "25cb0ffb-a8a2-4355-b7a9-b83de0ce9a36",
                             Email = "ahmedsani@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ahmed",
                             LastName = "Sani",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "84db9a5f-6db3-4220-a440-a74a826bdad2",
+                            SecurityStamp = "d1bdddbc-d7a9-4547-968c-622d23bc6143",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "6c649c3c-a0f1-4065-832a-193cd3d9085d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "832ecd0f-54e3-43d9-871d-de0e9eb43c4f",
+                            ConcurrencyStamp = "59022eb0-8d26-4de0-b031-553bf0e32093",
                             Email = "idrissalisu@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Idris",
                             LastName = "Salisu",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1f52793f-a452-44bf-8874-eb7b87aa1442",
+                            SecurityStamp = "68a376a3-e721-4d29-8151-bc67e5def723",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "21443f16-6bfb-4b07-8f35-d4a876266d5b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ecc64d03-5375-4947-8e6a-b6598bbbd5a9",
+                            ConcurrencyStamp = "61927f05-c132-4e48-a93b-89cc822ca38b",
                             Email = "abubakarmohammed@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Abubakar",
                             LastName = "Mohammed",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ce0cedb9-41ec-4f1e-8a07-b197dc4b29c5",
+                            SecurityStamp = "90c3f8b6-796a-4898-9176-b62cf3766f9f",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "d23d56ce-9953-4647-b594-340a50bf7320",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c7fe8421-2f57-4301-a6c4-3f8019cdab2b",
+                            ConcurrencyStamp = "233b9e6c-5697-47b6-b8fd-356e4c3f557f",
                             Email = "hamzaisah@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Hamza",
                             LastName = "Isah",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ed9b693f-e321-46ec-825f-72e6199b4ea3",
+                            SecurityStamp = "c209caf4-321d-464b-b84f-ea319302c977",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "666e993e-bd32-4097-a572-702228c0df60",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "105e82ae-c061-4c40-b82e-f0e80374d052",
+                            ConcurrencyStamp = "891d091e-cf9a-4b8d-b1c5-d0b9eeddecdf",
                             Email = "ugochukwu.anunihu@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ugochukwu",
                             LastName = "Anunihu",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b37bd117-0c0b-4511-b305-46133d0e6378",
+                            SecurityStamp = "295bf775-19ff-4a2e-8b9f-936dc16b8a57",
                             TwoFactorEnabled = false
                         });
                 });
@@ -313,13 +313,14 @@ namespace AssetMon.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("VehicleId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("Payment");
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("AssetMon.Models.Vehicle", b =>
@@ -484,22 +485,22 @@ namespace AssetMon.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4968d656-904f-4b2e-98c8-d1ad07a02639",
-                            ConcurrencyStamp = "9341f380-6f90-486e-9e74-fca2aaf53733",
+                            Id = "1ed26f58-ddff-4a71-b517-6aafdba26795",
+                            ConcurrencyStamp = "27caef73-fef9-4ee0-8dc1-ada5372c0ada",
                             Name = "Owner",
                             NormalizedName = "OWNER"
                         },
                         new
                         {
-                            Id = "2fa76062-4b20-42ff-9d05-8207001e9675",
-                            ConcurrencyStamp = "49af4034-555e-4b87-9808-e1f4511495bd",
+                            Id = "6eb2518b-422c-4e85-ae68-123ab1127564",
+                            ConcurrencyStamp = "022e4e1c-5d5c-4cd1-9674-bf467b4e46b6",
                             Name = "Driver",
                             NormalizedName = "DRIVER"
                         },
                         new
                         {
-                            Id = "0bd372e4-6b7a-46bb-83a5-ca01cd544bd2",
-                            ConcurrencyStamp = "400fd777-f9c3-42d5-8bc5-aafbd88f3396",
+                            Id = "164d1341-6ee5-4d65-9763-1b2c91428c99",
+                            ConcurrencyStamp = "9784f537-3455-456d-a647-165fe06a0c6a",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -645,7 +646,9 @@ namespace AssetMon.Data.Migrations
                 {
                     b.HasOne("AssetMon.Models.Vehicle", "Vehicle")
                         .WithMany("Payments")
-                        .HasForeignKey("VehicleId");
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Vehicle");
                 });

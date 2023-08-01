@@ -12,12 +12,14 @@ namespace AssetMon.Data.Repositories.Implementation
         private readonly AssetMonContext _context;
         private readonly Lazy<IUserRepository> _userRepository;
         private readonly Lazy<IVehicleRepository> _vehicleRepository;
+        private readonly Lazy<IPaymentRepository> _paymentRepository;
 
         public RepositoryManager(AssetMonContext context)
         {
             _context = context;
             _userRepository = new Lazy<IUserRepository>(() => new UserRepository(_context));
             _vehicleRepository = new Lazy<IVehicleRepository>(() => new VehicleRepository(_context));
+            _paymentRepository = new Lazy<IPaymentRepository>(() => new PaymentRepository(_context));
         }
         public IUserRepository User => _userRepository.Value;
 

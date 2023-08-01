@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace AssetMon.Models
 {
@@ -12,6 +8,7 @@ namespace AssetMon.Models
     {
         public string Id { get; set; }
         [ForeignKey("Vehicle")]
+        [Required]
         public string VehicleId { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }

@@ -12,10 +12,8 @@ namespace AssetMon.Data.Repositories.Implementation
 {
     internal sealed class VehicleRepository : RepositoryBase <Vehicle>, IVehicleRepository
     {
-        private readonly AssetMonContext _context;
         public VehicleRepository(AssetMonContext context) : base(context)
         {
-            _context = context;
         }
 
         public async Task<IEnumerable<Vehicle>> GetAllVehicles(bool trackChanges)
@@ -24,13 +22,20 @@ namespace AssetMon.Data.Repositories.Implementation
                             .Include(a => a.Repairs)
                             .OrderBy(x => x.Name)
                             .ToListAsync();
-        }
-            
+        }      
 
         public async Task<Vehicle> GetVehicleById(string Id, bool trackChanges)
         {
             Expression<Func<Vehicle, bool>> expression = vehicle => vehicle.Id == Id;
             return await FindByCondition(expression, trackChanges).Include(a => a.Repairs).FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<Payment>> GetVehiclePaymentsByVehicleId(string Id, bool trackChanges)
+        {
+            Expression<Func<Vehicle, bool>> expression = vehicle => vehicle.Id == Id;
+            var vehicle = await FindByCondition(expression, trackChanges).Include(a => a.Payments).FirstOrDefaultAsync();
+
+            return vehicle == null ? null : vehicle.Payments;
         }
     }
 }

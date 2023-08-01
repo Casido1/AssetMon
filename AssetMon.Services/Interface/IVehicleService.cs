@@ -12,5 +12,6 @@ namespace AssetMon.Services.Interface
     {
         Task<ResultDTO<IEnumerable<VehicleDTO>>> GetAllVehiclesAsync(bool trackChanges);
         Task<ResultDTO<VehicleDTO>> GetVehicleByIdAsync(string Id, bool trackChanges);
+        Task<ResultDTO<IEnumerable<PaymentDTO>>> GetVehiclePaymentsByVehicleIdAsync(string Id, bool trackChanges);
     }
 }

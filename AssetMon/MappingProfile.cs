@@ -13,6 +13,8 @@ namespace AssetMon.Main
                 .ForMember(dest => dest.PaymentFrequency, opt => opt.MapFrom(src => src.PaymentFrequency.ToString()));
 
             CreateMap<VehicleRepair, VehicleRepairDTO>();
+
+            CreateMap<Payment, PaymentDTO>();
         }
     }
 }

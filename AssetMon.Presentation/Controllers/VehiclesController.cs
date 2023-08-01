@@ -38,5 +38,19 @@ namespace AssetMon.Presentation.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpGet("{Id}/payments")]
+        public async Task<IActionResult> GetVehiclePaymentsByVehicleIdAsync(string Id)
+        {
+            try
+            {
+                var payments = await _service.VehicleService.GetVehiclePaymentsByVehicleIdAsync(Id, trackChanges: false);
+                return Ok(payments);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

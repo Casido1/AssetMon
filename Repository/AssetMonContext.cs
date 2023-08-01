@@ -17,6 +17,7 @@ namespace AssetMon.Data
         public DbSet<Address> Addresses { get; set; }
         public DbSet<VehicleRepair> VehicleRepairs { get; set; }
         public DbSet<Ownership> Ownerships { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

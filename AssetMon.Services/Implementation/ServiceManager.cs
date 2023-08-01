@@ -19,7 +19,7 @@ namespace AssetMon.Services.Implementation
             _logger = logger;
             _mapper = mapper;
             _vehicleService = new Lazy<IVehicleService>(() =>new VehicleService(_repository, _logger, _mapper));
-            _userService = new Lazy<IUserService>(() =>new UserService(_repository, _logger));  
+            _userService = new Lazy<IUserService>(() =>new UserService(_repository, _logger, _mapper));  
         }
         public IUserService UserService => _userService.Value;
 
