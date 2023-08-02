@@ -1,9 +1,9 @@
 using AssetMon.Data;
-using Microsoft.EntityFrameworkCore;
-using AssetMon.UI.ServiceExtensions;
+using AssetMon.Main.Extensions;
+using LoggerService.Interface;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.EntityFrameworkCore;
 using NLog;
-using AssetMon.Main;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +41,9 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
+var logger = app.Services.GetRequiredService<ILoggerManager>();
+app.ConfigureExceptionHandler(logger);
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

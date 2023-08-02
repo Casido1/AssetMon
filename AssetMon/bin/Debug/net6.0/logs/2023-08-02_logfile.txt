@@ -1,0 +1,4 @@
+2023-08-02 10:25:58.1799 ERROR Something went wrong in the GetAllVehiclesAsync service method System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at AssetMon.Services.Implementation.VehicleService.GetVehiclePaymentsByVehicleIdAsync(String Id, Boolean trackChanges) in C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\Implementation\VehicleService.cs:line 77
