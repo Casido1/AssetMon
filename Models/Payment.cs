@@ -20,5 +20,10 @@ namespace AssetMon.Models
         //Nav prop
         [JsonIgnore]
         public Vehicle Vehicle { get; set; }
+
+        public Payment()
+        {
+                Id = Guid.NewGuid().ToString(); 
+        }
     }
 }

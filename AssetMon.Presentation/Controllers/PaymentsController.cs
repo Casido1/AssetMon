@@ -1,4 +1,5 @@
 ﻿using AssetMon.Services.Interface;
+using AssetMon.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,27 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetPaymentsAsync(string vehicleId) 
+        public async Task<IActionResult> GetPaymentsAsync(string vehicleId)
         {
             var payments = await _service.PaymentService.GetPaymentsAsync(vehicleId, trackChanges: false);
             return Ok(payments);
+        }
+
+        [HttpGet("{Id}", Name = "PaymentByIdAsync")]
+        public async Task<IActionResult> GetPaymentByIdAsync(string vehicleId, string Id)
+        {
+            var payments = await _service.PaymentService.GetPaymentByIdAsync(vehicleId, Id, trackChanges: false);
+            return Ok(payments);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePaymentAsync(string vehicleId, PaymentToCreateDTO payment)
+        {
+            if (payment == null) return BadRequest("PaymentToCreateDTO object is null");
+
+            var paymentCreated = await _service.PaymentService.CreatePaymentAsync(vehicleId, payment, trackChanges: false);
+
+            return CreatedAtRoute("PaymentByIdAsync", new {vehicleId, Id = paymentCreated.Id }, paymentCreated);
         }
     }
 }

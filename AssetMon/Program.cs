@@ -2,6 +2,7 @@ using AssetMon.Data;
 using AssetMon.Main.Extensions;
 using LoggerService.Interface;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 
@@ -15,7 +16,12 @@ builder.Services.ConfigureCors();
 builder.Services.ConfigureIISIntegration();
 builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureRepositoryManager();
-builder.Services.ConfigureServiceManager(); 
+builder.Services.ConfigureServiceManager();
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(AssetMon.Presentation.AssemblyReference).Assembly);

@@ -20,8 +20,8 @@ namespace AssetMon.Presentation.Controllers
             return Ok(vehicles);
         }
 
-        [HttpGet("{Id}", Name = "VehicleById")]
-        public async Task<IActionResult> GetVehicleById(string Id)
+        [HttpGet("{Id}", Name = "VehicleByIdAsync")]
+        public async Task<IActionResult> GetVehicleByIdAsync(string Id)
         {
             var vehicle = await _service.VehicleService.GetVehicleByIdAsync(Id, trackChanges: false);
             return Ok(vehicle);
@@ -34,7 +34,7 @@ namespace AssetMon.Presentation.Controllers
 
             var createdVehicle = await _service.VehicleService.CreateVehicleAsync(vehicle);
 
-            return CreatedAtRoute("VehicleById", new { Id = createdVehicle.Id }, createdVehicle);
+            return CreatedAtRoute("VehicleByIdAsync", new { Id = createdVehicle.Id }, createdVehicle);
         }
     }
 }
