@@ -10,10 +10,10 @@ namespace AssetMon.Models.Enums
     public enum PaymentFrequency
     {
         [Description("Daily")]
-        Daily,
+        Daily = 1,
         [Description("Weekly")]
-        Weekly,
+        Weekly = 2,
         [Description("Monthly")]
-        Monthly
+        Monthly = 3
     }
 }

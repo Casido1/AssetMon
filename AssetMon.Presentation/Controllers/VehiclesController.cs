@@ -1,4 +1,6 @@
-﻿using AssetMon.Services.Interface;
+﻿using AssetMon.Models;
+using AssetMon.Services.Interface;
+using AssetMon.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AssetMon.Presentation.Controllers
@@ -18,11 +20,21 @@ namespace AssetMon.Presentation.Controllers
             return Ok(vehicles);
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{Id}", Name = "VehicleById")]
         public async Task<IActionResult> GetVehicleById(string Id)
         {
             var vehicle = await _service.VehicleService.GetVehicleByIdAsync(Id, trackChanges: false);
             return Ok(vehicle);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateVehicleAsync([FromBody] VehicleToCreateDTO vehicle)
+        {
+            if (vehicle == null) return BadRequest("VehicleToCreateDTO object is null");
+
+            var createdVehicle = await _service.VehicleService.CreateVehicleAsync(vehicle);
+
+            return CreatedAtRoute("VehicleById", new { Id = createdVehicle.Id }, createdVehicle);
         }
     }
 }

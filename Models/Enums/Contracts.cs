@@ -10,8 +10,8 @@ namespace AssetMon.Models.Enums
     public enum Contracts
     {
         [Description("HirePurchase")]
-        HirePurchase,
+        HirePurchase = 1,
         [Description("ContinuedOwnership")]
-        ContinuedOwnership
+        ContinuedOwnership = 2
     }
 }

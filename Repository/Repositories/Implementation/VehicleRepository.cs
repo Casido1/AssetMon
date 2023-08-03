@@ -16,6 +16,11 @@ namespace AssetMon.Data.Repositories.Implementation
         {
         }
 
+        public async Task CreateVehicle(Vehicle vehicle)
+        {
+            Create(vehicle);
+        }
+
         public async Task<IEnumerable<Vehicle>> GetAllVehicles(bool trackChanges)
         {
             return await FindAll(trackChanges)

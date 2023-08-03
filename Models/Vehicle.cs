@@ -18,6 +18,7 @@ namespace AssetMon.Models
         public Contracts ContractType { get; set; }
 
         public int Tenure { get; set; }
+
         [Column(TypeName = "decimal(18,2)")]
         public decimal PaymentAmount { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using AssetMon.Models;
+using AssetMon.Models.Enums;
 using AssetMon.Shared.DTOs;
 using AutoMapper;
 
@@ -15,6 +16,10 @@ namespace AssetMon.Main
             CreateMap<VehicleRepair, VehicleRepairDTO>();
 
             CreateMap<Payment, PaymentDTO>();
+
+            CreateMap<VehicleToCreateDTO, Vehicle>()
+                .ForMember(dest => dest.ContractType, opt => opt.MapFrom(src => (Contracts)src.ContractType))
+                .ForMember(dest => dest.PaymentFrequency, opt => opt.MapFrom(src => (PaymentFrequency)src.PaymentFrequency));
         }
     }
 }

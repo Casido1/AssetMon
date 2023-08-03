@@ -24,6 +24,18 @@ namespace AssetMon.Services.Implementation
             _repository = repository;
             _mapper = mapper;
         }
+
+        public async Task<VehicleDTO> CreateVehicleAsync(VehicleToCreateDTO vehicle)
+        {
+            var vehicleEntity = _mapper.Map<Vehicle>(vehicle);
+
+            await _repository.Vehicle.CreateVehicle(vehicleEntity);
+            _repository.Save();
+
+            var vehicleToReturn = _mapper.Map<VehicleDTO>(vehicleEntity);
+            return vehicleToReturn;
+        }
+
         public async Task<ResultDTO<IEnumerable<VehicleDTO>>> GetAllVehiclesAsync(bool trackChanges)
         {
             var vehicles = await _repository.Vehicle.GetAllVehicles(trackChanges);
