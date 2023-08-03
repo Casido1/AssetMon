@@ -11,6 +11,5 @@ namespace AssetMon.Data.Repositories.Interface
     {
         Task<IEnumerable<Vehicle>> GetAllVehicles(bool trackChanges);
         Task<Vehicle> GetVehicleById(string Id, bool trackChanges);
-        Task<IEnumerable<Payment>> GetVehiclePaymentsByVehicleId(string Id, bool trackChanges);
     }
 }

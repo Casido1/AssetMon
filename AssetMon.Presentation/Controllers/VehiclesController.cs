@@ -14,43 +14,15 @@ namespace AssetMon.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> GetVehicles()
         {
-            try
-            {
-                var vehicles = await _service.VehicleService.GetAllVehiclesAsync(trackChanges: false);
-                return Ok(vehicles);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            var vehicles = await _service.VehicleService.GetAllVehiclesAsync(trackChanges: false);
+            return Ok(vehicles);
         }
 
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetVehicleById(string Id)
         {
-            try
-            {
-                var vehicle = await _service.VehicleService.GetVehicleByIdAsync(Id, trackChanges: false);
-                return Ok(vehicle);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-
-        [HttpGet("{Id}/payments")]
-        public async Task<IActionResult> GetVehiclePaymentsByVehicleIdAsync(string Id)
-        {
-            try
-            {
-                var payments = await _service.VehicleService.GetVehiclePaymentsByVehicleIdAsync(Id, trackChanges: false);
-                return Ok(payments);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            var vehicle = await _service.VehicleService.GetVehicleByIdAsync(Id, trackChanges: false);
+            return Ok(vehicle);
         }
     }
 }

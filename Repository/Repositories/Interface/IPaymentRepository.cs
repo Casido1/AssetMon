@@ -9,5 +9,6 @@ namespace AssetMon.Data.Repositories.Interface
 {
     public interface IPaymentRepository
     {
+        Task<IEnumerable<Payment>> GetPayments(string vehicleId, bool trackChanges);
     }
 }

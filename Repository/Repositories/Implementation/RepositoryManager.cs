@@ -25,6 +25,8 @@ namespace AssetMon.Data.Repositories.Implementation
 
         public IVehicleRepository Vehicle => _vehicleRepository.Value;
 
+        public IPaymentRepository Payment => _paymentRepository.Value;
+
         public void Save() => _context.SaveChanges();
     }
 }

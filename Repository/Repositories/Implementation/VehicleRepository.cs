@@ -26,16 +26,9 @@ namespace AssetMon.Data.Repositories.Implementation
 
         public async Task<Vehicle> GetVehicleById(string Id, bool trackChanges)
         {
-            Expression<Func<Vehicle, bool>> expression = vehicle => vehicle.Id == Id;
-            return await FindByCondition(expression, trackChanges).Include(a => a.Repairs).FirstOrDefaultAsync();
-        }
-
-        public async Task<IEnumerable<Payment>> GetVehiclePaymentsByVehicleId(string Id, bool trackChanges)
-        {
-            Expression<Func<Vehicle, bool>> expression = vehicle => vehicle.Id == Id;
-            var vehicle = await FindByCondition(expression, trackChanges).Include(a => a.Payments).FirstOrDefaultAsync();
-
-            return vehicle == null ? null : vehicle.Payments;
+            return await FindByCondition(v => v.Id == Id, trackChanges)
+                            .Include(a => a.Repairs)
+                            .FirstOrDefaultAsync();
         }
     }
 }

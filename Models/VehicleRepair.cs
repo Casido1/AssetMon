@@ -11,9 +11,12 @@ namespace AssetMon.Models
         [Required]
         [ForeignKey("Vehicle")]
         public string VehicleId { get; set; }
+
         public string RepairName { get; set; }
+
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
+
         public DateTime Date { get; set; }
 
         //Nav prop

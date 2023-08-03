@@ -15,5 +15,12 @@ namespace AssetMon.Data.Repositories.Implementation
         public PaymentRepository(AssetMonContext context) : base(context)
         {
         }
+
+        public async Task<IEnumerable<Payment>> GetPayments(string vehicleId, bool trackChanges)
+        {
+            return await FindByCondition(p => p.VehicleId == vehicleId, trackChanges)
+                            .OrderBy(p => p.Date)
+                            .ToListAsync();
+        }
     }
 }

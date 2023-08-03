@@ -6,11 +6,14 @@ namespace AssetMon.Models
     public class AppUser: IdentityUser
     {
         public string FirstName { get; set; }
+
         public string LastName { get; set; }
+
         public string PhotoUrl { get; set; }
 
         //nav prop
         public virtual IEnumerable<Ownership> Ownerships { get; set; }
+
         public virtual Address Address { get; set; }
 
         public AppUser()
