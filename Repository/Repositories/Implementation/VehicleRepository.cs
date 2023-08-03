@@ -24,7 +24,6 @@ namespace AssetMon.Data.Repositories.Implementation
         public async Task<IEnumerable<Vehicle>> GetAllVehicles(bool trackChanges)
         {
             return await FindAll(trackChanges)
-                            .Include(a => a.Repairs)
                             .OrderBy(x => x.Name)
                             .ToListAsync();
         }      
@@ -32,8 +31,13 @@ namespace AssetMon.Data.Repositories.Implementation
         public async Task<Vehicle> GetVehicleById(string Id, bool trackChanges)
         {
             return await FindByCondition(v => v.Id == Id, trackChanges)
-                            .Include(a => a.Repairs)
                             .FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<Vehicle>> GetVehiclesByIds(IEnumerable<string> Ids, bool trackChanges)
+        {
+            return await FindByCondition(v => Ids.Contains(v.Id), trackChanges)
+                            .ToListAsync();
         }
     }
 }

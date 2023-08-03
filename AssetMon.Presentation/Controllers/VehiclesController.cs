@@ -27,6 +27,13 @@ namespace AssetMon.Presentation.Controllers
             return Ok(vehicle);
         }
 
+        [HttpGet("collection/{Ids}", Name = "VehiclesByIdsAsync")]
+        public async Task<IActionResult> GetVehicleByIdsAsync(IEnumerable<string> Ids)
+        {
+            var vehicles = await _service.VehicleService.GetVehiclesByIdsAsync(Ids, trackChanges: false);
+            return Ok(vehicles);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateVehicleAsync([FromBody] VehicleToCreateDTO vehicle)
         {
@@ -35,6 +42,13 @@ namespace AssetMon.Presentation.Controllers
             var createdVehicle = await _service.VehicleService.CreateVehicleAsync(vehicle);
 
             return CreatedAtRoute("VehicleByIdAsync", new { Id = createdVehicle.Id }, createdVehicle);
+        }
+
+        [HttpPost("collection")]
+        public async Task<IActionResult> CreateVehicleCollectionAsync([FromBody] IEnumerable<VehicleToCreateDTO> vehicleCollection)
+        {
+            var result = await _service.VehicleService.CreateVehicleCollectionAsync(vehicleCollection);
+            return CreatedAtRoute("VehiclesByIdsAsync", new {result.Ids}, result.vehicles);
         }
     }
 }

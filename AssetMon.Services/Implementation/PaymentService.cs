@@ -53,6 +53,12 @@ namespace AssetMon.Services.Implementation
             }
 
             var payment = _repository.Payment.GetPaymentById(vehicleId, Id, trackChanges);
+
+            if(payment == null)
+            {
+                throw new PaymentNotFoundException(vehicleId);
+            }
+
             var mappedEntity = _mapper.Map<PaymentDTO>(payment);
 
             return new ResultDTO<PaymentDTO> { Success = true, Data = mappedEntity };
@@ -72,6 +78,26 @@ namespace AssetMon.Services.Implementation
             if (payments.Count() == 0)
             {
                 return new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Message = "No payments found for this vehicle" };
+            }
+
+            var mappedEntity = _mapper.Map<List<PaymentDTO>>(payments);
+            return new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Data = mappedEntity };
+        }
+
+        public async Task<ResultDTO<IEnumerable<PaymentDTO>>> GetVehiclePaymentsByDateAsync(string vehicleId, DateTime startDate, DateTime endDate, bool trackChanges)
+        {
+            var vehicle = _repository.Vehicle.GetVehicleById(vehicleId, trackChanges);
+
+            if( vehicle == null)
+            {
+                throw new VehicleNotFoundException(vehicleId);
+            }
+
+            var payments = await _repository.Payment.GetVehiclePaymentsByDateRange(vehicleId, startDate, endDate, trackChanges);
+
+            if (payments.Count() == 0)
+            {
+                return new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Message = "No payments found for this date range" };
             }
 
             var mappedEntity = _mapper.Map<List<PaymentDTO>>(payments);

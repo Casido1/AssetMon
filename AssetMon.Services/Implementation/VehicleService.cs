@@ -36,6 +36,26 @@ namespace AssetMon.Services.Implementation
             return vehicleToReturn;
         }
 
+        public async Task<(IEnumerable<VehicleDTO> vehicles, string Ids)> CreateVehicleCollectionAsync(IEnumerable<VehicleToCreateDTO> vehicleCollection)
+        {
+            if(vehicleCollection == null)
+            {
+                throw new VehicleCollectionRequest();
+            }
+
+            var vehicleEntities = _mapper.Map<IEnumerable<Vehicle>>(vehicleCollection);
+
+            foreach ( var vehicleEntity in vehicleEntities)
+            {
+                await _repository.Vehicle.CreateVehicle(vehicleEntity);
+            }
+            _repository.Save();
+
+            var mappedEntities = _mapper.Map<IEnumerable<VehicleDTO>>(vehicleEntities);
+            var Ids = string.Join(",", mappedEntities.Select(v => v.Id));
+            return (mappedEntities,  Ids);
+        }
+
         public async Task<ResultDTO<IEnumerable<VehicleDTO>>> GetAllVehiclesAsync(bool trackChanges)
         {
             var vehicles = await _repository.Vehicle.GetAllVehicles(trackChanges);
@@ -56,6 +76,24 @@ namespace AssetMon.Services.Implementation
 
             var mappedEntity = _mapper.Map<VehicleDTO>(vehicle);
             return new ResultDTO<VehicleDTO> { Success = true, Data = mappedEntity };
+        }
+
+        public async Task<ResultDTO<IEnumerable<VehicleDTO>>> GetVehiclesByIdsAsync(IEnumerable<string> Ids, bool trackChanges)
+        {
+            if(Ids is null)
+            {
+                throw new IdParametersBadRequestException();
+            }
+
+            var vehicles = await _repository.Vehicle.GetVehiclesByIds(Ids, trackChanges);
+
+            if(Ids.Count() != vehicles.Count())
+            {
+                throw new CollectionByIdsBadRequestException();
+            }
+
+            var mappedEntity = _mapper.Map<IEnumerable<VehicleDTO>>(vehicles);
+            return new ResultDTO<IEnumerable<VehicleDTO>> { Success = true, Data = mappedEntity };
         }
     }
 }

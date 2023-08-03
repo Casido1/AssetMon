@@ -26,5 +26,12 @@ namespace AssetMon.Data.Repositories.Implementation
                             .OrderBy(p => p.Date)
                             .ToListAsync();
         }
+
+        public async Task<IEnumerable<Payment>> GetVehiclePaymentsByDateRange(string vehicleId, DateTime startDate, DateTime endDate, bool trackChanges)
+        {
+            return await FindByCondition(p => p.VehicleId == vehicleId && (p.Date >= startDate && p.Date <= endDate), trackChanges)
+                            .OrderBy(p => p.Date)   
+                            .ToListAsync();
+        }
     }
 }
