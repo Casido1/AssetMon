@@ -56,6 +56,19 @@ namespace AssetMon.Services.Implementation
             return (mappedEntities,  Ids);
         }
 
+        public async Task DeleteVehicleAsync(string vehicleId, bool trackChanges)
+        {
+            var vehicle = await _repository.Vehicle.GetVehicleById(vehicleId, trackChanges);
+
+            if(vehicle == null)
+            {
+                throw new VehicleNotFoundException(vehicleId);
+            }
+
+            await _repository.Vehicle.DeleteVehicle(vehicle);
+            _repository.Save();
+        }
+
         public async Task<ResultDTO<IEnumerable<VehicleDTO>>> GetAllVehiclesAsync(bool trackChanges)
         {
             var vehicles = await _repository.Vehicle.GetAllVehicles(trackChanges);
@@ -94,6 +107,19 @@ namespace AssetMon.Services.Implementation
 
             var mappedEntity = _mapper.Map<IEnumerable<VehicleDTO>>(vehicles);
             return new ResultDTO<IEnumerable<VehicleDTO>> { Success = true, Data = mappedEntity };
+        }
+
+        public async Task UpdateVehicleAsync(string vehicleId, VehicleToUpdateDTO vehicleToUpdateDTO, bool trackChanges)
+        {
+            var vehicle = await _repository.Vehicle.GetVehicleById(vehicleId, trackChanges);
+
+            if (vehicle == null)
+            {
+                throw new VehicleNotFoundException(vehicleId);
+            }
+
+            _mapper.Map(vehicleToUpdateDTO, vehicle);
+            _repository.Save();
         }
     }
 }

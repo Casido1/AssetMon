@@ -50,5 +50,24 @@ namespace AssetMon.Presentation.Controllers
             var payments = await _service.PaymentService.GetVehiclePaymentsByDateAsync(vehicleId, startDate, endDate, trackChanges: false);
             return Ok(payments);
         }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteVehiclePaymentAsync(string vehicleId, string Id)
+        {
+            await _service.PaymentService.DeleteVehiclePaymentAsync(vehicleId, Id, trackChanges: false);
+            return NoContent();
+        }
+
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> UpdateVehiclePaymentAsync(string vehicle, string Id, [FromBody] PaymentToUpdateDTO paymentToUpdateDTO)
+        {
+            if (paymentToUpdateDTO == null)
+            {
+                BadRequest("paymentToUpdateDTO is null");
+            }
+
+            await _service.PaymentService.UpdateVehiclePaymentAsync(vehicle, Id, paymentToUpdateDTO, trackVehicleChanges: false, trackVehiclePaymentChanges: true);
+            return NoContent();
+        }
     }
 }

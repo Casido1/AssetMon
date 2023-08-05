@@ -50,5 +50,21 @@ namespace AssetMon.Presentation.Controllers
             var result = await _service.VehicleService.CreateVehicleCollectionAsync(vehicleCollection);
             return CreatedAtRoute("VehiclesByIdsAsync", new {result.Ids}, result.vehicles);
         }
+
+        [HttpDelete("Id")]
+        public async Task<IActionResult> DeleteVehicleAsync(string Id)
+        {
+            await _service.VehicleService.DeleteVehicleAsync(Id, trackChanges: false);
+            return NoContent();
+        }
+
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> UpdateVehicleAsync(string Id, [FromBody] VehicleToUpdateDTO vehicleToUpdate)
+        {
+            if (vehicleToUpdate == null) return BadRequest("VehicleToUpdateDTO object is null");
+            await _service.VehicleService.UpdateVehicleAsync(Id, vehicleToUpdate, trackChanges: true);
+
+            return NoContent();
+        }
     }
 }

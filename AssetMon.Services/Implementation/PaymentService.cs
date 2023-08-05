@@ -43,6 +43,26 @@ namespace AssetMon.Services.Implementation
             return mappedEntity;
         }
 
+        public async Task DeleteVehiclePaymentAsync(string vehicleId, string paymentId, bool trackChanges)
+        {
+            var vehicle = await _repository.Vehicle.GetVehicleById(vehicleId, trackChanges);
+
+            if (vehicle == null)
+            {
+                throw new VehicleNotFoundException(vehicleId);
+            }
+
+            var payment = await _repository.Payment.GetPaymentById(vehicleId, paymentId, trackChanges);
+
+            if (payment == null)
+            {
+                throw new PaymentNotFoundException(paymentId);
+            }
+
+            await _repository.Payment.DeleteVehiclePayment(payment);
+            _repository.Save();
+        }
+
         public async Task<ResultDTO<PaymentDTO>> GetPaymentByIdAsync(string vehicleId, string Id, bool trackChanges)
         {
             var vehicle = await _repository.Vehicle.GetVehicleById(vehicleId, trackChanges);
@@ -102,6 +122,26 @@ namespace AssetMon.Services.Implementation
 
             var mappedEntity = _mapper.Map<List<PaymentDTO>>(payments);
             return new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Data = mappedEntity };
+        }
+
+        public async Task UpdateVehiclePaymentAsync(string vehicleId, string paymentId, PaymentToUpdateDTO paymentToUpdateDTO, bool trackVehicleChanges, bool trackVehiclePaymentChanges)
+        {
+            var vehicle = await _repository.Vehicle.GetVehicleById(paymentId, trackVehicleChanges);
+
+            if(vehicle == null)
+            {
+                throw new VehicleNotFoundException(vehicleId);
+            }
+
+            var payment = await _repository.Payment.GetPaymentById(vehicleId, paymentId, trackVehiclePaymentChanges);
+
+            if( payment == null)
+            {
+                throw new PaymentNotFoundException(paymentId);
+            }
+
+            _mapper.Map(paymentToUpdateDTO, payment);
+            _repository.Save();
         }
     }
 }

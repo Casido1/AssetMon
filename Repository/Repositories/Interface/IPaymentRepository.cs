@@ -8,5 +8,6 @@ namespace AssetMon.Data.Repositories.Interface
         Task<Payment> GetPaymentById(string vehicleId, string Id, bool trackChanges);
         Task CreatePayment(Payment payment);
         Task<IEnumerable<Payment>> GetVehiclePaymentsByDateRange(string vehicleId, DateTime startDate, DateTime endDate, bool trackChanges);
+        Task DeleteVehiclePayment(Payment payment);
     }
 }

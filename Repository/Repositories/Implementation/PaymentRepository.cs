@@ -15,6 +15,11 @@ namespace AssetMon.Data.Repositories.Implementation
             Create(payment);
         }
 
+        public async Task DeleteVehiclePayment(Payment payment)
+        {
+            Delete(payment);
+        }
+
         public async Task<Payment> GetPaymentById(string vehicleId, string Id, bool trackChanges)
         {
             return await FindByCondition(p => p.VehicleId == vehicleId && p.Id == Id, trackChanges).FirstOrDefaultAsync();

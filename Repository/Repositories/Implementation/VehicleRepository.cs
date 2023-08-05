@@ -21,6 +21,11 @@ namespace AssetMon.Data.Repositories.Implementation
             Create(vehicle);
         }
 
+        public async Task DeleteVehicle(Vehicle vehicle)
+        {
+            Delete(vehicle);
+        }
+
         public async Task<IEnumerable<Vehicle>> GetAllVehicles(bool trackChanges)
         {
             return await FindAll(trackChanges)
