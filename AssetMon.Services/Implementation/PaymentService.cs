@@ -4,12 +4,6 @@ using AssetMon.Models.Exceptions;
 using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
 using AutoMapper;
-using LoggerService.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssetMon.Services.Implementation
 {
@@ -26,7 +20,7 @@ namespace AssetMon.Services.Implementation
 
         public async Task<PaymentDTO> CreatePaymentAsync(string vehicleId, PaymentToCreateDTO payment, bool trackChanges)
         {
-            var vehicle = await _repository.Vehicle.GetVehicleById(vehicleId, trackChanges);
+            var vehicle = await _repository.Vehicle.GetVehicleByIdAsync(vehicleId, trackChanges);
 
             if(vehicle == null) 
             {
@@ -36,8 +30,8 @@ namespace AssetMon.Services.Implementation
             var paymentEntity = _mapper.Map<Payment>(payment);
             paymentEntity.VehicleId = vehicleId;
 
-            await _repository.Payment.CreatePayment(paymentEntity);
-            _repository.Save();
+            await _repository.Payment.CreatePaymentAsync(paymentEntity);
+            await _repository.SaveAsync();
 
             var mappedEntity = _mapper.Map<PaymentDTO>(paymentEntity);
             return mappedEntity;
@@ -45,34 +39,34 @@ namespace AssetMon.Services.Implementation
 
         public async Task DeleteVehiclePaymentAsync(string vehicleId, string paymentId, bool trackChanges)
         {
-            var vehicle = await _repository.Vehicle.GetVehicleById(vehicleId, trackChanges);
+            var vehicle = await _repository.Vehicle.GetVehicleByIdAsync(vehicleId, trackChanges);
 
             if (vehicle == null)
             {
                 throw new VehicleNotFoundException(vehicleId);
             }
 
-            var payment = await _repository.Payment.GetPaymentById(vehicleId, paymentId, trackChanges);
+            var payment = await _repository.Payment.GetPaymentByIdAsync(vehicleId, paymentId, trackChanges);
 
             if (payment == null)
             {
                 throw new PaymentNotFoundException(paymentId);
             }
 
-            await _repository.Payment.DeleteVehiclePayment(payment);
-            _repository.Save();
+            await _repository.Payment.DeleteVehiclePaymentAsync(payment);
+            await _repository.SaveAsync();
         }
 
         public async Task<ResultDTO<PaymentDTO>> GetPaymentByIdAsync(string vehicleId, string Id, bool trackChanges)
         {
-            var vehicle = await _repository.Vehicle.GetVehicleById(vehicleId, trackChanges);
+            var vehicle = await _repository.Vehicle.GetVehicleByIdAsync(vehicleId, trackChanges);
 
             if(vehicle == null)
             {
                 throw new VehicleNotFoundException(vehicleId);
             }
 
-            var payment = _repository.Payment.GetPaymentById(vehicleId, Id, trackChanges);
+            var payment = _repository.Payment.GetPaymentByIdAsync(vehicleId, Id, trackChanges);
 
             if(payment == null)
             {
@@ -86,14 +80,14 @@ namespace AssetMon.Services.Implementation
 
         public async Task<ResultDTO<IEnumerable<PaymentDTO>>> GetPaymentsAsync(string vehicleId, bool trackChanges)
         {
-            var vehicle = await _repository.Vehicle.GetVehicleById(vehicleId, trackChanges);
+            var vehicle = await _repository.Vehicle.GetVehicleByIdAsync(vehicleId, trackChanges);
 
             if(vehicle == null)
             {
                 throw new VehicleNotFoundException(vehicleId);
             }
 
-            var payments = await _repository.Payment.GetPayments(vehicleId, trackChanges);
+            var payments = await _repository.Payment.GetPaymentsAsync(vehicleId, trackChanges);
 
             if (payments.Count() == 0)
             {
@@ -106,14 +100,14 @@ namespace AssetMon.Services.Implementation
 
         public async Task<ResultDTO<IEnumerable<PaymentDTO>>> GetVehiclePaymentsByDateAsync(string vehicleId, DateTime startDate, DateTime endDate, bool trackChanges)
         {
-            var vehicle = _repository.Vehicle.GetVehicleById(vehicleId, trackChanges);
+            var vehicle = _repository.Vehicle.GetVehicleByIdAsync(vehicleId, trackChanges);
 
             if( vehicle == null)
             {
                 throw new VehicleNotFoundException(vehicleId);
             }
 
-            var payments = await _repository.Payment.GetVehiclePaymentsByDateRange(vehicleId, startDate, endDate, trackChanges);
+            var payments = await _repository.Payment.GetVehiclePaymentsByDateRangeAsync(vehicleId, startDate, endDate, trackChanges);
 
             if (payments.Count() == 0)
             {
@@ -126,14 +120,14 @@ namespace AssetMon.Services.Implementation
 
         public async Task UpdateVehiclePaymentAsync(string vehicleId, string paymentId, PaymentToUpdateDTO paymentToUpdateDTO, bool trackVehicleChanges, bool trackVehiclePaymentChanges)
         {
-            var vehicle = await _repository.Vehicle.GetVehicleById(paymentId, trackVehicleChanges);
+            var vehicle = await _repository.Vehicle.GetVehicleByIdAsync(paymentId, trackVehicleChanges);
 
             if(vehicle == null)
             {
                 throw new VehicleNotFoundException(vehicleId);
             }
 
-            var payment = await _repository.Payment.GetPaymentById(vehicleId, paymentId, trackVehiclePaymentChanges);
+            var payment = await _repository.Payment.GetPaymentByIdAsync(vehicleId, paymentId, trackVehiclePaymentChanges);
 
             if( payment == null)
             {
@@ -141,7 +135,7 @@ namespace AssetMon.Services.Implementation
             }
 
             _mapper.Map(paymentToUpdateDTO, payment);
-            _repository.Save();
+            await _repository.SaveAsync();
         }
     }
 }

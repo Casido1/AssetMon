@@ -3156,6 +3156,29 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
+      "AssetMon.Commons/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AssetMon.Models": "1.0.0",
+          "AutoMapper": "12.0.1",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.6",
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
+          "Microsoft.EntityFrameworkCore": "6.0.6",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.6",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.6",
+          "Microsoft.Extensions.Configuration": "6.0.1",
+          "Microsoft.Extensions.Hosting": "6.0.1",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "bin/placeholder/AssetMon.Commons.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AssetMon.Commons.dll": {}
+        }
+      },
       "AssetMon.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -9062,6 +9085,11 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
+    "AssetMon.Commons/1.0.0": {
+      "type": "project",
+      "path": "../AssetMon.Commons/AssetMon.Commons.csproj",
+      "msbuildProject": "../AssetMon.Commons/AssetMon.Commons.csproj"
+    },
     "AssetMon.Data/1.0.0": {
       "type": "project",
       "path": "../Repository/AssetMon.Data.csproj",
@@ -9090,6 +9118,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "AssetMon.Commons >= 1.0.0",
       "AssetMon.Services >= 1.0.0",
       "Microsoft.AspNetCore.JsonPatch >= 6.0.20",
       "Microsoft.AspNetCore.Mvc.Core >= 2.2.5"
@@ -9128,6 +9157,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\AssetMon.Commons\\AssetMon.Commons.csproj": {
+              "projectPath": "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\AssetMon.Commons\\AssetMon.Commons.csproj"
+            },
             "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\AssetMon.Services\\AssetMon.Services.csproj": {
               "projectPath": "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\AssetMon.Services\\AssetMon.Services.csproj"
             }

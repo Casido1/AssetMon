@@ -29,8 +29,8 @@ namespace AssetMon.Services.Implementation
         {
             var vehicleEntity = _mapper.Map<Vehicle>(vehicle);
 
-            await _repository.Vehicle.CreateVehicle(vehicleEntity);
-            _repository.Save();
+            await _repository.Vehicle.CreateVehicleAsync(vehicleEntity);
+            await _repository.SaveAsync();
 
             var vehicleToReturn = _mapper.Map<VehicleDTO>(vehicleEntity);
             return vehicleToReturn;
@@ -47,9 +47,9 @@ namespace AssetMon.Services.Implementation
 
             foreach ( var vehicleEntity in vehicleEntities)
             {
-                await _repository.Vehicle.CreateVehicle(vehicleEntity);
+                await _repository.Vehicle.CreateVehicleAsync(vehicleEntity);
             }
-            _repository.Save();
+            await _repository.SaveAsync();
 
             var mappedEntities = _mapper.Map<IEnumerable<VehicleDTO>>(vehicleEntities);
             var Ids = string.Join(",", mappedEntities.Select(v => v.Id));
@@ -58,20 +58,20 @@ namespace AssetMon.Services.Implementation
 
         public async Task DeleteVehicleAsync(string vehicleId, bool trackChanges)
         {
-            var vehicle = await _repository.Vehicle.GetVehicleById(vehicleId, trackChanges);
+            var vehicle = await _repository.Vehicle.GetVehicleByIdAsync(vehicleId, trackChanges);
 
             if(vehicle == null)
             {
                 throw new VehicleNotFoundException(vehicleId);
             }
 
-            await _repository.Vehicle.DeleteVehicle(vehicle);
-            _repository.Save();
+            await _repository.Vehicle.DeleteVehicleAsync(vehicle);
+            await _repository.SaveAsync();
         }
 
         public async Task<ResultDTO<IEnumerable<VehicleDTO>>> GetAllVehiclesAsync(bool trackChanges)
         {
-            var vehicles = await _repository.Vehicle.GetAllVehicles(trackChanges);
+            var vehicles = await _repository.Vehicle.GetAllVehiclesAsync(trackChanges);
 
             var mappedEntity = _mapper.Map<List<VehicleDTO>>(vehicles);
 
@@ -80,7 +80,7 @@ namespace AssetMon.Services.Implementation
 
         public async Task<ResultDTO<VehicleDTO>> GetVehicleByIdAsync(string Id, bool trackChanges)
         {
-            var vehicle = await _repository.Vehicle.GetVehicleById(Id, trackChanges);
+            var vehicle = await _repository.Vehicle.GetVehicleByIdAsync(Id, trackChanges);
 
             if (vehicle == null)
             {
@@ -98,7 +98,7 @@ namespace AssetMon.Services.Implementation
                 throw new IdParametersBadRequestException();
             }
 
-            var vehicles = await _repository.Vehicle.GetVehiclesByIds(Ids, trackChanges);
+            var vehicles = await _repository.Vehicle.GetVehiclesByIdsAsync(Ids, trackChanges);
 
             if(Ids.Count() != vehicles.Count())
             {
@@ -111,7 +111,7 @@ namespace AssetMon.Services.Implementation
 
         public async Task UpdateVehicleAsync(string vehicleId, VehicleToUpdateDTO vehicleToUpdateDTO, bool trackChanges)
         {
-            var vehicle = await _repository.Vehicle.GetVehicleById(vehicleId, trackChanges);
+            var vehicle = await _repository.Vehicle.GetVehicleByIdAsync(vehicleId, trackChanges);
 
             if (vehicle == null)
             {
@@ -119,7 +119,7 @@ namespace AssetMon.Services.Implementation
             }
 
             _mapper.Map(vehicleToUpdateDTO, vehicle);
-            _repository.Save();
+            await _repository.SaveAsync();
         }
     }
 }

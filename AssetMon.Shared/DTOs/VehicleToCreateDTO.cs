@@ -1,15 +1,16 @@
-﻿using AssetMon.Models.Enums;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AssetMon.Shared.DTOs
 {
     public class VehicleToCreateDTO
     {
+        [MaxLength(20, ErrorMessage = "Maximum length for the Name is 20 characters.")]
         public string Name { get; set; }
 
+        [MaxLength(20, ErrorMessage = "Maximum length for the Name is 20 characters.")]
         public string PlateNumber { get; set; }
 
+        [MaxLength(20, ErrorMessage = "Maximum length for the Name is 20 characters.")]
         public string Color { get; set; }
 
         public int ContractType { get; set; }

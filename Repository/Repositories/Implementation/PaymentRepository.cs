@@ -10,29 +10,29 @@ namespace AssetMon.Data.Repositories.Implementation
         {
         }
 
-        public async Task CreatePayment(Payment payment)
+        public async Task CreatePaymentAsync(Payment payment)
         {
             Create(payment);
         }
 
-        public async Task DeleteVehiclePayment(Payment payment)
+        public async Task DeleteVehiclePaymentAsync(Payment payment)
         {
             Delete(payment);
         }
 
-        public async Task<Payment> GetPaymentById(string vehicleId, string Id, bool trackChanges)
+        public async Task<Payment> GetPaymentByIdAsync(string vehicleId, string Id, bool trackChanges)
         {
             return await FindByCondition(p => p.VehicleId == vehicleId && p.Id == Id, trackChanges).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Payment>> GetPayments(string vehicleId, bool trackChanges)
+        public async Task<IEnumerable<Payment>> GetPaymentsAsync(string vehicleId, bool trackChanges)
         {
             return await FindByCondition(p => p.VehicleId == vehicleId, trackChanges)
                             .OrderBy(p => p.Date)
                             .ToListAsync();
         }
 
-        public async Task<IEnumerable<Payment>> GetVehiclePaymentsByDateRange(string vehicleId, DateTime startDate, DateTime endDate, bool trackChanges)
+        public async Task<IEnumerable<Payment>> GetVehiclePaymentsByDateRangeAsync(string vehicleId, DateTime startDate, DateTime endDate, bool trackChanges)
         {
             return await FindByCondition(p => p.VehicleId == vehicleId && (p.Date >= startDate && p.Date <= endDate), trackChanges)
                             .OrderBy(p => p.Date)   

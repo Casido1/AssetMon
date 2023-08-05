@@ -1,4 +1,5 @@
-﻿using AssetMon.Models;
+﻿using AssetMon.Commons.ActionFilters;
+using AssetMon.Models;
 using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -20,14 +21,14 @@ namespace AssetMon.Presentation.Controllers
             return Ok(vehicles);
         }
 
-        [HttpGet("{Id}", Name = "VehicleByIdAsync")]
-        public async Task<IActionResult> GetVehicleByIdAsync(string Id)
+        [HttpGet("{Id}", Name = "VehicleById")]
+        public async Task<IActionResult> GetVehicleById(string Id)
         {
             var vehicle = await _service.VehicleService.GetVehicleByIdAsync(Id, trackChanges: false);
             return Ok(vehicle);
         }
 
-        [HttpGet("collection/{Ids}", Name = "VehiclesByIdsAsync")]
+        [HttpGet("collection/{Ids}", Name = "VehiclesByIds")]
         public async Task<IActionResult> GetVehicleByIdsAsync(IEnumerable<string> Ids)
         {
             var vehicles = await _service.VehicleService.GetVehiclesByIdsAsync(Ids, trackChanges: false);
@@ -35,20 +36,20 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateVehicleAsync([FromBody] VehicleToCreateDTO vehicle)
         {
-            if (vehicle == null) return BadRequest("VehicleToCreateDTO object is null");
-
             var createdVehicle = await _service.VehicleService.CreateVehicleAsync(vehicle);
 
-            return CreatedAtRoute("VehicleByIdAsync", new { Id = createdVehicle.Id }, createdVehicle);
+            return CreatedAtRoute("VehicleById", new { Id = createdVehicle.Id }, createdVehicle);
         }
 
         [HttpPost("collection")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateVehicleCollectionAsync([FromBody] IEnumerable<VehicleToCreateDTO> vehicleCollection)
         {
             var result = await _service.VehicleService.CreateVehicleCollectionAsync(vehicleCollection);
-            return CreatedAtRoute("VehiclesByIdsAsync", new {result.Ids}, result.vehicles);
+            return CreatedAtRoute("VehiclesByIds", new {result.Ids}, result.vehicles);
         }
 
         [HttpDelete("Id")]
@@ -59,9 +60,9 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpPut("{Id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateVehicleAsync(string Id, [FromBody] VehicleToUpdateDTO vehicleToUpdate)
         {
-            if (vehicleToUpdate == null) return BadRequest("VehicleToUpdateDTO object is null");
             await _service.VehicleService.UpdateVehicleAsync(Id, vehicleToUpdate, trackChanges: true);
 
             return NoContent();

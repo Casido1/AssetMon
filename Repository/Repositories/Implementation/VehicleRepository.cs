@@ -1,12 +1,6 @@
 ﻿using AssetMon.Data.Repositories.Interface;
 using AssetMon.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssetMon.Data.Repositories.Implementation
 {
@@ -16,30 +10,30 @@ namespace AssetMon.Data.Repositories.Implementation
         {
         }
 
-        public async Task CreateVehicle(Vehicle vehicle)
+        public async Task CreateVehicleAsync(Vehicle vehicle)
         {
             Create(vehicle);
         }
 
-        public async Task DeleteVehicle(Vehicle vehicle)
+        public async Task DeleteVehicleAsync(Vehicle vehicle)
         {
             Delete(vehicle);
         }
 
-        public async Task<IEnumerable<Vehicle>> GetAllVehicles(bool trackChanges)
+        public async Task<IEnumerable<Vehicle>> GetAllVehiclesAsync(bool trackChanges)
         {
             return await FindAll(trackChanges)
                             .OrderBy(x => x.Name)
                             .ToListAsync();
         }      
 
-        public async Task<Vehicle> GetVehicleById(string Id, bool trackChanges)
+        public async Task<Vehicle> GetVehicleByIdAsync(string Id, bool trackChanges)
         {
             return await FindByCondition(v => v.Id == Id, trackChanges)
                             .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Vehicle>> GetVehiclesByIds(IEnumerable<string> Ids, bool trackChanges)
+        public async Task<IEnumerable<Vehicle>> GetVehiclesByIdsAsync(IEnumerable<string> Ids, bool trackChanges)
         {
             return await FindByCondition(v => Ids.Contains(v.Id), trackChanges)
                             .ToListAsync();

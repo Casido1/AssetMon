@@ -27,6 +27,6 @@ namespace AssetMon.Data.Repositories.Implementation
 
         public IPaymentRepository Payment => _paymentRepository.Value;
 
-        public void Save() => _context.SaveChanges();
+        public async Task SaveAsync() => await _context.SaveChangesAsync();
     }
 }

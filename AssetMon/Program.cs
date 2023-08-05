@@ -1,3 +1,4 @@
+using AssetMon.Commons.ActionFilters;
 using AssetMon.Data;
 using AssetMon.Main.Extensions;
 using LoggerService.Interface;
@@ -33,6 +34,8 @@ builder.Services.AddControllers(config =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddScoped<ValidationFilterAttribute>();
 
 var build = new ConfigurationBuilder()
         .AddJsonFile($"appsettings.json", optional: true); //or what ever file you have the settings

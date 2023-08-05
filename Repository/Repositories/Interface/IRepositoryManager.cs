@@ -11,6 +11,6 @@ namespace AssetMon.Data.Repositories.Interface
         IUserRepository User { get; }
         IVehicleRepository Vehicle { get; }
         IPaymentRepository Payment { get; }
-        void Save();
+        Task SaveAsync();
     }
 }

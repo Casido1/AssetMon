@@ -8,7 +8,9 @@
     ".NETCoreApp,Version=v6.0": {
       "AssetMon.Presentation/1.0.0": {
         "dependencies": {
+          "AssetMon.Commons": "1.0.0",
           "AssetMon.Services": "1.0.0",
+          "Microsoft.AspNetCore.JsonPatch": "6.0.20",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
         },
         "runtime": {
@@ -213,6 +215,18 @@
           "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
             "assemblyVersion": "6.0.6.0",
             "fileVersion": "6.0.622.26805"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.JsonPatch/6.0.20": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.JsonPatch.dll": {
+            "assemblyVersion": "6.0.20.0",
+            "fileVersion": "6.0.2023.32106"
           }
         }
       },
@@ -1895,6 +1909,24 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
+      "AssetMon.Commons/1.0.0": {
+        "dependencies": {
+          "AssetMon.Models": "1.0.0",
+          "AutoMapper": "12.0.1",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.6",
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
+          "Microsoft.EntityFrameworkCore": "6.0.6",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.6",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.6",
+          "Microsoft.Extensions.Configuration": "6.0.1",
+          "Microsoft.Extensions.Hosting": "6.0.1",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "AssetMon.Commons.dll": {}
+        }
+      },
       "AssetMon.Data/1.0.0": {
         "dependencies": {
           "AssetMon.Models": "1.0.0",
@@ -2081,6 +2113,13 @@
       "sha512": "sha512-Af081JUsts14pD6sOHAwpkcVtyinIljYbwYeVzczr8GdYPF8xRkCSOJ43A4Scxu4XwtK12pO0RBqBRWSX8sc+Q==",
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/6.0.6",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.6.0.6.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.JsonPatch/6.0.20": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-63KSV6vQGw4/yJgZoDj5T0clJrncLFKqyDUz5gFqg7vjvTW90ufkS72tOtPTMdPEDWy8jYDZYnbSxOEh4R7kUg==",
+      "path": "microsoft.aspnetcore.jsonpatch/6.0.20",
+      "hashPath": "microsoft.aspnetcore.jsonpatch.6.0.20.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Mvc.Abstractions/2.2.0": {
       "type": "package",
@@ -3173,6 +3212,11 @@
       "sha512": "sha512-lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
+    },
+    "AssetMon.Commons/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "AssetMon.Data/1.0.0": {
       "type": "project",
