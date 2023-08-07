@@ -1,5 +1,6 @@
 ﻿using AssetMon.Data.Repositories.Interface;
 using AssetMon.Models;
+using AssetMon.Shared.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 
 namespace AssetMon.Data.Repositories.Implementation
@@ -10,7 +11,7 @@ namespace AssetMon.Data.Repositories.Implementation
         {
         }
 
-        public async Task CreatePaymentAsync(Payment payment)
+        public async Task CreateVehiclePaymentAsync(Payment payment)
         {
             Create(payment);
         }
@@ -20,12 +21,12 @@ namespace AssetMon.Data.Repositories.Implementation
             Delete(payment);
         }
 
-        public async Task<Payment> GetPaymentByIdAsync(string vehicleId, string Id, bool trackChanges)
+        public async Task<Payment> GetVehiclePaymentByIdAsync(string vehicleId, string Id, bool trackChanges)
         {
             return await FindByCondition(p => p.VehicleId == vehicleId && p.Id == Id, trackChanges).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Payment>> GetPaymentsAsync(string vehicleId, bool trackChanges)
+        public async Task<IEnumerable<Payment>> GetVehiclePaymentsAsync(string vehicleId, PaymentParameters paymentParameters, bool trackChanges)
         {
             return await FindByCondition(p => p.VehicleId == vehicleId, trackChanges)
                             .OrderBy(p => p.Date)

@@ -9,6 +9,7 @@
       "AssetMon.Data/1.0.0": {
         "dependencies": {
           "AssetMon.Models": "1.0.0",
+          "AssetMon.Shared": "1.0.0",
           "LoggerService": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.6",
           "Microsoft.EntityFrameworkCore": "6.0.6",
@@ -1670,6 +1671,14 @@
           "AssetMon.Models.dll": {}
         }
       },
+      "AssetMon.Shared/1.0.0": {
+        "dependencies": {
+          "AssetMon.Models": "1.0.0"
+        },
+        "runtime": {
+          "AssetMon.Shared.dll": {}
+        }
+      },
       "LoggerService/1.0.0": {
         "dependencies": {
           "NLog.Extensions.Logging": "5.2.1"
@@ -2758,6 +2767,11 @@
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
     },
     "AssetMon.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AssetMon.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

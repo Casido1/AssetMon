@@ -58,12 +58,7 @@ namespace AssetMon.Services.Implementation
 
         public async Task DeleteVehicleAsync(string vehicleId, bool trackChanges)
         {
-            var vehicle = await _repository.Vehicle.GetVehicleByIdAsync(vehicleId, trackChanges);
-
-            if(vehicle == null)
-            {
-                throw new VehicleNotFoundException(vehicleId);
-            }
+            var vehicle = await GetVehicleAndCheckIfExists(vehicleId, trackChanges);
 
             await _repository.Vehicle.DeleteVehicleAsync(vehicle);
             await _repository.SaveAsync();
@@ -80,12 +75,7 @@ namespace AssetMon.Services.Implementation
 
         public async Task<ResultDTO<VehicleDTO>> GetVehicleByIdAsync(string Id, bool trackChanges)
         {
-            var vehicle = await _repository.Vehicle.GetVehicleByIdAsync(Id, trackChanges);
-
-            if (vehicle == null)
-            {
-                throw new VehicleNotFoundException(Id);
-            }
+            var vehicle = await GetVehicleAndCheckIfExists(Id, trackChanges);
 
             var mappedEntity = _mapper.Map<VehicleDTO>(vehicle);
             return new ResultDTO<VehicleDTO> { Success = true, Data = mappedEntity };
@@ -111,6 +101,14 @@ namespace AssetMon.Services.Implementation
 
         public async Task UpdateVehicleAsync(string vehicleId, VehicleToUpdateDTO vehicleToUpdateDTO, bool trackChanges)
         {
+            var vehicle = await GetVehicleAndCheckIfExists(vehicleId, trackChanges);
+
+            _mapper.Map(vehicleToUpdateDTO, vehicle);
+            await _repository.SaveAsync();
+        }
+
+        private async Task<Vehicle> GetVehicleAndCheckIfExists(string vehicleId, bool trackChanges)
+        {
             var vehicle = await _repository.Vehicle.GetVehicleByIdAsync(vehicleId, trackChanges);
 
             if (vehicle == null)
@@ -118,8 +116,7 @@ namespace AssetMon.Services.Implementation
                 throw new VehicleNotFoundException(vehicleId);
             }
 
-            _mapper.Map(vehicleToUpdateDTO, vehicle);
-            await _repository.SaveAsync();
+            return vehicle;
         }
     }
 }

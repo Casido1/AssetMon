@@ -3,14 +3,9 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace AssetMon.Commons.ActionFilters
 {
-    public class ValidationFilterAttribute : IActionFilter
+    public class ValidationFilterAttribute : ActionFilterAttribute
     {
-        public void OnActionExecuted(ActionExecutedContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnActionExecuting(ActionExecutingContext context)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
             var action = context.RouteData.Values["action"];
             var controller = context.RouteData.Values["controller"];

@@ -1,6 +1,7 @@
 ﻿using AssetMon.Commons.ActionFilters;
 using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
+using AssetMon.Shared.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,26 +23,26 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetPayments(string vehicleId)
+        public async Task<IActionResult> GetVehiclePayments(string vehicleId, [FromQuery] PaymentParameters paymentParameters)
         {
-            var payments = await _service.PaymentService.GetPaymentsAsync(vehicleId, trackChanges: false);
+            var payments = await _service.PaymentService.GetVehiclePaymentsAsync(vehicleId, paymentParameters, trackChanges: false);
 
             return Ok(payments);
         }
 
         [HttpGet("{Id}", Name = "PaymentById")]
-        public async Task<IActionResult> GetPaymentById(string vehicleId, string Id)
+        public async Task<IActionResult> GetVehiclePaymentById(string vehicleId, string Id)
         {
-            var payments = await _service.PaymentService.GetPaymentByIdAsync(vehicleId, Id, trackChanges: false);
+            var payments = await _service.PaymentService.GetVehiclePaymentByIdAsync(vehicleId, Id, trackChanges: false);
 
             return Ok(payments);
         }
 
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> CreatePayment(string vehicleId, PaymentToCreateDTO payment)
+        public async Task<IActionResult> CreateVehiclePayment(string vehicleId, PaymentToCreateDTO payment)
         {
-            var paymentCreated = await _service.PaymentService.CreatePaymentAsync(vehicleId, payment, trackChanges: false);
+            var paymentCreated = await _service.PaymentService.CreateVehiclePaymentAsync(vehicleId, payment, trackChanges: false);
 
             return CreatedAtRoute("PaymentByIdc", new {vehicleId, Id = paymentCreated.Id }, paymentCreated);
         }

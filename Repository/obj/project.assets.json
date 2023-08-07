@@ -2833,6 +2833,19 @@
           "bin/placeholder/AssetMon.Models.dll": {}
         }
       },
+      "AssetMon.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AssetMon.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AssetMon.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AssetMon.Shared.dll": {}
+        }
+      },
       "LoggerService/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -8368,6 +8381,11 @@
       "path": "../Models/AssetMon.Models.csproj",
       "msbuildProject": "../Models/AssetMon.Models.csproj"
     },
+    "AssetMon.Shared/1.0.0": {
+      "type": "project",
+      "path": "../AssetMon.Shared/AssetMon.Shared.csproj",
+      "msbuildProject": "../AssetMon.Shared/AssetMon.Shared.csproj"
+    },
     "LoggerService/1.0.0": {
       "type": "project",
       "path": "../LoggerService/LoggerService.csproj",
@@ -8377,6 +8395,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "AssetMon.Models >= 1.0.0",
+      "AssetMon.Shared >= 1.0.0",
       "LoggerService >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.6",
       "Microsoft.EntityFrameworkCore >= 6.0.6",
@@ -8423,6 +8442,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\AssetMon.Shared\\AssetMon.Shared.csproj": {
+              "projectPath": "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\AssetMon.Shared\\AssetMon.Shared.csproj"
+            },
             "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\LoggerService\\LoggerService.csproj": {
               "projectPath": "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\LoggerService\\LoggerService.csproj"
             },
