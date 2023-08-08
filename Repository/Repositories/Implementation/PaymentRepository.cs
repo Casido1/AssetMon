@@ -30,6 +30,8 @@ namespace AssetMon.Data.Repositories.Implementation
         {
             return await FindByCondition(p => p.VehicleId == vehicleId, trackChanges)
                             .OrderBy(p => p.Date)
+                            .Skip((paymentParameters.PageNumber - 1) * paymentParameters.PageSize)
+                            .Take(paymentParameters.PageSize)
                             .ToListAsync();
         }
 
