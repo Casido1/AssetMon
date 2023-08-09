@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace AssetMon.Presentation.Controllers
@@ -25,9 +26,11 @@ namespace AssetMon.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> GetVehiclePayments(string vehicleId, [FromQuery] PaymentParameters paymentParameters)
         {
-            var payments = await _service.PaymentService.GetVehiclePaymentsAsync(vehicleId, paymentParameters, trackChanges: false);
+            var pagedResult = await _service.PaymentService.GetVehiclePaymentsAsync(vehicleId, paymentParameters, trackChanges: false);
 
-            return Ok(payments);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
+
+            return Ok(pagedResult.payments);
         }
 
         [HttpGet("{Id}", Name = "PaymentById")]

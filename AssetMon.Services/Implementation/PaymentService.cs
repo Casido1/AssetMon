@@ -54,19 +54,19 @@ namespace AssetMon.Services.Implementation
             return new ResultDTO<PaymentDTO> { Success = true, Data = mappedEntity };
         }
 
-        public async Task<ResultDTO<IEnumerable<PaymentDTO>>> GetVehiclePaymentsAsync(string vehicleId, PaymentParameters paymentParameters, bool trackChanges)
+        public async Task<(ResultDTO<IEnumerable<PaymentDTO>> payments, MetaData metaData)> GetVehiclePaymentsAsync(string vehicleId, PaymentParameters paymentParameters, bool trackChanges)
         {
             await GetVehicleAndCheckIfExists(vehicleId, trackChanges);
 
-            var payments = await _repository.Payment.GetVehiclePaymentsAsync(vehicleId, paymentParameters, trackChanges);
+            var paymentsWithMetaData = await _repository.Payment.GetVehiclePaymentsAsync(vehicleId, paymentParameters, trackChanges);
 
-            if (payments.Count() == 0)
+            if (paymentsWithMetaData.Count() == 0)
             {
-                return new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Message = "No payments found for this vehicle" };
+                return (payments: new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Message = "No payments found for this vehicle" }, metaData: paymentsWithMetaData.MetaData);
             }
 
-            var mappedEntity = _mapper.Map<List<PaymentDTO>>(payments);
-            return new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Data = mappedEntity };
+            var mappedEntity = _mapper.Map<List<PaymentDTO>>(paymentsWithMetaData);
+            return (payments: new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Data = mappedEntity }, metaData: paymentsWithMetaData.MetaData);
         }
 
         public async Task<ResultDTO<IEnumerable<PaymentDTO>>> GetVehiclePaymentsByDateAsync(string vehicleId, DateTime startDate, DateTime endDate, bool trackChanges)

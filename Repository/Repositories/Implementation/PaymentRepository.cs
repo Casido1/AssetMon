@@ -26,13 +26,14 @@ namespace AssetMon.Data.Repositories.Implementation
             return await FindByCondition(p => p.VehicleId == vehicleId && p.Id == Id, trackChanges).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Payment>> GetVehiclePaymentsAsync(string vehicleId, PaymentParameters paymentParameters, bool trackChanges)
+        public async Task<PagedList<Payment>> GetVehiclePaymentsAsync(string vehicleId, PaymentParameters paymentParameters, bool trackChanges)
         {
-            return await FindByCondition(p => p.VehicleId == vehicleId, trackChanges)
+            var payments = await FindByCondition(p => p.VehicleId == vehicleId, trackChanges)
                             .OrderBy(p => p.Date)
-                            .Skip((paymentParameters.PageNumber - 1) * paymentParameters.PageSize)
-                            .Take(paymentParameters.PageSize)
                             .ToListAsync();
+
+            return PagedList<Payment>
+                    .ToPagedList(payments, paymentParameters.PageNumber, paymentParameters.PageSize);
         }
 
         public async Task<IEnumerable<Payment>> GetVehiclePaymentsByDateRangeAsync(string vehicleId, DateTime startDate, DateTime endDate, bool trackChanges)
