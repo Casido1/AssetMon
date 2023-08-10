@@ -56,6 +56,8 @@ namespace AssetMon.Services.Implementation
 
         public async Task<(ResultDTO<IEnumerable<PaymentDTO>> payments, MetaData metaData)> GetVehiclePaymentsAsync(string vehicleId, PaymentParameters paymentParameters, bool trackChanges)
         {
+            if (!paymentParameters.ValidDateRange) throw new MaxDateRangeBadRequestException();
+
             await GetVehicleAndCheckIfExists(vehicleId, trackChanges);
 
             var paymentsWithMetaData = await _repository.Payment.GetVehiclePaymentsAsync(vehicleId, paymentParameters, trackChanges);
@@ -67,21 +69,6 @@ namespace AssetMon.Services.Implementation
 
             var mappedEntity = _mapper.Map<List<PaymentDTO>>(paymentsWithMetaData);
             return (payments: new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Data = mappedEntity }, metaData: paymentsWithMetaData.MetaData);
-        }
-
-        public async Task<ResultDTO<IEnumerable<PaymentDTO>>> GetVehiclePaymentsByDateAsync(string vehicleId, DateTime startDate, DateTime endDate, bool trackChanges)
-        {
-            await GetVehicleAndCheckIfExists(vehicleId, trackChanges);
-
-            var payments = await _repository.Payment.GetVehiclePaymentsByDateRangeAsync(vehicleId, startDate, endDate, trackChanges);
-
-            if (payments.Count() == 0)
-            {
-                return new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Message = "No payments found for this date range" };
-            }
-
-            var mappedEntity = _mapper.Map<List<PaymentDTO>>(payments);
-            return new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Data = mappedEntity };
         }
 
         public async Task UpdateVehiclePaymentAsync(string vehicleId, string paymentId, PaymentToUpdateDTO paymentToUpdateDTO, bool trackVehicleChanges, bool trackVehiclePaymentChanges)

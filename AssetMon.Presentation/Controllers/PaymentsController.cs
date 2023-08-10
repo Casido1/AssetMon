@@ -50,14 +50,6 @@ namespace AssetMon.Presentation.Controllers
             return CreatedAtRoute("PaymentByIdc", new {vehicleId, Id = paymentCreated.Id }, paymentCreated);
         }
 
-        [HttpGet("{startDate}/{endDate}")]
-        public async Task<IActionResult> GetVehiclePaymentsByDateRange(string? vehicleId, DateTime startDate, DateTime endDate)
-        {
-            var payments = await _service.PaymentService.GetVehiclePaymentsByDateAsync(vehicleId, startDate, endDate, trackChanges: false);
-
-            return Ok(payments);
-        }
-
         [HttpDelete("{Id}")]
         public async Task<IActionResult> DeleteVehiclePaymentById(string vehicleId, string Id)
         {

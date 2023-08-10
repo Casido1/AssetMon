@@ -28,7 +28,7 @@ namespace AssetMon.Data.Repositories.Implementation
 
         public async Task<PagedList<Payment>> GetVehiclePaymentsAsync(string vehicleId, PaymentParameters paymentParameters, bool trackChanges)
         {
-            var payments = await FindByCondition(p => p.VehicleId == vehicleId, trackChanges)
+            var payments = await FindByCondition((p => p.VehicleId == vehicleId && (p.Date >= paymentParameters.StartDate && p.Date <= paymentParameters.EndDate)), trackChanges)
                             .OrderBy(p => p.Date)
                             .Skip((paymentParameters.PageNumber - 1) * paymentParameters.PageSize)
                             .Take(paymentParameters.PageSize)
@@ -37,13 +37,6 @@ namespace AssetMon.Data.Repositories.Implementation
             var count = await FindByCondition(p => p.VehicleId.Equals(vehicleId), trackChanges).CountAsync();
 
             return new PagedList<Payment>(payments, count, paymentParameters.PageNumber, paymentParameters.PageSize);
-        }
-
-        public async Task<IEnumerable<Payment>> GetVehiclePaymentsByDateRangeAsync(string vehicleId, DateTime startDate, DateTime endDate, bool trackChanges)
-        {
-            return await FindByCondition(p => p.VehicleId == vehicleId && (p.Date >= startDate && p.Date <= endDate), trackChanges)
-                            .OrderBy(p => p.Date)   
-                            .ToListAsync();
         }
     }
 }
