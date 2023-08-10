@@ -30,10 +30,13 @@ namespace AssetMon.Data.Repositories.Implementation
         {
             var payments = await FindByCondition(p => p.VehicleId == vehicleId, trackChanges)
                             .OrderBy(p => p.Date)
+                            .Skip((paymentParameters.PageNumber - 1) * paymentParameters.PageSize)
+                            .Take(paymentParameters.PageSize)
                             .ToListAsync();
 
-            return PagedList<Payment>
-                    .ToPagedList(payments, paymentParameters.PageNumber, paymentParameters.PageSize);
+            var count = await FindByCondition(p => p.VehicleId.Equals(vehicleId), trackChanges).CountAsync();
+
+            return new PagedList<Payment>(payments, count, paymentParameters.PageNumber, paymentParameters.PageSize);
         }
 
         public async Task<IEnumerable<Payment>> GetVehiclePaymentsByDateRangeAsync(string vehicleId, DateTime startDate, DateTime endDate, bool trackChanges)
