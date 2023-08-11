@@ -1,4 +1,5 @@
-﻿using AssetMon.Data.Repositories.Interface;
+﻿using AssetMon.Data.Repositories.Extensions;
+using AssetMon.Data.Repositories.Interface;
 using AssetMon.Models;
 using AssetMon.Shared.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +29,8 @@ namespace AssetMon.Data.Repositories.Implementation
 
         public async Task<PagedList<Payment>> GetVehiclePaymentsAsync(string vehicleId, PaymentParameters paymentParameters, bool trackChanges)
         {
-            var payments = await FindByCondition((p => p.VehicleId == vehicleId && (p.Date >= paymentParameters.StartDate && p.Date <= paymentParameters.EndDate)), trackChanges)
+            var payments = await FindByCondition(p => p.VehicleId == vehicleId, trackChanges)
+                            .FilterPayments(paymentParameters.StartDate, paymentParameters.EndDate)
                             .OrderBy(p => p.Date)
                             .Skip((paymentParameters.PageNumber - 1) * paymentParameters.PageSize)
                             .Take(paymentParameters.PageSize)

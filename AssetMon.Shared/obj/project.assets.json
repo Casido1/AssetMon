@@ -946,6 +946,19 @@
           }
         }
       },
+      "NSwag.Annotations/13.19.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/NSwag.Annotations.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/NSwag.Annotations.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.Collections.Immutable/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -2509,6 +2522,24 @@
         "packageIcon.png"
       ]
     },
+    "NSwag.Annotations/13.19.0": {
+      "sha512": "ukpuIdZTczGUwyIAz954xiefikAUShtEoColOODeKilKGcB5CXn1Q6j3D/Er75z2+qMA3qieXb386xAyW2/v+Q==",
+      "type": "package",
+      "path": "nswag.annotations/13.19.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NuGetIcon.png",
+        "lib/net45/NSwag.Annotations.dll",
+        "lib/net45/NSwag.Annotations.xml",
+        "lib/netstandard1.0/NSwag.Annotations.dll",
+        "lib/netstandard1.0/NSwag.Annotations.xml",
+        "lib/netstandard2.0/NSwag.Annotations.dll",
+        "lib/netstandard2.0/NSwag.Annotations.xml",
+        "nswag.annotations.13.19.0.nupkg.sha512",
+        "nswag.annotations.nuspec"
+      ]
+    },
     "System.Collections.Immutable/6.0.0": {
       "sha512": "l4zZJ1WU2hqpQQHXz1rvC3etVZN+2DLmQMO79FhOTZHMn8tDRr+WU287sbomD0BETlmKDn0ygUgVy9k5xkkJdA==",
       "type": "package",
@@ -3113,7 +3144,8 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "AssetMon.Models >= 1.0.0"
+      "AssetMon.Models >= 1.0.0",
+      "NSwag.Annotations >= 13.19.0"
     ]
   },
   "packageFolders": {
@@ -3164,6 +3196,12 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "NSwag.Annotations": {
+            "target": "Package",
+            "version": "[13.19.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

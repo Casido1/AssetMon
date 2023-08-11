@@ -167,6 +167,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "NSwag.Annotations": {
+              "target": "Package",
+              "version": "[13.19.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
