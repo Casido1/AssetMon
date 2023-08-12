@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "iurQuaxtL9h19TTOU+Jt4S5UqDBUeQgKHaoHJkfDSojXsh3/B7aXasSjxB92JrqMYEC0zCOwJ4rq3bAQkbgpYQ==",
+  "dgSpecHash": "ZqHVi3x64ec3H4l1+Z85zEjPYc+xqYUNjtWvtwo+9ivU4irDKU2LLh/RMyWeJQjZE//azPQhDywDp7Bl1zGGZw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\AssetMon\\AssetMon.Main.csproj",
   "expectedPackageFiles": [
@@ -143,6 +143,7 @@
     "C:\\Users\\Casido\\.nuget\\packages\\system.io.filesystem\\4.3.0\\system.io.filesystem.4.3.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
+    "C:\\Users\\Casido\\.nuget\\packages\\system.linq.dynamic.core\\1.3.4\\system.linq.dynamic.core.1.3.4.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.net.http\\4.3.0\\system.net.http.4.3.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",
