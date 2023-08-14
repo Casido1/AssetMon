@@ -28,6 +28,8 @@ namespace AssetMon.Main
             CreateMap<VehicleToUpdateDTO, Vehicle>()
                 .ForMember(dest => dest.ContractType, opt => opt.MapFrom(src => (Contracts)src.ContractType))
                 .ForMember(dest => dest.PaymentFrequency, opt => opt.MapFrom(src => (PaymentFrequency)src.PaymentFrequency));
+
+            CreateMap<UserForRegisterationDTO, AppUser>();
         }
     }
 }

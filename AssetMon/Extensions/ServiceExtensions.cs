@@ -19,17 +19,16 @@ namespace AssetMon.Main.Extensions
         #region Identity
         public static void ConfigureIdentity(this IServiceCollection services)
         {
-            var builder = services.AddIdentity<AppUser, IdentityRole>(u =>
+            var builder = services.AddIdentity<AppUser, IdentityRole>(o =>
             {
-                u.User.RequireUniqueEmail = true;
-                u.Password.RequireNonAlphanumeric = true;
-                u.Password.RequireUppercase = true;
-                u.Password.RequireLowercase = true;
-                u.Password.RequireDigit = true;
-                u.Password.RequiredLength = 8;
+                o.User.RequireUniqueEmail = true;
+                o.Password.RequireNonAlphanumeric = false;
+                o.Password.RequireUppercase = false;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireDigit = true;
+                o.Password.RequiredLength = 10;
 
-            });
-            builder.AddEntityFrameworkStores<AssetMonContext>().AddDefaultTokenProviders();
+            }).AddEntityFrameworkStores<AssetMonContext>().AddDefaultTokenProviders();
         }
         #endregion
 
@@ -116,7 +115,7 @@ namespace AssetMon.Main.Extensions
                 new RateLimitRule
                 {
                     Endpoint = "*",
-                    Limit = 10,
+                    Limit = 30,
                     Period = "5m"
                 }
             };

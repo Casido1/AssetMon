@@ -20,11 +20,19 @@ builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureVersioning();
+
+//Caching configuration
 builder.Services.ConfigureResponseCaching();
 builder.Services.ConfigureHttpCacheHeaders();
+
+//Rate limiting configuration
 builder.Services.AddMemoryCache();
 builder.Services.ConfigureRateLimitingOptions();
-builder.Services.AddHttpContextAccessor(); // Lines 24, 25 and 26 are for Rate limiting configuration
+builder.Services.AddHttpContextAccessor(); 
+
+builder.Services.AddAuthentication();
+builder.Services.ConfigureIdentity();
+builder.Services.AddAuthorization();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
@@ -53,9 +61,6 @@ IConfiguration configuration = build.Build();
 builder.Services.AddDbContext<AssetMonContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("AssetMonDb")));
 
-builder.Services.AddAuthentication();
-builder.Services.AddAuthorization();
-builder.Services.ConfigureIdentity();
 
 var app = builder.Build();
 
@@ -79,9 +84,12 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
     ForwardedHeaders = ForwardedHeaders.All
 });
 app.UseIpRateLimiting();
+
 app.UseCors("CorsPolicy");
+
 app.UseResponseCaching();
 app.UseHttpCacheHeaders();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
