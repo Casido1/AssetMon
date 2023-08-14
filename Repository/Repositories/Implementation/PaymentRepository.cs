@@ -31,7 +31,7 @@ namespace AssetMon.Data.Repositories.Implementation
         {
             var payments = await FindByCondition(p => p.VehicleId == vehicleId, trackChanges)
                             .FilterPayments(paymentParameters.StartDate, paymentParameters.EndDate)
-                            .OrderBy(p => p.Date)
+                            .Sort(paymentParameters.OrderBy)
                             .Skip((paymentParameters.PageNumber - 1) * paymentParameters.PageSize)
                             .Take(paymentParameters.PageSize)
                             .ToListAsync();

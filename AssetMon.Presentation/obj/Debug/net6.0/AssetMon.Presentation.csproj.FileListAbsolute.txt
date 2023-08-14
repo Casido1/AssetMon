@@ -1,3 +1,8 @@
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\AssetMon.Presentation.csproj.AssemblyReference.cache
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\AssetMon.Presentation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\AssetMon.Presentation.AssemblyInfoInputs.cache
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\AssetMon.Presentation.AssemblyInfo.cs
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\AssetMon.Presentation.csproj.CoreCompileInputs.cache
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\bin\Debug\net6.0\AssetMon.Presentation.deps.json
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\bin\Debug\net6.0\AssetMon.Presentation.dll
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\bin\Debug\net6.0\AssetMon.Presentation.pdb
@@ -13,11 +18,6 @@ C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\b
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\bin\Debug\net6.0\AssetMon.Models.pdb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\bin\Debug\net6.0\AssetMon.Shared.pdb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\bin\Debug\net6.0\LoggerService.pdb
-C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\AssetMon.Presentation.csproj.AssemblyReference.cache
-C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\AssetMon.Presentation.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\AssetMon.Presentation.AssemblyInfoInputs.cache
-C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\AssetMon.Presentation.AssemblyInfo.cs
-C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\AssetMon.Presentation.csproj.CoreCompileInputs.cache
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\AssetMon.Presentation.csproj.CopyComplete
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\AssetMon.Presentation.dll
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Presentation\obj\Debug\net6.0\refint\AssetMon.Presentation.dll

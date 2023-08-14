@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace AssetMon.Presentation.Controllers
 {
+    [ApiVersion("1.0")]
     [Route("api/vehicles/{vehicleId}/payments")]
     [ApiController]
     public class PaymentsController : ControllerBase

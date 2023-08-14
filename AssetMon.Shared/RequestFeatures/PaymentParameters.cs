@@ -12,6 +12,5 @@ namespace AssetMon.Shared.RequestFeatures
         public DateTime EndDate { get; set; } = DateTime.MaxValue;
         [JsonIgnore]
         public bool ValidDateRange => EndDate > StartDate;
-        public string SearchTerm { get; set; }
     }
 }

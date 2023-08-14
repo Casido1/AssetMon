@@ -6,7 +6,10 @@ using AssetMon.Services.Implementation;
 using AssetMon.Services.Interface;
 using LoggerService.Implementation;
 using LoggerService.Interface;
+using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
 namespace AssetMon.Main.Extensions
 {
@@ -68,5 +71,39 @@ namespace AssetMon.Main.Extensions
             services.AddScoped<IServiceManager, ServiceManager>();
         #endregion
 
+        #region Versioning
+
+        public static void ConfigureVersioning(this IServiceCollection services)
+        {
+            services.AddApiVersioning(opt =>
+            {
+                opt.ReportApiVersions = true;
+                opt.AssumeDefaultVersionWhenUnspecified = true;
+                opt.DefaultApiVersion = new ApiVersion(1, 0);
+                opt.ApiVersionReader = new HeaderApiVersionReader("api-version");
+            });
+        }
+
+        #endregion
+
+        #region Caching
+
+        public static void ConfigureResponseCaching(this IServiceCollection services) =>
+            services.AddResponseCaching();
+
+        public static void ConfigureHttpCacheHeaders(this IServiceCollection services) =>
+            services.AddHttpCacheHeaders(
+                expirationOpt =>
+                {
+                    expirationOpt.MaxAge = 120;
+                    expirationOpt.CacheLocation = CacheLocation.Private;
+                },
+                validationOpt =>
+                {
+                    validationOpt.MustRevalidate = true;
+                }
+                );
+
+        #endregion
     }
 }

@@ -3,14 +3,8 @@ using AssetMon.Models;
 using AssetMon.Models.Exceptions;
 using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
+using AssetMon.Shared.RequestFeatures;
 using AutoMapper;
-using LoggerService.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.WebSockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssetMon.Services.Implementation
 {
@@ -64,13 +58,15 @@ namespace AssetMon.Services.Implementation
             await _repository.SaveAsync();
         }
 
-        public async Task<ResultDTO<IEnumerable<VehicleDTO>>> GetAllVehiclesAsync(bool trackChanges)
+        public async Task<(ResultDTO<IEnumerable<VehicleDTO>> vehicles, MetaData metaData)> GetAllVehiclesAsync(VehicleParameters vehicleParameters, bool trackChanges)
         {
-            var vehicles = await _repository.Vehicle.GetAllVehiclesAsync(trackChanges);
+            if (!vehicleParameters.ValidDateRange) throw new MaxDateRangeBadRequestException();
+            
+            var vehiclesWithMetaData = await _repository.Vehicle.GetAllVehiclesAsync(vehicleParameters, trackChanges);
 
-            var mappedEntity = _mapper.Map<List<VehicleDTO>>(vehicles);
+            var mappedEntity = _mapper.Map<List<VehicleDTO>>(vehiclesWithMetaData);
 
-            return new ResultDTO<IEnumerable<VehicleDTO>> { Success = true, Data = mappedEntity };
+            return (vehicles: new ResultDTO<IEnumerable<VehicleDTO>> { Success = true, Data = mappedEntity }, metaData: vehiclesWithMetaData.MetaData);
         }
 
         public async Task<ResultDTO<VehicleDTO>> GetVehicleByIdAsync(string Id, bool trackChanges)

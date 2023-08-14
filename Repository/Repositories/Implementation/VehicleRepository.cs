@@ -1,5 +1,7 @@
-﻿using AssetMon.Data.Repositories.Interface;
+﻿using AssetMon.Data.Repositories.Extensions;
+using AssetMon.Data.Repositories.Interface;
 using AssetMon.Models;
+using AssetMon.Shared.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 
 namespace AssetMon.Data.Repositories.Implementation
@@ -20,11 +22,19 @@ namespace AssetMon.Data.Repositories.Implementation
             Delete(vehicle);
         }
 
-        public async Task<IEnumerable<Vehicle>> GetAllVehiclesAsync(bool trackChanges)
+        public async Task<PagedList<Vehicle>> GetAllVehiclesAsync(VehicleParameters vehicleParameters, bool trackChanges)
         {
-            return await FindAll(trackChanges)
-                            .OrderBy(x => x.Name)
-                            .ToListAsync();
+            var vehicles =  await FindAll(trackChanges)
+                                    .FilterVehicles(vehicleParameters.StartDate, vehicleParameters.EndDate)
+                                    .Search(vehicleParameters.SearchTerm)
+                                    .Sort(vehicleParameters.OrderBy)
+                                    .Skip((vehicleParameters.PageNumber - 1) * vehicleParameters.PageSize)
+                                    .Take(vehicleParameters.PageSize)
+                                    .ToListAsync();
+
+            var count = await FindAll(trackChanges).CountAsync();
+
+            return new PagedList<Vehicle>(vehicles, count, vehicleParameters.PageNumber, vehicleParameters.PageSize);
         }      
 
         public async Task<Vehicle> GetVehicleByIdAsync(string Id, bool trackChanges)
