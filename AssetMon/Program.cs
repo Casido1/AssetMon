@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using AssetMon.Commons.ActionFilters;
 using AssetMon.Data;
 using AssetMon.Main.Extensions;
@@ -21,6 +22,9 @@ builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureVersioning();
 builder.Services.ConfigureResponseCaching();
 builder.Services.ConfigureHttpCacheHeaders();
+builder.Services.AddMemoryCache();
+builder.Services.ConfigureRateLimitingOptions();
+builder.Services.AddHttpContextAccessor(); // Lines 24, 25 and 26 are for Rate limiting configuration
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
@@ -74,6 +78,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.All
 });
+app.UseIpRateLimiting();
 app.UseCors("CorsPolicy");
 app.UseResponseCaching();
 app.UseHttpCacheHeaders();

@@ -1,4 +1,5 @@
-﻿using AssetMon.Data;
+﻿using AspNetCoreRateLimit;
+using AssetMon.Data;
 using AssetMon.Data.Repositories.Implementation;
 using AssetMon.Data.Repositories.Interface;
 using AssetMon.Models;
@@ -103,6 +104,33 @@ namespace AssetMon.Main.Extensions
                     validationOpt.MustRevalidate = true;
                 }
                 );
+
+        #endregion
+
+        #region Rate Limiting
+
+        public static void ConfigureRateLimitingOptions(this IServiceCollection services)
+        {
+            var rateLimitRules = new List<RateLimitRule>
+            {
+                new RateLimitRule
+                {
+                    Endpoint = "*",
+                    Limit = 10,
+                    Period = "5m"
+                }
+            };
+
+            services.Configure<IpRateLimitOptions>(opt => {
+                opt.GeneralRules =
+            rateLimitRules;
+            });
+            services.AddSingleton<IRateLimitCounterStore,
+            MemoryCacheRateLimitCounterStore>();
+            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+            services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+        }
 
         #endregion
     }

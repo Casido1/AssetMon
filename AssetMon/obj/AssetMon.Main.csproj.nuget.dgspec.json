@@ -448,6 +448,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AspNetCoreRateLimit": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.6, )"
@@ -490,7 +494,7 @@
             },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[13.0.1, )"
+              "version": "[13.0.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
