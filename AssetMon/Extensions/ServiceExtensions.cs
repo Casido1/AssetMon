@@ -8,9 +8,12 @@ using AssetMon.Services.Interface;
 using LoggerService.Implementation;
 using LoggerService.Interface;
 using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace AssetMon.Main.Extensions
 {
@@ -30,6 +33,37 @@ namespace AssetMon.Main.Extensions
 
             }).AddEntityFrameworkStores<AssetMonContext>().AddDefaultTokenProviders();
         }
+        #endregion
+
+        #region Jwt
+
+        public static void ConfigureJwt(this IServiceCollection services, IConfiguration configuration)
+        {
+            var jwtSettings = configuration.GetSection("JwtSettings");
+            var secretKey = Environment.GetEnvironmentVariable("SECRET");
+
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ClockSkew = TimeSpan.FromMinutes(3),
+
+                    ValidIssuer = jwtSettings["validIssuer"],
+                    ValidAudience = jwtSettings["validAudience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+                };
+            });
+        }
+
         #endregion
 
         #region Cors
@@ -100,7 +134,7 @@ namespace AssetMon.Main.Extensions
                 },
                 validationOpt =>
                 {
-                    validationOpt.MustRevalidate = true;
+                    //validationOpt.MustRevalidate = true;
                 }
                 );
 

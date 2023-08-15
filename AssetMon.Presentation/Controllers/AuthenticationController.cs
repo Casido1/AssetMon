@@ -20,7 +20,7 @@ namespace AssetMon.Presentation.Controllers
             _serviceManager = serviceManager;
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegisterationDTO userForRegisterationDTO)
         {
             var result = await _serviceManager.AuthenticationService.RegisterUser(userForRegisterationDTO);
@@ -35,6 +35,15 @@ namespace AssetMon.Presentation.Controllers
             }
 
             return StatusCode(201);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] UserLoginDTO userLoginDTO)
+        {
+            if (!await _serviceManager.AuthenticationService.LoginUser(userLoginDTO))
+                return Unauthorized();
+
+            return Ok(new {Token = await _serviceManager.AuthenticationService.CreateToken()});
         }
     }
 }

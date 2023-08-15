@@ -4,6 +4,7 @@ using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
 using AssetMon.Shared.RequestFeatures;
 using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -19,6 +20,7 @@ namespace AssetMon.Presentation.Controllers
         public VehiclesController(IServiceManager service) => _service = service;
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetVehicles([FromQuery] VehicleParameters vehicleParameters)
         {
             var pagedResult = await _service.VehicleService.GetAllVehiclesAsync(vehicleParameters, trackChanges: false);
@@ -29,8 +31,8 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpGet("{Id}", Name = "VehicleById")]
-        [HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 60)] //this overrides the global cache configuration
-        [HttpCacheValidation(MustRevalidate = false)]
+        //[HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 60)] //this overrides the global cache configuration
+        //[HttpCacheValidation(MustRevalidate = false)]
         public async Task<IActionResult> GetVehicleById(string Id)
         {
             var vehicle = await _service.VehicleService.GetVehicleByIdAsync(Id, trackChanges: false);

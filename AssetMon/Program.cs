@@ -22,8 +22,8 @@ builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureVersioning();
 
 //Caching configuration
-builder.Services.ConfigureResponseCaching();
-builder.Services.ConfigureHttpCacheHeaders();
+//builder.Services.ConfigureResponseCaching();
+//builder.Services.ConfigureHttpCacheHeaders();
 
 //Rate limiting configuration
 builder.Services.AddMemoryCache();
@@ -32,6 +32,7 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
+builder.Services.ConfigureJwt(builder.Configuration);
 builder.Services.AddAuthorization();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
@@ -87,8 +88,8 @@ app.UseIpRateLimiting();
 
 app.UseCors("CorsPolicy");
 
-app.UseResponseCaching();
-app.UseHttpCacheHeaders();
+//app.UseResponseCaching();
+//app.UseHttpCacheHeaders();
 
 app.UseAuthentication();
 app.UseAuthorization();

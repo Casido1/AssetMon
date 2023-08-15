@@ -108,3 +108,4 @@ C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\bin\Debug\net6
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\obj\Debug\net6.0\AssetMon.Main.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\bin\Debug\net6.0\AspNetCoreRateLimit.dll
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

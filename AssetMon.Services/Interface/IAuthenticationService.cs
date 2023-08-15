@@ -11,5 +11,7 @@ namespace AssetMon.Services.Interface
     public interface IAuthenticationService
     {
         Task<IdentityResult> RegisterUser(UserForRegisterationDTO userForRegisterationDTO);
+        Task<bool> LoginUser(UserLoginDTO userLoginDTO);
+        Task<string> CreateToken();
     }
 }
