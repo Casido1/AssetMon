@@ -149,6 +149,12 @@ namespace AssetMon.Data.Migrations
                     b.Property<string>("PhotoUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RefreshTokenExpiryTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -176,70 +182,75 @@ namespace AssetMon.Data.Migrations
                         {
                             Id = "1ee125f5-3be4-4bda-ae4c-d471762c414c",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "25cb0ffb-a8a2-4355-b7a9-b83de0ce9a36",
+                            ConcurrencyStamp = "0a7f3abf-1982-44e7-9913-67c58340fcc2",
                             Email = "ahmedsani@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ahmed",
                             LastName = "Sani",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d1bdddbc-d7a9-4547-968c-622d23bc6143",
+                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "e7766ba1-86f0-437a-87a3-a395011b8615",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "6c649c3c-a0f1-4065-832a-193cd3d9085d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "59022eb0-8d26-4de0-b031-553bf0e32093",
+                            ConcurrencyStamp = "046f7763-6d4c-4e31-95ed-1af7d3acd036",
                             Email = "idrissalisu@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Idris",
                             LastName = "Salisu",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "68a376a3-e721-4d29-8151-bc67e5def723",
+                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "cfc83d76-c833-4758-aabc-0f4fadac9821",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "21443f16-6bfb-4b07-8f35-d4a876266d5b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "61927f05-c132-4e48-a93b-89cc822ca38b",
+                            ConcurrencyStamp = "e7ba4cfa-9b17-406c-af06-2439909983a6",
                             Email = "abubakarmohammed@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Abubakar",
                             LastName = "Mohammed",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "90c3f8b6-796a-4898-9176-b62cf3766f9f",
+                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "2a2583ef-9661-4c5e-b264-b5688243c7e7",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "d23d56ce-9953-4647-b594-340a50bf7320",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "233b9e6c-5697-47b6-b8fd-356e4c3f557f",
+                            ConcurrencyStamp = "3cb42618-78b1-48cf-a1aa-8a5009899612",
                             Email = "hamzaisah@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Hamza",
                             LastName = "Isah",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c209caf4-321d-464b-b84f-ea319302c977",
+                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "1400a9d1-5dba-4c13-825e-0c5f49d4a275",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "666e993e-bd32-4097-a572-702228c0df60",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "891d091e-cf9a-4b8d-b1c5-d0b9eeddecdf",
+                            ConcurrencyStamp = "5336485a-22aa-42bc-9597-5ee8fe0e6db4",
                             Email = "ugochukwu.anunihu@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ugochukwu",
                             LastName = "Anunihu",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "295bf775-19ff-4a2e-8b9f-936dc16b8a57",
+                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "7eae94e9-8297-42a3-8b42-b809a0dd60c1",
                             TwoFactorEnabled = false
                         });
                 });
@@ -364,11 +375,11 @@ namespace AssetMon.Data.Migrations
                         {
                             Id = "96d62347-64d8-425b-8a66-4b8cd78fc5a3",
                             Color = "Blue",
-                            ContractType = 1,
+                            ContractType = 2,
                             IsActive = false,
                             Name = "TVS",
                             PaymentAmount = 16000m,
-                            PaymentFrequency = 1,
+                            PaymentFrequency = 2,
                             PlateNumber = "TVS-UMG-210-QR",
                             StartDate = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Tenure = 0
@@ -377,11 +388,11 @@ namespace AssetMon.Data.Migrations
                         {
                             Id = "1c4690e6-3e15-40f6-a6a2-7bdfe48817a2",
                             Color = "Blue",
-                            ContractType = 1,
+                            ContractType = 2,
                             IsActive = false,
                             Name = "Piaggio",
                             PaymentAmount = 16000m,
-                            PaymentFrequency = 1,
+                            PaymentFrequency = 2,
                             StartDate = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Tenure = 0
                         },
@@ -389,11 +400,11 @@ namespace AssetMon.Data.Migrations
                         {
                             Id = "3e187f49-53b8-4049-b12d-3c80ab7a9048",
                             Color = "Blue",
-                            ContractType = 1,
+                            ContractType = 2,
                             IsActive = false,
                             Name = "TVS",
                             PaymentAmount = 16000m,
-                            PaymentFrequency = 1,
+                            PaymentFrequency = 2,
                             PlateNumber = "TVS-M4L03958",
                             StartDate = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Tenure = 0
@@ -402,11 +413,11 @@ namespace AssetMon.Data.Migrations
                         {
                             Id = "e6ab22dc-f77a-4b94-8bef-ff8d2c9d16cb",
                             Color = "Blue",
-                            ContractType = 1,
+                            ContractType = 2,
                             IsActive = false,
                             Name = "TVS",
                             PaymentAmount = 16000m,
-                            PaymentFrequency = 1,
+                            PaymentFrequency = 2,
                             PlateNumber = "TVS-M4L03941",
                             StartDate = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Tenure = 0
@@ -486,21 +497,21 @@ namespace AssetMon.Data.Migrations
                         new
                         {
                             Id = "1ed26f58-ddff-4a71-b517-6aafdba26795",
-                            ConcurrencyStamp = "27caef73-fef9-4ee0-8dc1-ada5372c0ada",
+                            ConcurrencyStamp = "d75cfd53-bdec-4f9a-a334-cbbfd8962791",
                             Name = "Owner",
                             NormalizedName = "OWNER"
                         },
                         new
                         {
                             Id = "6eb2518b-422c-4e85-ae68-123ab1127564",
-                            ConcurrencyStamp = "022e4e1c-5d5c-4cd1-9674-bf467b4e46b6",
+                            ConcurrencyStamp = "85705c27-3914-4716-b1fa-29033308142e",
                             Name = "Driver",
                             NormalizedName = "DRIVER"
                         },
                         new
                         {
                             Id = "164d1341-6ee5-4d65-9763-1b2c91428c99",
-                            ConcurrencyStamp = "9784f537-3455-456d-a647-165fe06a0c6a",
+                            ConcurrencyStamp = "9689a6b9-87b3-42d1-8ab2-df000a51bb26",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

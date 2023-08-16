@@ -1,10 +1,5 @@
 ﻿using AssetMon.Shared.DTOs;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssetMon.Services.Interface
 {
@@ -12,6 +7,7 @@ namespace AssetMon.Services.Interface
     {
         Task<IdentityResult> RegisterUser(UserForRegisterationDTO userForRegisterationDTO);
         Task<bool> LoginUser(UserLoginDTO userLoginDTO);
-        Task<string> CreateToken();
+        Task<TokenDTO> CreateToken(bool populateExp);
+        Task<TokenDTO> RefreshToken(TokenDTO tokenDTO);
     }
 }

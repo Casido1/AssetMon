@@ -43,7 +43,17 @@ namespace AssetMon.Presentation.Controllers
             if (!await _serviceManager.AuthenticationService.LoginUser(userLoginDTO))
                 return Unauthorized();
 
-            return Ok(new {Token = await _serviceManager.AuthenticationService.CreateToken()});
+            var tokenDTO = await _serviceManager.AuthenticationService.CreateToken(populateExp: true);
+
+            return Ok(tokenDTO);
+        }
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh([FromBody] TokenDTO tokenDTO)
+        {
+            var tokenDtoToReturn = await _serviceManager.AuthenticationService.RefreshToken(tokenDTO);
+
+            return Ok(tokenDtoToReturn);
         }
     }
 }

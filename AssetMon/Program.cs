@@ -48,7 +48,7 @@ builder.Services.AddControllers(config =>
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.ConfigureSwagger();
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddScoped<ValidationFilterAttribute>();
@@ -73,7 +73,10 @@ app.ConfigureExceptionHandler(logger);
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(s =>
+    {
+        s.SwaggerEndpoint("/swagger/v1/swagger.json", "Asset Monitor API v1");
+    });
 }
 else
     app.UseHsts();

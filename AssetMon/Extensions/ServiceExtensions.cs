@@ -3,6 +3,7 @@ using AssetMon.Data;
 using AssetMon.Data.Repositories.Implementation;
 using AssetMon.Data.Repositories.Interface;
 using AssetMon.Models;
+using AssetMon.Models.ConfigurationModels;
 using AssetMon.Services.Implementation;
 using AssetMon.Services.Interface;
 using LoggerService.Implementation;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
 namespace AssetMon.Main.Extensions
@@ -39,7 +41,9 @@ namespace AssetMon.Main.Extensions
 
         public static void ConfigureJwt(this IServiceCollection services, IConfiguration configuration)
         {
-            var jwtSettings = configuration.GetSection("JwtSettings");
+            var jwtConfiguration = new JwtConfiguration();
+            configuration.Bind(jwtConfiguration.Section, jwtConfiguration);
+
             var secretKey = Environment.GetEnvironmentVariable("SECRET");
 
             services.AddAuthentication(opt =>
@@ -57,8 +61,8 @@ namespace AssetMon.Main.Extensions
                     ValidateIssuerSigningKey = true,
                     ClockSkew = TimeSpan.FromMinutes(3),
 
-                    ValidIssuer = jwtSettings["validIssuer"],
-                    ValidAudience = jwtSettings["validAudience"],
+                    ValidIssuer = jwtConfiguration.ValidIssuer,
+                    ValidAudience = jwtConfiguration.ValidAudience,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
                 };
             });
@@ -163,6 +167,45 @@ namespace AssetMon.Main.Extensions
             services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
             services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
             services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+        }
+
+        #endregion
+
+        #region Swagger
+
+        public static void ConfigureSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo { Title = "Asset Monitor API" });
+
+                s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Place to add JWT with Bearer",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                s.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Name = "Bearer",
+                        },
+                        new List<string>()
+                    }
+                });
+
+
+            });
+
         }
 
         #endregion
