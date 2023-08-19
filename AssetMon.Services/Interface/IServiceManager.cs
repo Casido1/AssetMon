@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AssetMon.Services.Interface
+﻿namespace AssetMon.Services.Interface
 {
     public interface IServiceManager
     {
@@ -12,5 +6,6 @@ namespace AssetMon.Services.Interface
         IVehicleService VehicleService { get; }
         IPaymentService PaymentService { get; }
         IAuthenticationService AuthenticationService { get; }
+        IPictureService PictureService { get; }
     }
 }
