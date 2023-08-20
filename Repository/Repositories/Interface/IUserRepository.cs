@@ -8,5 +8,6 @@ namespace AssetMon.Data.Repositories.Interface
 {
     public interface IUserRepository
     {
+
     }
 }

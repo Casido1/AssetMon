@@ -48,5 +48,22 @@ namespace AssetMon.Data.Repositories.Implementation
             return await FindByCondition(v => Ids.Contains(v.Id), trackChanges)
                             .ToListAsync();
         }
+
+        public async Task<PagedList<Vehicle>> GetVehiclesByUserIdAsync(string userId, VehicleParameters vehicleParameters, bool trackChanges)
+        {
+            var query = FindByCondition(v => v.Ownerships.Any(o => o.AppUserId == userId), trackChanges);
+
+            var vehicles = await query
+                .FilterVehicles(vehicleParameters.StartDate, vehicleParameters.EndDate)
+                .Search(vehicleParameters.SearchTerm)
+                .Sort(vehicleParameters.OrderBy)
+                .Skip((vehicleParameters.PageNumber - 1) * vehicleParameters.PageSize)
+                .Take(vehicleParameters.PageSize)
+                .ToListAsync();
+
+            var count = await query.CountAsync();
+
+            return new PagedList<Vehicle>(vehicles, count, vehicleParameters.PageNumber, vehicleParameters.PageSize);
+        }
     }
 }

@@ -10,10 +10,8 @@ namespace AssetMon.Data.Repositories.Implementation
 {
     internal sealed class UserRepository : RepositoryBase<AppUser>, IUserRepository
     {
-        private readonly AssetMonContext _context;
         public UserRepository(AssetMonContext context) : base(context)
         {
-            _context = context;
         }
     }
 }

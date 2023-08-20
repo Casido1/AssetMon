@@ -95,6 +95,11 @@ namespace AssetMon.Services.Implementation
             return new ResultDTO<IEnumerable<VehicleDTO>> { Success = true, Data = mappedEntity };
         }
 
+        public Task<(ResultDTO<IEnumerable<VehicleDTO>> vehicles, MetaData metaData)> GetVehiclesByUserIdAsync(string userId, VehicleParameters vehicleParameters, bool trackChanges)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task UpdateVehicleAsync(string vehicleId, VehicleToUpdateDTO vehicleToUpdateDTO, bool trackChanges)
         {
             var vehicle = await GetVehicleAndCheckIfExists(vehicleId, trackChanges);
