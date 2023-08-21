@@ -37,12 +37,12 @@ namespace AssetMon.Data
                 .HasForeignKey(av => av.VehicleId);
 
 
-            builder.ApplyConfiguration(new RoleConfiguration());
-            builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new VehicleConfiguration());
-            builder.ApplyConfiguration(new AddressConfiguration());
-            builder.ApplyConfiguration(new RepairConfiguration());
-            builder.ApplyConfiguration(new OwnershipConfiguration());
+            //builder.ApplyConfiguration(new RoleConfiguration());
+            //builder.ApplyConfiguration(new UserConfiguration());
+            //builder.ApplyConfiguration(new VehicleConfiguration());
+            //builder.ApplyConfiguration(new AddressConfiguration());
+            //builder.ApplyConfiguration(new RepairConfiguration());
+            //builder.ApplyConfiguration(new OwnershipConfiguration());
         }
     }
 }
