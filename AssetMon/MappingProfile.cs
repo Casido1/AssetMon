@@ -30,6 +30,8 @@ namespace AssetMon.Main
                 .ForMember(dest => dest.PaymentFrequency, opt => opt.MapFrom(src => (PaymentFrequency)src.PaymentFrequency));
 
             CreateMap<UserForRegisterationDTO, AppUser>();
+
+            CreateMap<AppUser, UserProfileDTO>();
         }
     }
 }

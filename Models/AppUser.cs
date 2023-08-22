@@ -20,8 +20,6 @@ namespace AssetMon.Models
 
         public virtual Address Address { get; set; }
 
-        public virtual UserProfile UserProfile { get; set; }
-
         public AppUser()
         {
             Id = Guid.NewGuid().ToString();
