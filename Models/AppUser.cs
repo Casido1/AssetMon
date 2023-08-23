@@ -5,20 +5,15 @@ namespace AssetMon.Models
 {
     public class AppUser: IdentityUser
     {
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
         public string RefreshToken { get; set; }
 
         public DateTime RefreshTokenExpiryTime { get; set; }
 
-        public string PhotoUrl { get; set; }
-
         //nav prop
         public virtual IEnumerable<Ownership> Ownerships { get; set; }
 
-        public virtual Address Address { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
+        
 
         public AppUser()
         {

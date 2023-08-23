@@ -1,5 +1,7 @@
 ﻿using AssetMon.Data.Repositories.Interface;
 using AssetMon.Models;
+using AssetMon.Shared.DTOs;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +15,17 @@ namespace AssetMon.Data.Repositories.Implementation
         public UserRepository(AssetMonContext context) : base(context)
         {
         }
+
+        public async Task<AppUser> GetUserProfile(string Id)
+        {
+            var user = await FindByCondition(u => u.Id == Id, true).FirstOrDefaultAsync();
+            return user;
+        }
+
+        //public Task UpdateUserProfile(AppUser appUser)
+        //{
+        //    Update(appUser);
+        //    return
+        //}
     }
 }

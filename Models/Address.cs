@@ -9,8 +9,8 @@ namespace AssetMon.Models
         public string Id { get; set; }
 
         [Required]
-        [ForeignKey("AppUser")]
-        public string AppUserId { get; set; }
+        [ForeignKey("UserProfile")]
+        public string UserProfileId { get; set; }
 
         public string Country { get; set; }
 
@@ -22,7 +22,7 @@ namespace AssetMon.Models
 
         //Nav prop
         [JsonIgnore]
-        public virtual AppUser AppUser { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
 
         public Address()
         {
