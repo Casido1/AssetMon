@@ -15,6 +15,11 @@ namespace AssetMon.Data.Repositories.Implementation
             Create(userProfile);
         }
 
+        public async Task DeleteUserProfileAsync(UserProfile userProfile)
+        {
+            Delete(userProfile);
+        }
+
         public async Task<UserProfile> GetUserProfileByIdAsync(string userId, bool trackChanges)
         {
             return await FindByCondition(u => u.Id == userId, trackChanges).FirstOrDefaultAsync();

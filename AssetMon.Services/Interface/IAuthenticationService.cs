@@ -9,5 +9,6 @@ namespace AssetMon.Services.Interface
         Task<bool> LoginUser(UserLoginDTO userLoginDTO);
         Task<TokenDTO> CreateToken(bool populateExp);
         Task<TokenDTO> RefreshToken(TokenDTO tokenDTO);
+        Task<bool> RequestPasswordReset(string email);
     }
 }

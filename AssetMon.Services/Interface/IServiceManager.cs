@@ -7,5 +7,6 @@
         IPaymentService PaymentService { get; }
         IAuthenticationService AuthenticationService { get; }
         IPictureService PictureService { get; }
+        IOwnershipService OwnershipService { get; }
     }
 }

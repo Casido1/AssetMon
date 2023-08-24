@@ -24,6 +24,14 @@ namespace AssetMon.Services.Implementation
             _mapper = mapper;
         }
 
+        public async Task DeleteUserProfileAsync(string userId, bool trackChanges)
+        {
+            var userProfile = await CheckIfExistsAndGetUserProfile(userId, trackChanges);
+
+            await _repository.User.DeleteUserProfileAsync(userProfile);
+            await _repository.SaveAsync();
+        }
+
         public async Task<ResultDTO<UserProfileDTO>> GetUserProfileByIdAsync(string userId, bool trackChanges)
         {
             var userProfile = await CheckIfExistsAndGetUserProfile(userId, trackChanges);

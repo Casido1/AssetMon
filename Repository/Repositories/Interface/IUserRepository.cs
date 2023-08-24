@@ -1,5 +1,4 @@
 ﻿using AssetMon.Models;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AssetMon.Data.Repositories.Interface
 {
@@ -7,5 +6,6 @@ namespace AssetMon.Data.Repositories.Interface
     {
         Task<UserProfile> GetUserProfileByIdAsync(string userId, bool trackChanges);
         Task CreateUserProfileAsync(UserProfile userProfile);
+        Task DeleteUserProfileAsync(UserProfile userProfile);
     }
 }

@@ -33,5 +33,13 @@ namespace AssetMon.Presentation.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("userprofile")]
+        public async Task<IActionResult> DeleteUserProfileById(string userId)
+        {
+            await _serviceManager.UserService.DeleteUserProfileAsync(userId, trackChanges: false);
+
+            return NoContent();
+        }
     }
 }

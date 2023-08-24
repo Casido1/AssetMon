@@ -95,9 +95,22 @@ namespace AssetMon.Services.Implementation
             return new ResultDTO<IEnumerable<VehicleDTO>> { Success = true, Data = mappedEntity };
         }
 
-        public Task<(ResultDTO<IEnumerable<VehicleDTO>> vehicles, MetaData metaData)> GetVehiclesByUserIdAsync(string userId, VehicleParameters vehicleParameters, bool trackChanges)
+        public async Task<(ResultDTO<IEnumerable<VehicleDTO>> vehicles, MetaData metaData)> GetVehiclesByUserIdAsync(string userId, VehicleParameters vehicleParameters, bool trackChanges)
         {
-            throw new NotImplementedException();
+            var user = await _repository.User.GetUserProfileByIdAsync(userId, trackChanges);
+
+            if (user == null)
+            {
+                throw new UserProfileNotFoundException(userId);
+            }
+
+            if (!vehicleParameters.ValidDateRange) throw new MaxDateRangeBadRequestException();
+
+            var vehiclesWithMetaData = await _repository.Vehicle.GetVehiclesByUserIdAsync(userId, vehicleParameters, trackChanges);
+            
+            var mappedEntity = _mapper.Map<List<VehicleDTO>>(vehiclesWithMetaData);
+
+            return (vehicles: new ResultDTO<IEnumerable<VehicleDTO>> { Success = true, Data = mappedEntity }, metaData: vehiclesWithMetaData.MetaData);
         }
 
         public async Task UpdateVehicleAsync(string vehicleId, VehicleToUpdateDTO vehicleToUpdateDTO, bool trackChanges)

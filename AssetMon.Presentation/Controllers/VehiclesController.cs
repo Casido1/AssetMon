@@ -33,6 +33,7 @@ namespace AssetMon.Presentation.Controllers
         [HttpGet("{Id}", Name = "VehicleById")]
         //[HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 60)] //this overrides the global cache configuration
         //[HttpCacheValidation(MustRevalidate = false)]
+        //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetVehicleById(string Id)
         {
             var vehicle = await _service.VehicleService.GetVehicleByIdAsync(Id, trackChanges: false);
@@ -40,10 +41,21 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpGet("collection/{Ids}", Name = "VehiclesByIds")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetVehicleByIds(IEnumerable<string> Ids)
         {
             var vehicles = await _service.VehicleService.GetVehiclesByIdsAsync(Ids, trackChanges: false);
             return Ok(vehicles);
+        }
+
+        [HttpGet("byuserid{Id}")]
+        public async Task<IActionResult> GetVehiclesByUserId(string Id, [FromQuery] VehicleParameters vehicleParameters)
+        {
+            var pagedResult = await _service.VehicleService.GetVehiclesByUserIdAsync(Id, vehicleParameters, trackChanges: false);
+
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
+
+            return Ok(pagedResult.vehicles);
         }
 
         [HttpPost]

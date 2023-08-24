@@ -176,5 +176,17 @@ namespace AssetMon.Services.Implementation
 
             return await CreateToken(populateExp: false);
         }
+
+        public async Task<bool> RequestPasswordReset(string email)
+        {
+            _user = await _userManager.FindByEmailAsync(email);
+            if(_user == null) return false;
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(_user);
+
+            //Send email logic
+
+            return true;
+        }
     }
 }
