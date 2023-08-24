@@ -52,7 +52,7 @@ namespace AssetMon.Services.Implementation
 
         public async Task DeleteVehicleAsync(string vehicleId, bool trackChanges)
         {
-            var vehicle = await GetVehicleAndCheckIfExists(vehicleId, trackChanges);
+            var vehicle = await CheckIfExistsAndGetVehicle(vehicleId, trackChanges);
 
             await _repository.Vehicle.DeleteVehicleAsync(vehicle);
             await _repository.SaveAsync();
@@ -71,7 +71,7 @@ namespace AssetMon.Services.Implementation
 
         public async Task<ResultDTO<VehicleDTO>> GetVehicleByIdAsync(string Id, bool trackChanges)
         {
-            var vehicle = await GetVehicleAndCheckIfExists(Id, trackChanges);
+            var vehicle = await CheckIfExistsAndGetVehicle(Id, trackChanges);
 
             var mappedEntity = _mapper.Map<VehicleDTO>(vehicle);
             return new ResultDTO<VehicleDTO> { Success = true, Data = mappedEntity };
@@ -102,13 +102,13 @@ namespace AssetMon.Services.Implementation
 
         public async Task UpdateVehicleAsync(string vehicleId, VehicleToUpdateDTO vehicleToUpdateDTO, bool trackChanges)
         {
-            var vehicle = await GetVehicleAndCheckIfExists(vehicleId, trackChanges);
+            var vehicle = await CheckIfExistsAndGetVehicle(vehicleId, trackChanges);
 
             _mapper.Map(vehicleToUpdateDTO, vehicle);
             await _repository.SaveAsync();
         }
 
-        private async Task<Vehicle> GetVehicleAndCheckIfExists(string vehicleId, bool trackChanges)
+        private async Task<Vehicle> CheckIfExistsAndGetVehicle(string vehicleId, bool trackChanges)
         {
             var vehicle = await _repository.Vehicle.GetVehicleByIdAsync(vehicleId, trackChanges);
 

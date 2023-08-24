@@ -32,7 +32,7 @@ namespace AssetMon.Services.Implementation
             _vehicleService = new Lazy<IVehicleService>(() => new VehicleService(_repository, _mapper));
             _userService = new Lazy<IUserService>(() => new UserService(_repository, _mapper));
             _paymentService = new Lazy<IPaymentService>(() => new PaymentService(_repository, _mapper));
-            _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(_logger, _userManager, _mapper, _configuration));
+            _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(_logger, _userManager, _repository, _mapper, _configuration));
             _pictureService = new Lazy<IPictureService>(() => new PictureService(_configuration));
         }
         public IUserService UserService => _userService.Value;

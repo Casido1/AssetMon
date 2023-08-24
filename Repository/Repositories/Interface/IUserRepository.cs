@@ -1,16 +1,11 @@
 ﻿using AssetMon.Models;
-using AssetMon.Shared.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AssetMon.Data.Repositories.Interface
 {
     public interface IUserRepository
     {
-        //Task UpdateUserProfile(UserProfileDTO userProfileDTO);
-        //Task<AppUser> GetUserProfile(string Id);
+        Task<UserProfile> GetUserProfileByIdAsync(string userId, bool trackChanges);
+        Task CreateUserProfileAsync(UserProfile userProfile);
     }
 }

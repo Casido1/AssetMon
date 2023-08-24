@@ -1,31 +1,23 @@
 ﻿using AssetMon.Data.Repositories.Interface;
 using AssetMon.Models;
-using AssetMon.Shared.DTOs;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssetMon.Data.Repositories.Implementation
 {
-    internal sealed class UserRepository : RepositoryBase<AppUser>, IUserRepository
+    internal sealed class UserRepository : RepositoryBase<UserProfile>, IUserRepository
     {
         public UserRepository(AssetMonContext context) : base(context)
         {
         }
 
-        public async Task<AppUser> GetUserProfile(string Id)
+        public async Task CreateUserProfileAsync(UserProfile userProfile)
         {
-            var user = await FindByCondition(u => u.Id == Id, true).FirstOrDefaultAsync();
-            return user;
+            Create(userProfile);
         }
 
-        //public Task UpdateUserProfile(AppUser appUser)
-        //{
-        //    Update(appUser);
-        //    return
-        //}
+        public async Task<UserProfile> GetUserProfileByIdAsync(string userId, bool trackChanges)
+        {
+            return await FindByCondition(u => u.Id == userId, trackChanges).FirstOrDefaultAsync();
+        }
     }
 }

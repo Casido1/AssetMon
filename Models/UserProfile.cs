@@ -31,10 +31,5 @@ namespace AssetMon.Models
         public virtual AppUser AppUser { get; set; }
 
         public virtual Address Address { get; set; }
-
-        public UserProfile()
-        {
-            Id = Guid.NewGuid().ToString();
-        }
     }
 }

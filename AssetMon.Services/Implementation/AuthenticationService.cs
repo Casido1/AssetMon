@@ -1,4 +1,5 @@
-﻿using AssetMon.Models;
+﻿using AssetMon.Data.Repositories.Interface;
+using AssetMon.Models;
 using AssetMon.Models.ConfigurationModels;
 using AssetMon.Models.Exceptions;
 using AssetMon.Services.Interface;
@@ -19,15 +20,18 @@ namespace AssetMon.Services.Implementation
     {
         private readonly ILoggerManager _logger;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
         private AppUser _user;
         private readonly JwtConfiguration _jwtConfiguration;
 
-        public AuthenticationService(ILoggerManager logger, UserManager<AppUser> userManager, IMapper mapper, IConfiguration configuration)
+        public AuthenticationService(ILoggerManager logger, UserManager<AppUser> userManager, IRepositoryManager repositoryManager,
+            IMapper mapper, IConfiguration configuration)
         {
             _logger = logger;
             _userManager = userManager;
+            _repositoryManager = repositoryManager;
             _mapper = mapper;
             _configuration = configuration;
             _jwtConfiguration = new JwtConfiguration();
@@ -56,6 +60,14 @@ namespace AssetMon.Services.Implementation
             if (result.Succeeded)
             {
                 await _userManager.AddToRolesAsync(user, userForRegisterationDTO.Roles);
+
+                //Create UserProfile
+                var userProfile = _mapper.Map<UserProfile>(userForRegisterationDTO);
+                userProfile.Id = user.Id;
+                userProfile.AppUserId = user.Id;
+
+                await _repositoryManager.User.CreateUserProfileAsync(userProfile);
+                await _repositoryManager.SaveAsync();
             }
 
             return result;

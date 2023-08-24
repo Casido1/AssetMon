@@ -20,7 +20,7 @@ namespace AssetMon.Presentation.Controllers
         public VehiclesController(IServiceManager service) => _service = service;
 
         [HttpGet]
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetVehicles([FromQuery] VehicleParameters vehicleParameters)
         {
             var pagedResult = await _service.VehicleService.GetAllVehiclesAsync(vehicleParameters, trackChanges: false);

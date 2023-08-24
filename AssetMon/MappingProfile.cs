@@ -31,7 +31,13 @@ namespace AssetMon.Main
 
             CreateMap<UserForRegisterationDTO, AppUser>();
 
-            //CreateMap<AppUser, UserProfile>().ReverseMap();
+            CreateMap<UserForRegisterationDTO, UserProfile>();
+
+            CreateMap<UserProfile, UserProfileDTO>();
+
+            CreateMap<UserProfileDTO, UserProfile>();
+
+            CreateMap<AddressDTO, Address>();
         }
     }
 }
