@@ -11,7 +11,7 @@ namespace AssetMon.Shared.RequestFeatures
     {
         public VehicleParameters()
         {
-            OrderBy = "date";
+            OrderBy = "startdate";
         }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; } = DateTime.MaxValue;

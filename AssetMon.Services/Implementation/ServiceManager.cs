@@ -21,6 +21,8 @@ namespace AssetMon.Services.Implementation
         private readonly Lazy<IAuthenticationService> _authenticationService;
         private readonly Lazy<IPictureService> _pictureService;
         private readonly Lazy<IOwnershipService> _ownershipService;
+        private readonly Lazy<IAddressService> _addressService;
+        private readonly Lazy<IRepairService> _repairService;
 
         public ServiceManager(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, UserManager<AppUser> userManager,
             IConfiguration configuration)
@@ -36,6 +38,8 @@ namespace AssetMon.Services.Implementation
             _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(_logger, _userManager, _repository, _mapper, _configuration));
             _pictureService = new Lazy<IPictureService>(() => new PictureService(_configuration));
             _ownershipService = new Lazy<IOwnershipService>(() => new OwnershipService(_repository));
+            _addressService = new Lazy<IAddressService>(() => new AddressService(_repository, _mapper));
+            _repairService = new Lazy<IRepairService>(() => new  RepairService(_repository, _mapper));
         }
         public IUserService UserService => _userService.Value;
 
@@ -48,5 +52,9 @@ namespace AssetMon.Services.Implementation
         public IPictureService PictureService => _pictureService.Value;
 
         public IOwnershipService OwnershipService => _ownershipService.Value;
+
+        public IAddressService AddressService => _addressService.Value;
+
+        public IRepairService RepairService => _repairService.Value;
     }
 }

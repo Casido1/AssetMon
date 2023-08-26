@@ -6,10 +6,7 @@ namespace AssetMon.Models
 {
     public class UserProfile
     {
-        public string Id { get; set; }
-
-        [Required]
-        [ForeignKey("AppUser")]
+        [Key, ForeignKey("AppUser")]
         public string AppUserId { get; set; }
 
         public string FirstName { get; set; }
@@ -23,6 +20,8 @@ namespace AssetMon.Models
         public string PhoneNumber { get; set; }
 
         public string PhotoUrl { get; set; }
+
+        public DateTime CreatedOn { get; set; } = DateTime.Now;
 
         public DateTime DateOfBirth { get; set; }
 

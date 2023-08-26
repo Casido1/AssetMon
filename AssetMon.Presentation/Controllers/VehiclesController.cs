@@ -49,6 +49,7 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpGet("byuserid{Id}")]
+        [Authorize(Roles = "Administrator, Owner")]
         public async Task<IActionResult> GetVehiclesByUserId(string Id, [FromQuery] VehicleParameters vehicleParameters)
         {
             var pagedResult = await _service.VehicleService.GetVehiclesByUserIdAsync(Id, vehicleParameters, trackChanges: false);
@@ -59,6 +60,7 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpPost]
+        //[Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateVehicle([FromBody] VehicleToCreateDTO vehicle)
         {
@@ -68,6 +70,7 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpPost("collection")]
+        //[Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateVehicleCollection([FromBody] IEnumerable<VehicleToCreateDTO> vehicleCollection)
         {
@@ -76,6 +79,7 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpDelete("{Id}")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteVehicle(string Id)
         {
             await _service.VehicleService.DeleteVehicleAsync(Id, trackChanges: false);
@@ -83,6 +87,7 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpPut("{Id}")]
+        //[Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateVehicle(string Id, [FromBody] VehicleToUpdateDTO vehicleToUpdate)
         {

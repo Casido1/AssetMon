@@ -16,7 +16,6 @@ namespace AssetMon.Data.Configuration
                     Email = "ahmedsani@gmail.com",
                     UserProfile = new UserProfile
                     {
-                        Id = Guid.NewGuid().ToString(),
                         AppUserId = "1ee125f5-3be4-4bda-ae4c-d471762c414c",
                         FirstName = "Ahmed",
                         LastName = "Sani",
@@ -29,7 +28,6 @@ namespace AssetMon.Data.Configuration
                     Email = "idrissalisu@gmail.com",
                     UserProfile = new UserProfile
                     {
-                        Id = Guid.NewGuid().ToString(),
                         AppUserId = "6c649c3c-a0f1-4065-832a-193cd3d9085d",
                         FirstName = "Idris",
                         LastName = "Salisu",
@@ -42,7 +40,6 @@ namespace AssetMon.Data.Configuration
                     Email = "abubakarmohammed@gmail.com",
                     UserProfile = new UserProfile
                     {
-                        Id = Guid.NewGuid().ToString(),
                         AppUserId = "21443f16-6bfb-4b07-8f35-d4a876266d5b",
                         FirstName = "Abubakar",
                         LastName = "Mohammed",
@@ -55,7 +52,6 @@ namespace AssetMon.Data.Configuration
                     Email = "hamzaisah@gmail.com",
                     UserProfile = new UserProfile
                     {
-                        Id = Guid.NewGuid().ToString(),
                         AppUserId = "d23d56ce-9953-4647-b594-340a50bf7320",
                         FirstName = "Hamza",
                         LastName = "Isah",
@@ -68,7 +64,6 @@ namespace AssetMon.Data.Configuration
                     Email = "ugochukwu.anunihu@gmail.com",
                     UserProfile = new UserProfile
                     {
-                        Id = Guid.NewGuid().ToString(),
                         AppUserId = "666e993e-bd32-4097-a572-702228c0df60",
                         FirstName = "White",
                         LastName = "Money",

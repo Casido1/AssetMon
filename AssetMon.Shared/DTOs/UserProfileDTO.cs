@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AssetMon.Models;
 
 namespace AssetMon.Shared.DTOs
 {
     public class UserProfileDTO
     {
+        public string AppUserId { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -23,5 +19,7 @@ namespace AssetMon.Shared.DTOs
         public string PhotoUrl { get; set; }
 
         public DateTime DateOfBirth { get; set; }
+
+        public AddressDTO Address { get; set; }
     }
 }

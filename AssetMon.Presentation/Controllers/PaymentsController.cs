@@ -2,13 +2,9 @@
 using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
 using AssetMon.Shared.RequestFeatures;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace AssetMon.Presentation.Controllers
 {
@@ -25,6 +21,7 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpGet]
+        //[Authorize(Roles = "Administrator, Owner")]
         public async Task<IActionResult> GetVehiclePayments(string vehicleId, [FromQuery] PaymentParameters paymentParameters)
         {
             var pagedResult = await _service.PaymentService.GetVehiclePaymentsAsync(vehicleId, paymentParameters, trackChanges: false);
@@ -43,6 +40,7 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator, Driver")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateVehiclePayment(string vehicleId, PaymentToCreateDTO payment)
         {
@@ -52,6 +50,7 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpDelete("{Id}")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteVehiclePaymentById(string vehicleId, string Id)
         {
             await _service.PaymentService.DeleteVehiclePaymentAsync(vehicleId, Id, trackChanges: false);
@@ -60,6 +59,8 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpPut("{Id}")]
+        //[Authorize(Roles = "Administrator")]
+
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateVehiclePayment(string vehicle, string Id, [FromBody] PaymentToUpdateDTO paymentToUpdateDTO)
         {

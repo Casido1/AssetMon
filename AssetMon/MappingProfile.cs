@@ -15,6 +15,10 @@ namespace AssetMon.Main
 
             CreateMap<VehicleRepair, VehicleRepairDTO>();
 
+            CreateMap<VehicleRepairToCreateDTO, VehicleRepairDTO>();
+
+            CreateMap<VehicleRepairToUpdateDTO, VehicleRepairDTO>();
+
             CreateMap<Payment, PaymentDTO>();
 
             CreateMap<VehicleToCreateDTO, Vehicle>()
@@ -33,11 +37,16 @@ namespace AssetMon.Main
 
             CreateMap<UserForRegisterationDTO, UserProfile>();
 
-            CreateMap<UserProfile, UserProfileDTO>();
+            CreateMap<UserProfile, UserProfileDTO>()
+                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address));
 
-            CreateMap<UserProfileDTO, UserProfile>();
+            CreateMap<UserProfileToUpdateDTO, UserProfile>();
 
-            CreateMap<AddressDTO, Address>();
+            CreateMap<Address, AddressDTO>();
+
+            CreateMap<AddressToCreateDTO, Address>();
+
+            CreateMap<AddressToUpdateDTO, Address>();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace AssetMon.Data.Migrations
 
             modelBuilder.Entity("AssetMon.Models.Address", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("UserProfileId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("City")
@@ -39,14 +39,7 @@ namespace AssetMon.Data.Migrations
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserProfileId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserProfileId")
-                        .IsUnique();
+                    b.HasKey("UserProfileId");
 
                     b.ToTable("Addresses");
                 });
@@ -167,12 +160,11 @@ namespace AssetMon.Data.Migrations
 
             modelBuilder.Entity("AssetMon.Models.UserProfile", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -195,10 +187,7 @@ namespace AssetMon.Data.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId")
-                        .IsUnique();
+                    b.HasKey("AppUserId");
 
                     b.ToTable("UserProfiles");
                 });

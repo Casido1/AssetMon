@@ -10,15 +10,19 @@ namespace AssetMon.Data.Repositories.Implementation
         {     
         }
 
-        public async Task CreateAddressAsync(Address address)
+        public async Task CreateUserAddressAsync(Address address)
         {
             Create(address);
         }
 
-        public async Task DeleteAddressAsync(string userId)
+        public async Task DeleteAddressAsync(Address address)
         {
-            var address = await GetAddressByUserIdAsync(userId, trackChanges: false);
             Delete(address);
+        }
+
+        public Task DeleteUserAddressAsync(Address address)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<Address> GetAddressByUserIdAsync(string userId, bool trackChanges)

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AssetMon.Data.Repositories.Interface
+﻿namespace AssetMon.Data.Repositories.Interface
 {
     public interface IRepositoryManager
     {
@@ -12,6 +6,8 @@ namespace AssetMon.Data.Repositories.Interface
         IVehicleRepository Vehicle { get; }
         IPaymentRepository Payment { get; }
         IOwnershipRepository Ownership { get; }
+        IAddressRepository Address { get; }
+        IRepairRepository Repair { get; }
         Task SaveAsync();
     }
 }

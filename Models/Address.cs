@@ -6,10 +6,7 @@ namespace AssetMon.Models
 {
     public class Address
     {
-        public string Id { get; set; }
-
-        [Required]
-        [ForeignKey("UserProfile")]
+        [Key, ForeignKey("UserProfile")]
         public string UserProfileId { get; set; }
 
         public string Country { get; set; }
@@ -23,10 +20,5 @@ namespace AssetMon.Models
         //Nav prop
         [JsonIgnore]
         public virtual UserProfile UserProfile { get; set; }
-
-        public Address()
-        {
-            Id = Guid.NewGuid().ToString();
-        }
     }
 }

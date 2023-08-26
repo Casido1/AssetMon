@@ -1,5 +1,7 @@
-﻿using AssetMon.Data.Repositories.Interface;
+﻿using AssetMon.Data.Repositories.Extensions;
+using AssetMon.Data.Repositories.Interface;
 using AssetMon.Models;
+using AssetMon.Shared.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 
 namespace AssetMon.Data.Repositories.Implementation
@@ -22,7 +24,25 @@ namespace AssetMon.Data.Repositories.Implementation
 
         public async Task<UserProfile> GetUserProfileByIdAsync(string userId, bool trackChanges)
         {
-            return await FindByCondition(u => u.Id == userId, trackChanges).FirstOrDefaultAsync();
+            return await FindByCondition(u => u.AppUserId == userId, trackChanges)
+                        .Include(a => a.Address)
+                        .FirstOrDefaultAsync();
+        }
+
+        public async Task<PagedList<UserProfile>> GetUserProfilesAsync(UserParameters userParameters, bool trackChanges)
+        {
+            var users = await FindAll(trackChanges)
+                                .Include(a => a.Address)    
+                                .FilterUsers(userParameters.StartDate, userParameters.EndDate)
+                                .Search(userParameters.SearchTerm)
+                                .Sort(userParameters.OrderBy)
+                                .Skip((userParameters.PageNumber - 1) * userParameters.PageSize)
+                                .Take(userParameters.PageSize)
+                                .ToListAsync();
+
+            var count = await FindAll(trackChanges).CountAsync();
+
+            return new PagedList<UserProfile>(users, count, userParameters.PageNumber, userParameters.PageSize);
         }
     }
 }

@@ -62,11 +62,6 @@ namespace AssetMon.Services.Implementation
 
             var paymentsWithMetaData = await _repository.Payment.GetVehiclePaymentsAsync(vehicleId, paymentParameters, trackChanges);
 
-            if (paymentsWithMetaData.Count() == 0)
-            {
-                return (payments: new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Message = "No payments found for this vehicle" }, metaData: paymentsWithMetaData.MetaData);
-            }
-
             var mappedEntity = _mapper.Map<List<PaymentDTO>>(paymentsWithMetaData);
             return (payments: new ResultDTO<IEnumerable<PaymentDTO>> { Success = true, Data = mappedEntity }, metaData: paymentsWithMetaData.MetaData);
         }
@@ -76,7 +71,7 @@ namespace AssetMon.Services.Implementation
             await GetVehicleAndCheckIfExists(vehicleId, trackVehicleChanges);
 
             var payment = await GetVehiclePaymentAndCheckIfExists(vehicleId, paymentId, trackVehiclePaymentChanges);
-
+                
             _mapper.Map(paymentToUpdateDTO, payment);
             await _repository.SaveAsync();
         }

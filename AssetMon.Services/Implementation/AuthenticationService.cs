@@ -63,7 +63,6 @@ namespace AssetMon.Services.Implementation
 
                 //Create UserProfile
                 var userProfile = _mapper.Map<UserProfile>(userForRegisterationDTO);
-                userProfile.Id = user.Id;
                 userProfile.AppUserId = user.Id;
 
                 await _repositoryManager.User.CreateUserProfileAsync(userProfile);
