@@ -5,6 +5,7 @@ using AssetMon.Models.Exceptions;
 using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
 using AutoMapper;
+using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using LoggerService.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -20,17 +21,21 @@ namespace AssetMon.Services.Implementation
     {
         private readonly ILoggerManager _logger;
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IEmailService _emailService;
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
         private AppUser _user;
         private readonly JwtConfiguration _jwtConfiguration;
 
-        public AuthenticationService(ILoggerManager logger, UserManager<AppUser> userManager, IRepositoryManager repositoryManager,
-            IMapper mapper, IConfiguration configuration)
+        public AuthenticationService(ILoggerManager logger, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IRepositoryManager repositoryManager,
+            IEmailService emailService, IMapper mapper, IConfiguration configuration)
         {
             _logger = logger;
             _userManager = userManager;
+            _roleManager = roleManager;
+            _emailService = emailService;
             _repositoryManager = repositoryManager;
             _mapper = mapper;
             _configuration = configuration;
@@ -59,7 +64,13 @@ namespace AssetMon.Services.Implementation
 
             if (result.Succeeded)
             {
-                await _userManager.AddToRolesAsync(user, userForRegisterationDTO.Roles);
+                foreach(var role in userForRegisterationDTO.Roles)
+                {
+                    if(!string.Equals(role, "Administrator", StringComparison.OrdinalIgnoreCase))
+                    {
+                        await _userManager.AddToRoleAsync(user, role);
+                    }
+                }
 
                 //Create UserProfile
                 var userProfile = _mapper.Map<UserProfile>(userForRegisterationDTO);
@@ -183,9 +194,46 @@ namespace AssetMon.Services.Implementation
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(_user);
 
-            //Send email logic
+            var emailDTO = new EmailDTO
+            {
+                To = "lillie.hartmann32@ethereal.email",
+                Subject = "Password Reset",
+                Body = $"Use this token to reset your password: {token}"
+            };
+            await _emailService.SendMailAsync(emailDTO);
 
             return true;
         }
+
+        public async Task<IdentityResult> ConfirmPasswordResetAsync(string userId, string token, string newPassword)
+        {
+            _user = await _userManager.FindByIdAsync(_user.Id);
+            if (_user == null) return IdentityResult.Failed(new IdentityError { Description = "user not found" });
+
+            var result = await _userManager.ResetPasswordAsync(_user, token, newPassword);
+
+            return result;
+        }
+
+        public async Task<bool> ReassignRole(string userId, IEnumerable<string> roles)
+        {
+            _user = await _userManager.FindByIdAsync(userId);
+            if (_user == null) throw new UserProfileNotFoundException(userId);
+            // Remove existing roles
+            var existingRoles = await _userManager.GetRolesAsync(_user);
+            await _userManager.RemoveFromRolesAsync(_user, existingRoles);
+
+            // Assign new roles
+            foreach (var role in roles)
+            {
+                var roleExists = await _roleManager.RoleExistsAsync(role);
+                if (roleExists)
+                {
+                    await _userManager.AddToRoleAsync(_user, role);
+                }
+            }
+
+            return true;
+        }  
     }
 }

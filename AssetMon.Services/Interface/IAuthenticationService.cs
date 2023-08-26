@@ -10,5 +10,7 @@ namespace AssetMon.Services.Interface
         Task<TokenDTO> CreateToken(bool populateExp);
         Task<TokenDTO> RefreshToken(TokenDTO tokenDTO);
         Task<bool> RequestPasswordReset(string email);
+        Task<IdentityResult> ConfirmPasswordResetAsync(string userId, string token, string newPassword);
+        Task<bool> ReassignRole(string userId, IEnumerable<string> roles);
     }
 }

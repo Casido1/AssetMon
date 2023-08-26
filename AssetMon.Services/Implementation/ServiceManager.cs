@@ -14,6 +14,8 @@ namespace AssetMon.Services.Implementation
         private readonly IMapper _mapper;
         private readonly ILoggerManager _logger;
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IEmailService _emailService;
         private readonly IConfiguration _configuration;
         private readonly Lazy<IVehicleService> _vehicleService;
         private readonly Lazy<IUserService> _userService;
@@ -25,17 +27,19 @@ namespace AssetMon.Services.Implementation
         private readonly Lazy<IRepairService> _repairService;
 
         public ServiceManager(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, UserManager<AppUser> userManager,
-            IConfiguration configuration)
+            RoleManager<IdentityRole> roleManager, IEmailService emailService, IConfiguration configuration)
         {
             _repository = repository;
             _mapper = mapper;
             _logger = logger;
             _userManager = userManager;
+            _roleManager = roleManager;
+            _emailService = emailService;
             _configuration = configuration;
             _vehicleService = new Lazy<IVehicleService>(() => new VehicleService(_repository, _mapper));
             _userService = new Lazy<IUserService>(() => new UserService(_repository, _mapper));
             _paymentService = new Lazy<IPaymentService>(() => new PaymentService(_repository, _mapper));
-            _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(_logger, _userManager, _repository, _mapper, _configuration));
+            _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(_logger, _userManager, _roleManager, _repository, _emailService, _mapper, _configuration));
             _pictureService = new Lazy<IPictureService>(() => new PictureService(_configuration));
             _ownershipService = new Lazy<IOwnershipService>(() => new OwnershipService(_repository));
             _addressService = new Lazy<IAddressService>(() => new AddressService(_repository, _mapper));

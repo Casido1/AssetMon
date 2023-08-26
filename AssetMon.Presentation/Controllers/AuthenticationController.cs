@@ -1,5 +1,8 @@
-﻿using AssetMon.Services.Interface;
+﻿using AssetMon.Commons.ActionFilters;
+using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
+using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -54,6 +57,36 @@ namespace AssetMon.Presentation.Controllers
             var tokenDtoToReturn = await _serviceManager.AuthenticationService.RefreshToken(tokenDTO);
 
             return Ok(tokenDtoToReturn);
+        }
+
+        [HttpPost("requestpasswordrequest")]
+        public async Task<IActionResult> RequestPasswordReset(string email)
+        {
+            var result = await _serviceManager.AuthenticationService.RequestPasswordReset(email);
+            if (result) return Ok();
+
+            return NotFound("Email does not exist");
+        }
+
+        [HttpPost("confirmpasswordreset")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<IActionResult> ConfirmPasswordReset(PassWordResetDTO passWordResetDTO)
+        {
+            var result = await _serviceManager.AuthenticationService.ConfirmPasswordResetAsync(passWordResetDTO.UserId, passWordResetDTO.Token, passWordResetDTO.NewPassword);
+            
+            if(result.Succeeded) return Ok("Password reset confirmed successfully");
+
+            return BadRequest(result.Errors.Select(error => error.Description));
+        }
+
+        [HttpPost("reassignroles")]
+        //[Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> ReassignRoles([FromBody] RoleReassignmentDTO roleReassignmentDTO)
+        {
+            var result = await _serviceManager.AuthenticationService.ReassignRole(roleReassignmentDTO.UserId, roleReassignmentDTO.Roles);
+
+            if (result) return Ok();
+            return NotFound("Role does not exist");
         }
     }
 }

@@ -2,6 +2,8 @@ using AspNetCoreRateLimit;
 using AssetMon.Commons.ActionFilters;
 using AssetMon.Data;
 using AssetMon.Main.Extensions;
+using AssetMon.Services.Implementation;
+using AssetMon.Services.Interface;
 using LoggerService.Interface;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +22,8 @@ builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureVersioning();
+
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 //Caching configuration
 //builder.Services.ConfigureResponseCaching();
