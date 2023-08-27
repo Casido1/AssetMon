@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Fw9DxnJHk9RoeZmjylLqWNgHMLpkxlI5+xlppcmjgWyBiQz/Jmevzr0Rz1RPoYMWnc8U+/Gyplrr0mwhC3KVdw==",
+  "dgSpecHash": "fDUJ3jz1yiH3JaN+rH0eUR/dYRXFU769CRvrx8kfks7i1zyvQ8c3p7R3F0tWH/R1wRWwToNfKipIX8NDF2kimQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\AssetMon.Presentation\\AssetMon.Presentation.csproj",
   "expectedPackageFiles": [
@@ -112,6 +112,7 @@
     "C:\\Users\\Casido\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
+    "C:\\Users\\Casido\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",

@@ -1,3 +1,4 @@
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\bin\Debug\net6.0\Templates\PasswordResetEmail.html
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\bin\Debug\net6.0\AssetMon.Services.deps.json
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\bin\Debug\net6.0\AssetMon.Services.runtimeconfig.json
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Services\bin\Debug\net6.0\AssetMon.Services.dll

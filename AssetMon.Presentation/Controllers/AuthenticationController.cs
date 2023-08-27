@@ -76,7 +76,7 @@ namespace AssetMon.Presentation.Controllers
             
             if(result.Succeeded) return Ok("Password reset confirmed successfully");
 
-            return BadRequest(result.Errors.Select(error => error.Description));
+            return BadRequest(result.Errors.Select(error => error.Description));    
         }
 
         [HttpPost("reassignroles")]

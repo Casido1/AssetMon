@@ -24,7 +24,12 @@ namespace AssetMon.Main.Extensions
         #region Identity
         public static void ConfigureIdentity(this IServiceCollection services)
         {
-            var builder = services.AddIdentity<AppUser, IdentityRole>(o =>
+            services.Configure<DataProtectionTokenProviderOptions>(options =>
+            {
+                options.TokenLifespan = TimeSpan.FromMinutes(5);
+            });
+
+            services.AddIdentity<AppUser, IdentityRole>(o =>
             {
                 o.User.RequireUniqueEmail = true;
                 o.Password.RequireNonAlphanumeric = false;

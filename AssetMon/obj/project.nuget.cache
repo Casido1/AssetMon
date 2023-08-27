@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EWxeSMzkgkDSLLxB2sn8TgbjeDEnyprsXtSJYxpaXcZzgHZu4QV5Ksand1nVzAlS+gW77EVMi7n1r1Vr/fCJGA==",
+  "dgSpecHash": "p7nSPF/hZg7uurLYqk2RWULDdwFg9YlOmWQFvcmbgIpI1ODi9CYRPUSwuVO6MyLkhAyyLM/HspC/atXOT35PNw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\AssetMon\\AssetMon.Main.csproj",
   "expectedPackageFiles": [
@@ -125,6 +125,7 @@
     "C:\\Users\\Casido\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
+    "C:\\Users\\Casido\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
     "C:\\Users\\Casido\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",

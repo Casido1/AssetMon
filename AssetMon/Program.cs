@@ -4,6 +4,7 @@ using AssetMon.Data;
 using AssetMon.Main.Extensions;
 using AssetMon.Services.Implementation;
 using AssetMon.Services.Interface;
+using AssetMon.Services.TemplateEngine;
 using LoggerService.Interface;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,7 @@ builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureVersioning();
 
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<ITemplateEngine, TemplateEngine>();
 
 //Caching configuration
 //builder.Services.ConfigureResponseCaching();

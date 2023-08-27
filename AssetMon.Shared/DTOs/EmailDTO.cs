@@ -1,5 +1,4 @@
-﻿
-namespace AssetMon.Shared.DTOs
+﻿namespace AssetMon.Shared.DTOs
 {
     public class EmailDTO
     {

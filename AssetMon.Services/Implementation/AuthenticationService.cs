@@ -194,20 +194,21 @@ namespace AssetMon.Services.Implementation
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(_user);
 
-            var emailDTO = new EmailDTO
-            {
-                To = "lillie.hartmann32@ethereal.email",
-                Subject = "Password Reset",
-                Body = $"Use this token to reset your password: {token}"
+            var model = new EmailOptions 
+            { 
+                PlaceHolder = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>( "{{Token}}", $"{token}" )
+                } 
             };
-            await _emailService.SendMailAsync(emailDTO);
+            await _emailService.SendPasswordResetEmail(model);
 
             return true;
         }
 
         public async Task<IdentityResult> ConfirmPasswordResetAsync(string userId, string token, string newPassword)
         {
-            _user = await _userManager.FindByIdAsync(_user.Id);
+            _user = await _userManager.FindByIdAsync(userId);
             if (_user == null) return IdentityResult.Failed(new IdentityError { Description = "user not found" });
 
             var result = await _userManager.ResetPasswordAsync(_user, token, newPassword);
