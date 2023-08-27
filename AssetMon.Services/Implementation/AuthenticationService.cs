@@ -5,10 +5,10 @@ using AssetMon.Models.Exceptions;
 using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
 using AutoMapper;
-using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using LoggerService.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -83,6 +83,8 @@ namespace AssetMon.Services.Implementation
             return result;
         }
 
+        #region Token
+
         public async Task<TokenDTO> CreateToken(bool populateExp)
         {
             var signingCredentials = GetSigningCredentials();
@@ -111,6 +113,7 @@ namespace AssetMon.Services.Implementation
         {
             var claims = new List<Claim>
             {
+                new Claim(ClaimTypes.NameIdentifier, _user.Id),
                 new  Claim(ClaimTypes.Name, _user.UserName)
             };
 
@@ -187,6 +190,8 @@ namespace AssetMon.Services.Implementation
             return await CreateToken(populateExp: false);
         }
 
+        #endregion
+
         public async Task<bool> RequestPasswordReset(string email)
         {
             _user = await _userManager.FindByEmailAsync(email);
@@ -201,7 +206,7 @@ namespace AssetMon.Services.Implementation
                     new KeyValuePair<string, string>( "{{Token}}", $"{token}" )
                 } 
             };
-            await _emailService.SendPasswordResetEmail(model);
+            await _emailService.SendPasswordResetEmailAsync(model);
 
             return true;
         }
@@ -235,6 +240,44 @@ namespace AssetMon.Services.Implementation
             }
 
             return true;
-        }  
+        }
+
+        public async Task<bool> RequestEmailVerificationAsync(string userId)
+        {
+            _user = await _userManager.FindByIdAsync(userId);
+            if(_user == null)
+            {
+                return false;
+            }
+
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(_user);
+
+            //var callbackUrl = ""; // Create a URL to your email verification endpoint
+
+            var model = new EmailOptions
+            {
+                PlaceHolder = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>( "{{Token}}", $"{token}" )
+                }
+            };
+            
+            await _emailService.SendEmailConfirmationMailAsync(model);
+
+            return true;
+        }
+
+        public async Task<IdentityResult> ConfirmEmail(string userId, string token)
+        {
+            _user = await _userManager.FindByIdAsync(userId);
+            if (_user == null)
+            {
+                return IdentityResult.Failed(new IdentityError { Description = "user not found" });
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(_user, token);
+
+            return result;
+        }
     }
 }

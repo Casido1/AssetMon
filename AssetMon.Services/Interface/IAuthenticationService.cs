@@ -12,5 +12,7 @@ namespace AssetMon.Services.Interface
         Task<bool> RequestPasswordReset(string email);
         Task<IdentityResult> ConfirmPasswordResetAsync(string userId, string token, string newPassword);
         Task<bool> ReassignRole(string userId, IEnumerable<string> roles);
+        Task<bool> RequestEmailVerificationAsync(string userId);
+        Task<IdentityResult> ConfirmEmail(string userId, string token);
     }
 }

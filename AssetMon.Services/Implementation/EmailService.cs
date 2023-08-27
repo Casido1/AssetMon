@@ -4,7 +4,6 @@ using AssetMon.Services.TemplateEngine;
 using AssetMon.Shared.DTOs;
 using MailKit.Net.Smtp;
 using MailKit.Security;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 using MimeKit.Text;
@@ -40,11 +39,20 @@ namespace AssetMon.Services.Implementation
             await smtp.DisconnectAsync(true);
         }
 
-        public async Task SendPasswordResetEmail(EmailOptions emailOptions)
+        public async Task SendPasswordResetEmailAsync(EmailOptions emailOptions)
         {
             string subject = "Password Reset";
 
             var emailBody = await _templateEngine.GenerateBodyHtml("PasswordResetEmail", emailOptions.PlaceHolder);
+
+            await SendMailAsync("ophelia.sawayn@ethereal.email", subject, emailBody);
+        }
+
+        public async Task SendEmailConfirmationMailAsync(EmailOptions emailOptions)
+        {
+            string subject = "Email Confirmation";
+
+            var emailBody = await _templateEngine.GenerateBodyHtml("EmailConfirmationMail", emailOptions.PlaceHolder);
 
             await SendMailAsync("ophelia.sawayn@ethereal.email", subject, emailBody);
         }

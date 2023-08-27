@@ -1,12 +1,15 @@
 ﻿using AssetMon.Commons.ActionFilters;
 using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
+using Castle.Core.Internal;
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core.Tokenizer;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,7 +62,7 @@ namespace AssetMon.Presentation.Controllers
             return Ok(tokenDtoToReturn);
         }
 
-        [HttpPost("requestpasswordrequest")]
+        [HttpPost("reset-password/request")]
         public async Task<IActionResult> RequestPasswordReset(string email)
         {
             var result = await _serviceManager.AuthenticationService.RequestPasswordReset(email);
@@ -68,7 +71,7 @@ namespace AssetMon.Presentation.Controllers
             return NotFound("Email does not exist");
         }
 
-        [HttpPost("confirmpasswordreset")]
+        [HttpPost("reset-password/confirm")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> ConfirmPasswordReset(PassWordResetDTO passWordResetDTO)
         {
@@ -80,6 +83,7 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpPost("reassignroles")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> ReassignRoles([FromBody] RoleReassignmentDTO roleReassignmentDTO)
         {
@@ -87,6 +91,31 @@ namespace AssetMon.Presentation.Controllers
 
             if (result) return Ok();
             return NotFound("Role does not exist");
+        }
+
+        [HttpPost("verify-email/request")]
+        [Authorize]
+        public async Task<IActionResult> RequestEmailVerification()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId)) return BadRequest("UserId not found");
+
+            var success = await _serviceManager.AuthenticationService.RequestEmailVerificationAsync(userId);
+            if(success) return Ok();
+
+            return NotFound("User not found");
+        }
+
+        [HttpPost("verify-email/confirm")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmail(EmailVerificationDTO emailVerificationDTO)
+        {
+            var result = await _serviceManager.AuthenticationService.ConfirmEmail(emailVerificationDTO.UserId, emailVerificationDTO.Token);
+
+            if (result.Succeeded) return Ok("Email confirmed successfully");
+
+            return BadRequest(result.Errors.Select(error => error.Description));
         }
     }
 }
