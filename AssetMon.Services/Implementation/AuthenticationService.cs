@@ -61,7 +61,6 @@ namespace AssetMon.Services.Implementation
             var user = _mapper.Map<AppUser>(userForRegisterationDTO);
 
             var result = await _userManager.CreateAsync(user, userForRegisterationDTO.Password);
-
             if (result.Succeeded)
             {
                 foreach(var role in userForRegisterationDTO.Roles)
