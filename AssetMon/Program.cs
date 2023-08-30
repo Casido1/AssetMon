@@ -76,16 +76,17 @@ var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILoggerManager>();
 app.ConfigureExceptionHandler(logger);
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(s =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(s =>
-    {
-        s.SwaggerEndpoint("/swagger/v1/swagger.json", "Asset Monitor API v1");
-    });
-}
-else
-    app.UseHsts();
+    s.SwaggerEndpoint("/swagger/v1/swagger.json", "Asset Monitor API v1");
+});
+//if (app.Environment.IsDevelopment())
+//{
+
+//}
+//else
+//    app.UseHsts();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
