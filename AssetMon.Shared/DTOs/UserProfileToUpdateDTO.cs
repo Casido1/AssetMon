@@ -20,8 +20,6 @@ namespace AssetMon.Shared.DTOs
 
         public string PhoneNumber { get; set; }
 
-        public string PhotoUrl { get; set; }
-
-        public DateTime DateOfBirth { get; set; }
+        public DateOnly DateOfBirth { get; set; }
     }
 }

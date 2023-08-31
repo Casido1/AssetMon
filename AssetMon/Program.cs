@@ -2,6 +2,7 @@ using AspNetCoreRateLimit;
 using AssetMon.Commons.ActionFilters;
 using AssetMon.Data;
 using AssetMon.Main.Extensions;
+using AssetMon.Models.ConfigurationModels;
 using AssetMon.Services.Implementation;
 using AssetMon.Services.Interface;
 using AssetMon.Services.TemplateEngine;
@@ -16,6 +17,12 @@ var builder = WebApplication.CreateBuilder(args);
 LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(),
 "/nlog.config"));
 
+var build = new ConfigurationBuilder()
+        .AddJsonFile($"appsettings.json", optional: true); //or what ever file you have the settings
+
+
+IConfiguration configuration = build.Build();
+
 // Add services to the container.
 builder.Services.ConfigureCors();
 builder.Services.ConfigureIISIntegration();
@@ -26,6 +33,7 @@ builder.Services.ConfigureVersioning();
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ITemplateEngine, TemplateEngine>();
+builder.Services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
 
 //Caching configuration
 //builder.Services.ConfigureResponseCaching();
@@ -59,11 +67,6 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddScoped<ValidationFilterAttribute>();
 
-var build = new ConfigurationBuilder()
-        .AddJsonFile($"appsettings.json", optional: true); //or what ever file you have the settings
-
-
-IConfiguration configuration = build.Build();
 
 builder.Services.AddDbContext<AssetMonContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("AssetMonDb")));

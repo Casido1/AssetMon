@@ -26,6 +26,7 @@ namespace AssetMon.Data.Repositories.Implementation
         {
             return await FindByCondition(u => u.AppUserId == userId, trackChanges)
                         .Include(a => a.Address)
+                        .Include(p => p.Pictures)
                         .FirstOrDefaultAsync();
         }
 

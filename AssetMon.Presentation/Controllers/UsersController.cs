@@ -1,10 +1,13 @@
 ﻿using AssetMon.Commons.ActionFilters;
+using AssetMon.Commons.Extensions;
+using AssetMon.Data.Repositories.Interface;
+using AssetMon.Models;
 using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
 using AssetMon.Shared.RequestFeatures;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using System.Text.Json;
 
 namespace AssetMon.Presentation.Controllers
@@ -15,10 +18,12 @@ namespace AssetMon.Presentation.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
+        private readonly IRepositoryManager _repositoryManager;
 
-        public UsersController(IServiceManager serviceManager)
+        public UsersController(IServiceManager serviceManager, IRepositoryManager repositoryManager)
         {
             _serviceManager = serviceManager;
+            _repositoryManager = repositoryManager;
         }
 
         [HttpGet("userprofiles")]
@@ -36,7 +41,7 @@ namespace AssetMon.Presentation.Controllers
         [Authorize]
         public async Task<IActionResult> GetUserProfileById()
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userId = User.GetUserId();
             var result = await _serviceManager.UserService.GetUserProfileByIdAsync(userId, trackChanges: false);
 
             return Ok(result);
@@ -59,6 +64,19 @@ namespace AssetMon.Presentation.Controllers
             await _serviceManager.UserService.DeleteUserProfileAsync(userId, trackChanges: false);
 
             return NoContent();
+        }
+
+        [HttpPost("add-photo")]
+        //[Authorize]
+        public async Task<ActionResult<PictureDTO>> AddPhoto(IFormFile file)
+        {
+            var userId = User.GetUserId();
+
+            var result = await _serviceManager.PictureService.UploadPictureAsync(file, userId);
+
+            if (result == null) return BadRequest();
+
+            return Ok(result);
         }
     }
 }

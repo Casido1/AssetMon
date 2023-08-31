@@ -1787,7 +1787,6 @@
       },
       "AssetMon.Commons/1.0.0": {
         "dependencies": {
-          "AssetMon.Models": "1.0.0",
           "AutoMapper": "12.0.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.6",
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
@@ -1824,6 +1823,7 @@
       },
       "AssetMon.Models/1.0.0": {
         "dependencies": {
+          "AssetMon.Commons": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.6",
           "Microsoft.EntityFrameworkCore": "6.0.6",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.6",

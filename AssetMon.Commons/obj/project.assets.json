@@ -1294,24 +1294,6 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.OData.Edm/7.14.1": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "4.6.0",
-          "System.Text.Encodings.Web": "4.7.2",
-          "System.Text.Json": "4.6.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.OData.Edm.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.OData.Edm.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.Win32.Registry/4.7.0": {
         "type": "package",
         "dependencies": {
@@ -2189,26 +2171,6 @@
             "assetType": "runtime",
             "rid": "win"
           }
-        }
-      },
-      "AssetMon.Models/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.6",
-          "Microsoft.EntityFrameworkCore": "6.0.6",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.6",
-          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.6",
-          "Microsoft.Extensions.Configuration": "6.0.1",
-          "Microsoft.Extensions.Hosting": "6.0.1",
-          "Microsoft.OData.Edm": "7.14.1",
-          "Newtonsoft.Json": "13.0.1"
-        },
-        "compile": {
-          "bin/placeholder/AssetMon.Models.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/AssetMon.Models.dll": {}
         }
       }
     }
@@ -3635,23 +3597,6 @@
         "microsoft.netcore.targets.1.0.1.nupkg.sha512",
         "microsoft.netcore.targets.nuspec",
         "runtime.json"
-      ]
-    },
-    "Microsoft.OData.Edm/7.14.1": {
-      "sha512": "HhB5mRsLyAOwVSUC79Xv/cpuuhALL0PwchKKOAdUWlguvoSo6qmosZs4XVwzPXdxIaXjoiowiIgNgSMCcMoeeA==",
-      "type": "package",
-      "path": "microsoft.odata.edm/7.14.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net45/Microsoft.OData.Edm.dll",
-        "lib/net45/Microsoft.OData.Edm.xml",
-        "lib/netstandard1.1/Microsoft.OData.Edm.dll",
-        "lib/netstandard1.1/Microsoft.OData.Edm.xml",
-        "lib/netstandard2.0/Microsoft.OData.Edm.dll",
-        "lib/netstandard2.0/Microsoft.OData.Edm.xml",
-        "microsoft.odata.edm.7.14.1.nupkg.sha512",
-        "microsoft.odata.edm.nuspec"
       ]
     },
     "Microsoft.Win32.Registry/4.7.0": {
@@ -6067,16 +6012,10 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "AssetMon.Models/1.0.0": {
-      "type": "project",
-      "path": "../Models/AssetMon.Models.csproj",
-      "msbuildProject": "../Models/AssetMon.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "AssetMon.Models >= 1.0.0",
       "AutoMapper >= 12.0.1",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.6",
       "Microsoft.AspNetCore.Mvc.Abstractions >= 2.2.0",
@@ -6123,11 +6062,7 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {
-            "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\Models\\AssetMon.Models.csproj": {
-              "projectPath": "C:\\Users\\Casido\\OneDrive\\Desktop\\Assets Monitor\\AssetMon\\Models\\AssetMon.Models.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

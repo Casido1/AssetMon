@@ -13,3 +13,5 @@ C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Shared\obj\Deb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Shared\obj\Debug\net6.0\refint\AssetMon.Shared.dll
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Shared\obj\Debug\net6.0\AssetMon.Shared.pdb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Shared\obj\Debug\net6.0\ref\AssetMon.Shared.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Shared\bin\Debug\net6.0\AssetMon.Commons.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon.Shared\bin\Debug\net6.0\AssetMon.Commons.pdb

@@ -1,39 +1,76 @@
-﻿using AssetMon.Services.Interface;
+﻿using AssetMon.Data.Repositories.Implementation;
+using AssetMon.Data.Repositories.Interface;
+using AssetMon.Models;
+using AssetMon.Models.ConfigurationModels;
+using AssetMon.Models.Exceptions;
+using AssetMon.Services.Interface;
+using AssetMon.Shared.DTOs;
+using AutoMapper;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 
 namespace AssetMon.Services.Implementation
 {
     public class PictureService : IPictureService
     {
         private readonly Cloudinary _cloudinary;
-        private readonly IConfiguration _configuration;
+        private readonly IMapper _mapper;
+        private readonly IRepositoryManager _repositoryManager;
 
-        public PictureService(IConfiguration configuration)
+        public PictureService(IOptions<CloudinarySettings> config, IRepositoryManager repositoryManager, IMapper mapper)
         {
-            _configuration = configuration;
-            var cloudinaryAPI = _configuration.GetSection("CloudinaryAPI");
-            Account cloudinaryAccount = new Account(cloudinaryAPI["CloudName"], cloudinaryAPI["Key"], cloudinaryAPI["Secret"]);
+            _mapper = mapper;
+            _repositoryManager = repositoryManager;
+            Account cloudinaryAccount = new Account(config.Value.CloudName, config.Value.Key, config.Value.Secret);
             _cloudinary = new Cloudinary(cloudinaryAccount);
         }
 
-        public async Task<string> GetPictureUrl(string pictureId)
+        public async Task<DeletionResult> DeletePictureAsync(string publicId)
         {
-            var resource = await _cloudinary.GetResourceAsync(pictureId);
-            return resource.Url.ToString();
+            var deleteParam = new DeletionParams(publicId);
+
+            return await _cloudinary.DestroyAsync(deleteParam);
         }
 
-        public async Task<string> UploadPicture(Stream stream, string fileName)
+        public async Task<PictureDTO> UploadPictureAsync(IFormFile file, string userId)
         {
-            var uploadParams = new ImageUploadParams
+            var user = await _repositoryManager.User.GetUserProfileByIdAsync(userId, trackChanges: true);
+
+            if (user == null) throw new UserProfileNotFoundException(userId);
+
+            var uploadResult = new ImageUploadResult();
+
+            if(file.Length > 0)
             {
-                File = new FileDescription(fileName, stream),
-                Folder = "profile-pictures"
+                using var stream = file.OpenReadStream();
+                var uploadParam = new ImageUploadParams
+                {
+                    File = new FileDescription(file.Name, stream),
+                    Transformation = new Transformation().Height(500).Width(500).Crop("Fill").Gravity("face"),
+                    Folder = "assetmon-images"
+                };
+                uploadResult = await _cloudinary.UploadAsync(uploadParam);
+            }
+
+            if (uploadResult.Error != null) return null;
+
+            var picture = new Picture
+            {
+                PictureUrl = uploadResult.SecureUrl.AbsoluteUri,
+                PublicId = uploadResult.PublicId
             };
 
-            var uploadResult = await _cloudinary.UploadAsync(uploadParams);
-            return uploadResult.PublicId;
+            if (user.Pictures.Count() == 0) picture.IsMain = true;
+
+            user.Pictures.Add(picture);
+
+            await _repositoryManager.SaveAsync();
+
+            var mappedResult = _mapper.Map<PictureDTO>(picture);
+
+            return mappedResult;
         }
     }
 }

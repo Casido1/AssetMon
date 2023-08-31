@@ -158,6 +158,31 @@ namespace AssetMon.Data.Migrations
                     b.ToTable("Payments");
                 });
 
+            modelBuilder.Entity("AssetMon.Models.Picture", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PictureUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserProfileId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserProfileId");
+
+                    b.ToTable("Picture");
+                });
+
             modelBuilder.Entity("AssetMon.Models.UserProfile", b =>
                 {
                     b.Property<string>("AppUserId")
@@ -174,6 +199,9 @@ namespace AssetMon.Data.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastActive")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -428,6 +456,17 @@ namespace AssetMon.Data.Migrations
                     b.Navigation("Vehicle");
                 });
 
+            modelBuilder.Entity("AssetMon.Models.Picture", b =>
+                {
+                    b.HasOne("AssetMon.Models.UserProfile", "UserProfile")
+                        .WithMany("Pictures")
+                        .HasForeignKey("UserProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserProfile");
+                });
+
             modelBuilder.Entity("AssetMon.Models.UserProfile", b =>
                 {
                     b.HasOne("AssetMon.Models.AppUser", "AppUser")
@@ -511,6 +550,8 @@ namespace AssetMon.Data.Migrations
             modelBuilder.Entity("AssetMon.Models.UserProfile", b =>
                 {
                     b.Navigation("Address");
+
+                    b.Navigation("Pictures");
                 });
 
             modelBuilder.Entity("AssetMon.Models.Vehicle", b =>

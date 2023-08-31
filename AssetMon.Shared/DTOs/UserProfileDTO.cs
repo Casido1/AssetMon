@@ -18,8 +18,10 @@ namespace AssetMon.Shared.DTOs
 
         public string PhotoUrl { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateOnly DateOfBirth { get; set; }
 
         public AddressDTO Address { get; set; }
+
+        public List<PictureDTO> Pictures { get; set; }
     }
 }

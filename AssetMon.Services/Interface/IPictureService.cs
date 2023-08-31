@@ -1,8 +1,12 @@
-﻿namespace AssetMon.Services.Interface
+﻿using AssetMon.Shared.DTOs;
+using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Http;
+
+namespace AssetMon.Services.Interface
 {
     public interface IPictureService
     {
-        Task<string> GetPictureUrl(string pictureId);
-        Task<string> UploadPicture(Stream stream, string fileName);
+        Task<PictureDTO> UploadPictureAsync(IFormFile file, string userId);
+        Task<DeletionResult> DeletePictureAsync(string publicId);
     }
 }
