@@ -96,5 +96,38 @@ namespace AssetMon.Presentation.Controllers
 
             return Ok(result);
         }
+
+        [HttpPost("address")]
+        [Authorize]
+        public async Task<IActionResult> CreateUserAddress(AddressToCreateDTO addressToCreateDTO)
+        {
+            var userId = User.GetUserId();
+
+            await _serviceManager.AddressService.CreateUserAddressAsync(userId, addressToCreateDTO, trackChanges: false);
+
+            return NoContent();
+        }
+
+        [HttpPut("address")]
+        [Authorize]
+        public async Task<IActionResult> UpdateUserAddress([FromBody] AddressToUpdateDTO addressToUpdateDTO)
+        {
+            var userId = User.GetUserId();
+
+            await _serviceManager.AddressService.UpdateUserAddressAsync(userId, addressToUpdateDTO, trackChanges: true);
+
+            return NoContent();
+        }
+
+        [HttpDelete("address")]
+        [Authorize]
+        public async Task<IActionResult> DeleteUserAddress()
+        {
+            var userId = User.GetUserId();
+
+            await _serviceManager.AddressService.DeleteUserAddressAsync(userId, trackChanges: false);
+
+            return NoContent();
+        }
     }
 }
