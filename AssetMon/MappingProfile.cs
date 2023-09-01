@@ -37,9 +37,7 @@ namespace AssetMon.Main
 
             CreateMap<UserForRegisterationDTO, UserProfile>();
 
-            CreateMap<UserProfile, UserProfileDTO>()
-                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
-                .ForMember(dest => dest.Pictures, opt => opt.MapFrom(src => src.Pictures));
+            CreateMap<UserProfile, UserProfileDTO>();
 
             CreateMap<UserProfileToUpdateDTO, UserProfile>();
 

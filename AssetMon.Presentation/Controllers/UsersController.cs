@@ -18,16 +18,14 @@ namespace AssetMon.Presentation.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
-        private readonly IRepositoryManager _repositoryManager;
 
-        public UsersController(IServiceManager serviceManager, IRepositoryManager repositoryManager)
+        public UsersController(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
-            _repositoryManager = repositoryManager;
         }
 
         [HttpGet("userprofiles")]
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetUserProfiles([FromQuery] UserParameters userParameters) 
         {
             var pagedResult = await _serviceManager.UserService.GetUserProfilesAsync(userParameters, trackChanges: false);
@@ -42,25 +40,30 @@ namespace AssetMon.Presentation.Controllers
         public async Task<IActionResult> GetUserProfileById()
         {
             var userId = User.GetUserId();
+
             var result = await _serviceManager.UserService.GetUserProfileByIdAsync(userId, trackChanges: false);
 
             return Ok(result);
         }
 
-        [HttpPut("{userId}/userprofile")]
-        //[Authorize(Roles = "Owner, Driver")]
+        [HttpPut("userprofile")]
+        [Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> UpdateUserProfile(string userId, [FromBody] UserProfileToUpdateDTO userProfileToUpdate)
+        public async Task<IActionResult> UpdateUserProfile([FromBody] UserProfileToUpdateDTO userProfileToUpdate)
         {
+            var userId = User.GetUserId();
+
             await _serviceManager.UserService.UpdateUserProfileAsync(userId, userProfileToUpdate, trackChanges: true);
 
             return NoContent();
         }
 
-        [HttpDelete("{userId}/userprofile")]
-        //[Authorize(Roles = "Owner, Driver")]
-        public async Task<IActionResult> DeleteUserProfileById(string userId)
+        [HttpDelete("userprofile")]
+        [Authorize]
+        public async Task<IActionResult> DeleteUserProfileById()
         {
+            var userId = User.GetUserId();
+
             await _serviceManager.UserService.DeleteUserProfileAsync(userId, trackChanges: false);
 
             return NoContent();

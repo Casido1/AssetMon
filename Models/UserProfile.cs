@@ -23,6 +23,7 @@ namespace AssetMon.Models
         public string PhotoUrl { get; set; }
 
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+
         public DateTime LastActive { get; set; } = DateTime.UtcNow;
 
         public DateTime DateOfBirth { get; set; }
