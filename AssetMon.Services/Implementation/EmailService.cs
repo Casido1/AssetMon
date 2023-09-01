@@ -45,7 +45,7 @@ namespace AssetMon.Services.Implementation
 
             var emailBody = await _templateEngine.GenerateBodyHtml("PasswordResetEmail", emailOptions.PlaceHolder);
 
-            await SendMailAsync("ophelia.sawayn@ethereal.email", subject, emailBody);
+            await SendMailAsync("charlene23@ethereal.email", subject, emailBody);
         }
 
         public async Task SendEmailConfirmationMailAsync(EmailOptions emailOptions)
@@ -54,7 +54,7 @@ namespace AssetMon.Services.Implementation
 
             var emailBody = await _templateEngine.GenerateBodyHtml("EmailConfirmationMail", emailOptions.PlaceHolder);
 
-            await SendMailAsync("ophelia.sawayn@ethereal.email", subject, emailBody);
+            await SendMailAsync("charlene23@ethereal.email", subject, emailBody);
         }
     }
 }
