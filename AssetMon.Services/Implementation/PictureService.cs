@@ -69,7 +69,7 @@ namespace AssetMon.Services.Implementation
                 var uploadParam = new ImageUploadParams
                 {
                     File = new FileDescription(file.Name, stream),
-                    Transformation = new Transformation().Height(500).Width(500).Crop("Fill").Gravity("face"),
+                    Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face"),
                     Folder = "assetmon-images"
                 };
                 uploadResult = await _cloudinary.UploadAsync(uploadParam);

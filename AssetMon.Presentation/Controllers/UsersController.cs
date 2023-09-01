@@ -68,7 +68,7 @@ namespace AssetMon.Presentation.Controllers
 
         [HttpPost("add-photo")]
         [Authorize]
-        public async Task<ActionResult<PictureDTO>> AddPhoto(IFormFile file)
+        public async Task<IActionResult> AddPhoto(IFormFile file)
         {
             var userId = User.GetUserId();
 
