@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AssetMon.Data.Migrations
 {
     [DbContext(typeof(AssetMonContext))]
-    [Migration("20230831212945_AddedPictureEntity")]
+    [Migration("20230831235821_AddedPictureEntity")]
     partial class AddedPictureEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

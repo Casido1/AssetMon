@@ -27,11 +27,32 @@ namespace AssetMon.Services.Implementation
             _cloudinary = new Cloudinary(cloudinaryAccount);
         }
 
-        public async Task<DeletionResult> DeletePictureAsync(string publicId)
+        public async Task<DeletionResult> DeletePictureAsync(string pictureId, string userId)
         {
-            var deleteParam = new DeletionParams(publicId);
+            var user = await _repositoryManager.User.GetUserProfileByIdAsync(userId, trackChanges: true);
 
-            return await _cloudinary.DestroyAsync(deleteParam);
+            if (user == null) throw new UserProfileNotFoundException(userId);
+
+            var picture = user.Pictures.FirstOrDefault(x => x.Id == pictureId);
+
+            if (picture == null) return null;
+
+            if(picture.IsMain) return null;
+
+            if(picture.PublicId != null)
+            {
+                var deleteParam = new DeletionParams(picture.PublicId);
+
+                var result =  await _cloudinary.DestroyAsync(deleteParam);
+
+                if (result.Error == null)
+                {
+                    user.Pictures.Remove(picture);
+                    await _repositoryManager.SaveAsync();
+                }
+                return result;
+            }
+            return null;
         }
 
         public async Task<PictureDTO> UploadPictureAsync(IFormFile file, string userId)

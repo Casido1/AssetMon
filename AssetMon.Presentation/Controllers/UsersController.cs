@@ -78,5 +78,20 @@ namespace AssetMon.Presentation.Controllers
 
             return Ok(result);
         }
+
+        [HttpDelete("delete-photo/{pictureId}")]
+        [Authorize]
+        public async Task<IActionResult> DeletePhoto(string pictureId)
+        {
+            var userId = User.GetUserId();
+
+            var result = await _serviceManager.PictureService.DeletePictureAsync(pictureId, userId);
+
+            if (result == null) return BadRequest();
+
+            if(result.Error != null) return BadRequest(result.Error.Message);
+
+            return Ok(result);
+        }
     }
 }
