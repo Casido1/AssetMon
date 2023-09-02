@@ -12,7 +12,7 @@ namespace AssetMon.Models
 
         public DateTime RefreshTokenExpiryTime { get; set; }
 
-        //nav prop
+        //Nav prop
         public virtual IEnumerable<Ownership> Ownerships { get; set; }
 
         public virtual UserProfile UserProfile { get; set; }
