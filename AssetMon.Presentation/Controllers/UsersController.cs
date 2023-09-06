@@ -1,7 +1,5 @@
 ﻿using AssetMon.Commons.ActionFilters;
 using AssetMon.Commons.Extensions;
-using AssetMon.Data.Repositories.Interface;
-using AssetMon.Models;
 using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
 using AssetMon.Shared.RequestFeatures;
@@ -15,6 +13,7 @@ namespace AssetMon.Presentation.Controllers
     [ApiVersion("1.0")]
     [Route("api/Users")]
     [ApiController]
+    [EmailConfirmed]
     public class UsersController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;

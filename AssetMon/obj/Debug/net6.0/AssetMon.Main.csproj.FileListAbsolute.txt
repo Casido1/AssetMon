@@ -120,3 +120,4 @@ C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\obj\Debug\net6
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\obj\Debug\net6.0\AssetMon.Main.pdb
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\obj\Debug\net6.0\AssetMon.Main.genruntimeconfig.cache
 C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\obj\Debug\net6.0\ref\AssetMon.Main.dll
+C:\Users\Casido\OneDrive\Desktop\Assets Monitor\AssetMon\AssetMon\bin\Debug\net6.0\Templates\EmailConfirmationMail.html

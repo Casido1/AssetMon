@@ -1,17 +1,10 @@
 ﻿using AssetMon.Commons.ActionFilters;
+using AssetMon.Commons.Extensions;
 using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
-using Castle.Core.Internal;
-using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Dynamic.Core.Tokenizer;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssetMon.Presentation.Controllers
 {
@@ -46,7 +39,8 @@ namespace AssetMon.Presentation.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDTO userLoginDTO)
         {
-            if (!await _serviceManager.AuthenticationService.LoginUser(userLoginDTO))
+            var result = await _serviceManager.AuthenticationService.LoginUser(userLoginDTO);
+            if (!result)
                 return Unauthorized();
 
             var tokenDTO = await _serviceManager.AuthenticationService.CreateToken(populateExp: true);
@@ -84,7 +78,7 @@ namespace AssetMon.Presentation.Controllers
 
         [HttpPost("reassignroles")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> ReassignRoles([FromBody] RoleReassignmentDTO roleReassignmentDTO)
         {
             var result = await _serviceManager.AuthenticationService.ReassignRole(roleReassignmentDTO.UserId, roleReassignmentDTO.Roles);
@@ -109,9 +103,10 @@ namespace AssetMon.Presentation.Controllers
         [HttpPost("verify-email/confirm")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [AllowAnonymous]
-        public async Task<IActionResult> ConfirmEmail(EmailVerificationDTO emailVerificationDTO)
+        public async Task<IActionResult> ConfirmEmail([FromBody] string token)
         {
-            var result = await _serviceManager.AuthenticationService.ConfirmEmail(emailVerificationDTO.UserId, emailVerificationDTO.Token);
+            var userId = User.GetUserId();
+            var result = await _serviceManager.AuthenticationService.ConfirmEmail(userId, token);
 
             if (result.Succeeded) return Ok("Email confirmed successfully");
 

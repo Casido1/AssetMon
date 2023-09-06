@@ -1,9 +1,7 @@
 ﻿using AssetMon.Commons.ActionFilters;
-using AssetMon.Models;
 using AssetMon.Services.Interface;
 using AssetMon.Shared.DTOs;
 using AssetMon.Shared.RequestFeatures;
-using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
@@ -13,6 +11,7 @@ namespace AssetMon.Presentation.Controllers
     [ApiVersion("1.0")]
     [Route("api/Vehicles")]
     [ApiController]
+    [EmailConfirmed]
     public class VehiclesController : ControllerBase
     {
         private readonly IServiceManager _service;

@@ -8,7 +8,6 @@ using AutoMapper;
 using LoggerService.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -50,7 +49,7 @@ namespace AssetMon.Services.Implementation
             if (_user == null) return false;
             var result = await _userManager.CheckPasswordAsync(_user, userLoginDTO.Password);
 
-            if (!result)
+            if(!result)
                 _logger.LogWarn($"{nameof(LoginUser)}: Authentication failed. Wrong user name or password.");
 
             return result;
@@ -205,7 +204,7 @@ namespace AssetMon.Services.Implementation
                     new KeyValuePair<string, string>( "{{Token}}", $"{token}" )
                 } 
             };
-            await _emailService.SendPasswordResetEmailAsync(model);
+            await _emailService.SendPasswordResetEmailAsync(model, email);
 
             return true;
         }
@@ -261,7 +260,7 @@ namespace AssetMon.Services.Implementation
                 }
             };
             
-            await _emailService.SendEmailConfirmationMailAsync(model);
+            await _emailService.SendEmailConfirmationMailAsync(model, _user.Email);
 
             return true;
         }

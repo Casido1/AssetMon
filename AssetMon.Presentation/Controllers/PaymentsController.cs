@@ -11,6 +11,7 @@ namespace AssetMon.Presentation.Controllers
     [ApiVersion("1.0")]
     [Route("api/vehicles/{vehicleId}/payments")]
     [ApiController]
+    [EmailConfirmed]
     public class PaymentsController : ControllerBase
     {
         private readonly IServiceManager _service;

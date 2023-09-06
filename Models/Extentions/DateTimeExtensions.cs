@@ -1,4 +1,4 @@
-﻿namespace AssetMon.Commons.Extensions
+﻿namespace AssetMon.Models.Extentions
 {
     public static class DateTimeExtensions
     {

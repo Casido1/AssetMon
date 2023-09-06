@@ -34,6 +34,7 @@ builder.Services.ConfigureVersioning();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ITemplateEngine, TemplateEngine>();
 builder.Services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+builder.Services.Configure<MailConfiguration>(configuration.GetSection("MailConfiguration"));
 
 //Caching configuration
 //builder.Services.ConfigureResponseCaching();

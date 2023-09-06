@@ -4,7 +4,7 @@ using AssetMon.Services.TemplateEngine;
 using AssetMon.Shared.DTOs;
 using MailKit.Net.Smtp;
 using MailKit.Security;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Text;
 
@@ -13,48 +13,46 @@ namespace AssetMon.Services.Implementation
     public class EmailService : IEmailService
     {
         private readonly ITemplateEngine _templateEngine;
-        private readonly IConfiguration _configuration;
-        private readonly MailConfiguration _mailConfiguration;
+        private readonly IOptions<MailConfiguration> _mailConfiguration;
 
-        public EmailService(IConfiguration configuration, ITemplateEngine templateEngine)
+        public EmailService(ITemplateEngine templateEngine, IOptions<MailConfiguration> mailConfiguration)
         {
             _templateEngine = templateEngine;
-            _configuration = configuration;
-            _mailConfiguration = new MailConfiguration();
-            _configuration.Bind(_mailConfiguration.Section, _mailConfiguration);
+            _mailConfiguration = mailConfiguration;
         }
 
         public async Task SendMailAsync(string emailTo, string subject, string body)
         {
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse(_mailConfiguration.UserName));
+            email.From.Add(MailboxAddress.Parse(_mailConfiguration.Value.UserName));
             email.To.Add(MailboxAddress.Parse(emailTo));
             email.Subject = subject;
             email.Body = new TextPart(TextFormat.Html) { Text = body };
 
             using var smtp = new SmtpClient();
-            await smtp.ConnectAsync(_mailConfiguration.Host, 587, SecureSocketOptions.StartTls);
-            await smtp.AuthenticateAsync(_mailConfiguration.UserName, _mailConfiguration.Password);
+            await smtp.ConnectAsync(_mailConfiguration.Value.SmtpServer, _mailConfiguration.Value.Port, true);
+            smtp.AuthenticationMechanisms.Remove("XOAUTH2");
+            await smtp.AuthenticateAsync(_mailConfiguration.Value.UserName, _mailConfiguration.Value.Password);
             await smtp.SendAsync(email);
             await smtp.DisconnectAsync(true);
         }
 
-        public async Task SendPasswordResetEmailAsync(EmailOptions emailOptions)
+        public async Task SendPasswordResetEmailAsync(EmailOptions emailOptions, string emailTo)
         {
             string subject = "Password Reset";
 
             var emailBody = await _templateEngine.GenerateBodyHtml("PasswordResetEmail", emailOptions.PlaceHolder);
 
-            await SendMailAsync("charlene23@ethereal.email", subject, emailBody);
+            await SendMailAsync(emailTo, subject, emailBody);
         }
 
-        public async Task SendEmailConfirmationMailAsync(EmailOptions emailOptions)
+        public async Task SendEmailConfirmationMailAsync(EmailOptions emailOptions, string emailTo)
         {
             string subject = "Email Confirmation";
 
             var emailBody = await _templateEngine.GenerateBodyHtml("EmailConfirmationMail", emailOptions.PlaceHolder);
 
-            await SendMailAsync("charlene23@ethereal.email", subject, emailBody);
+            await SendMailAsync(emailTo, subject, emailBody);
         }
     }
 }

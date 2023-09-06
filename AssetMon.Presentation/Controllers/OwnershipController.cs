@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AssetMon.Presentation.Controllers
 {
-    //[Authorize(Roles = "Administrator")]
+    [ApiVersion("1.0")]
     [Route("api/ownership")]
     [ApiController]
+    [Authorize(Roles = "Administrator")]
+    [EmailConfirmed]
     public class OwnershipController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -18,7 +20,6 @@ namespace AssetMon.Presentation.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> CreateOwnership([FromBody] OwnershipDTO ownershipDTO)
         {
             await _serviceManager.OwnershipService.CreateOwnershipAsync(ownershipDTO.UserId, ownershipDTO.VehicleId, trackChanges: false);

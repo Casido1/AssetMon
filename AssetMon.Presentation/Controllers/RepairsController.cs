@@ -11,6 +11,7 @@ namespace AssetMon.Presentation.Controllers
     [ApiVersion("1.0")]
     [Route("api/vehicles/{vehicleId}/repairs")]
     [ApiController]
+    [EmailConfirmed]
     public class RepairsController : ControllerBase
     {
         private readonly IServiceManager _service;
