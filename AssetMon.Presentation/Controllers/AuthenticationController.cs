@@ -103,10 +103,10 @@ namespace AssetMon.Presentation.Controllers
         [HttpPost("verify-email/confirm")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [AllowAnonymous]
-        public async Task<IActionResult> ConfirmEmail([FromBody] string token)
+        public async Task<IActionResult> ConfirmEmail([FromBody] EmailVerificationDTO emailVerificationDTO)
         {
             var userId = User.GetUserId();
-            var result = await _serviceManager.AuthenticationService.ConfirmEmail(userId, token);
+            var result = await _serviceManager.AuthenticationService.ConfirmEmail(userId, emailVerificationDTO.Token);
 
             if (result.Succeeded) return Ok("Email confirmed successfully");
 
